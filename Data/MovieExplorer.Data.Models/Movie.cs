@@ -1,5 +1,6 @@
 ﻿
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -16,11 +17,15 @@ namespace MovieExplorer.Data.Models
 
         public string Title { get; set; }
 
+        public DateTime ReleaseDate { get; set; }
+
         public int Minutes { get; set; }
 
         public double Rate { get; set; }
 
         public int ImageId { get; set; }
+
+        public string Description { get; set; }
 
         public virtual MovieImage MovieImage { get; set; }
 
