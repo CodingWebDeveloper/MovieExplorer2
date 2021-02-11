@@ -22,6 +22,8 @@ namespace MovieExplorer.Data.Models
 
         public int ImageId { get; set; }
 
+        public string Description { get; set; }
+
         public virtual MovieImage MovieImage { get; set; }
 
         public virtual Director Director { get; set; }
