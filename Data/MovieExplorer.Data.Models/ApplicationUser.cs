@@ -16,7 +16,28 @@ namespace MovieExplorer.Data.Models
             this.Roles = new HashSet<IdentityUserRole<string>>();
             this.Claims = new HashSet<IdentityUserClaim<string>>();
             this.Logins = new HashSet<IdentityUserLogin<string>>();
+            this.Comments = new HashSet<Comment>();
         }
+
+
+        public string FirstName { get; set; }
+
+        public string MiddleName { get; set; }
+
+        public string LastName { get; set; }
+
+        //Hides inherited member. Email No need to add this property!
+        //public string Email { get; set; }
+
+        public string Password { get; set; }
+
+        public int TownId { get; set; }
+
+        public virtual Town Town { get; set; }
+
+        public virtual ICollection<Comment> Comments { get; set; }
+
+        public virtual ICollection<MovieUser> Movies { get; set; }
 
         // Audit info
         public DateTime CreatedOn { get; set; }
