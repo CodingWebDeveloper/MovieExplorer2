@@ -11,6 +11,7 @@ namespace MovieExplorer.Data.Models
         public Movie()
         {
             this.Genres = new HashSet<MovieGenre>();
+            this.Users = new HashSet<MovieUser>();
         }
 
         public int Id { get; set; }
@@ -38,5 +39,7 @@ namespace MovieExplorer.Data.Models
         public Country Country { get; set; }
 
         public virtual ICollection<MovieGenre> Genres { get; set; }
+
+        public virtual ICollection<MovieUser> Users { get; set; }
     }
 }

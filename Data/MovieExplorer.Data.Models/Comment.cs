@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MovieExplorer.Data.Models
 {
-    public class Post
+    public class Comment
     {
         public int Id { get; set; }
 
