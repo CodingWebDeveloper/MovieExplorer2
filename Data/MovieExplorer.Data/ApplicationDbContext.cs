@@ -25,6 +25,8 @@
         {
         }
 
+       
+
         public DbSet<Setting> Settings { get; set; }
 
         public DbSet<Country> Countries { get; set; }
@@ -35,7 +37,15 @@
 
         public DbSet<Image> Images { get; set; }
 
-        public DbSet<MovieGenre> MovieGenres { get; set; }
+        public DbSet<MovieGenre> MovieGenres { get; set; } 
+
+        public DbSet<Director> Directors { get; set; }
+
+        public DbSet<Town> Towns { get; set; }
+
+        public DbSet<Comment> Comments { get; set; }
+
+        public DbSet<MovieUser> MoviesUsers { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
 
@@ -63,10 +73,15 @@
 
             this.ConfigureUserIdentityRelations(builder);
 
-            builder.ApplyConfiguration(new MovieGenreConfiguration());
             builder.ApplyConfiguration(new CountryConfiguration());
             builder.ApplyConfiguration(new GenreConfiguration());
-            builder.ApplyConfiguration(new MovieConfiguration());
+            builder.ApplyConfiguration(new MovieConfiguration()); 
+            builder.ApplyConfiguration(new MovieGenreConfiguration());
+            builder.ApplyConfiguration(new DirectorConfiguration());
+            builder.ApplyConfiguration(new TownConfiguration());
+            builder.ApplyConfiguration(new CommentConfiguration());
+            builder.ApplyConfiguration(new MovieUserConfiguration());
+
 
             EntityIndexesConfiguration.Configure(builder);
 
