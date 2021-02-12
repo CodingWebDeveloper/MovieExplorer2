@@ -11,6 +11,7 @@
 
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
+    using MovieExplorer.Data.Configurations;
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
@@ -25,6 +26,16 @@
         }
 
         public DbSet<Setting> Settings { get; set; }
+
+        public DbSet<Country> Countries { get; set; }
+
+        public DbSet<Movie> Movies { get; set; }
+
+        public DbSet<Genre> Genres { get; set; }
+
+        public DbSet<Image> Images { get; set; }
+
+        public DbSet<MovieGenre> MovieGenres { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
 
@@ -51,6 +62,11 @@
             base.OnModelCreating(builder);
 
             this.ConfigureUserIdentityRelations(builder);
+
+            builder.ApplyConfiguration(new MovieGenreConfiguration());
+            builder.ApplyConfiguration(new CountryConfiguration());
+            builder.ApplyConfiguration(new GenreConfiguration());
+            builder.ApplyConfiguration(new MovieConfiguration());
 
             EntityIndexesConfiguration.Configure(builder);
 
