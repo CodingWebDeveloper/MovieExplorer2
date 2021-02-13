@@ -22,7 +22,7 @@ namespace MovieExplorer.Data.Models
 
         public int Minutes { get; set; }
 
-        public double Rate { get; set; }
+        public double? Rate { get; set; }
 
         public int ImageId { get; set; }
 

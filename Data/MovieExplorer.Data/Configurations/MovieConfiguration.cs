@@ -13,31 +13,31 @@ namespace MovieExplorer.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Movie> builder)
         {
-            builder.HasKey(x => x.Id);
+            builder.HasKey(m => m.Id);
 
-            builder.Property(x => x.Title)
+            builder.Property(m => m.Title)
                 .IsRequired(true)
                 .IsUnicode(true);
 
-            builder.Property(x => x.ReleaseDate)
+            builder.Property(m => m.ReleaseDate)
                 .IsRequired(false);
 
-            builder.Property(x => x.Rate)
+            builder.Property(m => m.Rate)
                 .IsRequired(false);
 
-            builder.Property(x => x.Description)
+            builder.Property(m => m.Description)
                 .IsRequired(false)
                 .IsUnicode(true);
 
-            builder.HasOne(x => x.Director)
-                .WithMany(x => x.Movies)
-                .HasForeignKey(x => x.DirectorId);
+            builder.HasOne(m => m.Director)
+                .WithMany(d => d.Movies)
+                .HasForeignKey(m => m.DirectorId);
 
-            builder.HasOne(x => x.Country)
-                .WithMany(x => x.Movies)
-                .HasForeignKey(x => x.CountryId);
+            builder.HasOne(m => m.Country)
+                .WithMany(c => c.Movies)
+                .HasForeignKey(m => m.CountryId);
 
-            builder.HasOne(x => x.Image);
+            builder.HasOne(m => m.Image);
         }
     }
 }

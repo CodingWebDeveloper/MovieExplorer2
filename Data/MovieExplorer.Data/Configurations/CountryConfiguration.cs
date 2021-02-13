@@ -13,9 +13,9 @@ namespace MovieExplorer.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Country> builder)
         {
-            builder.HasKey(x => x.Id);
+            builder.HasKey(c => c.Id);
 
-            builder.Property(x => x.Name)
+            builder.Property(c => c.Name)
                 .HasMaxLength(80)
                 .IsRequired(true)
                 .IsUnicode(true);

@@ -13,15 +13,15 @@ namespace MovieExplorer.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<MovieGenre> builder)
         {
-            builder.HasKey(x => new { x.MovieId, x.GenreId });
+            builder.HasKey(mg => new { mg.MovieId, mg.GenreId });
 
-            builder.HasOne(x => x.Genre)
-                .WithMany(x => x.Movies)
-                .HasForeignKey(x => x.GenreId);
+            builder.HasOne(mg => mg.Genre)
+                .WithMany(g => g.Movies)
+                .HasForeignKey(mg => mg.GenreId);
 
-            builder.HasOne(x => x.Movie)
-                .WithMany(x => x.Genres)
-                .HasForeignKey(x => x.MovieId);
+            builder.HasOne(mg => mg.Movie)
+                .WithMany(m => m.Genres)
+                .HasForeignKey(mg => mg.MovieId);
         }
     }
 }
