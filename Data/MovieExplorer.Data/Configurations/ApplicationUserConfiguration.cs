@@ -8,32 +8,32 @@
     {
         public void Configure(EntityTypeBuilder<ApplicationUser> appUser)
         {
-            appUser.HasKey(au => au.Id);
+            //appUser.HasKey(au => au.Id);
 
-            appUser
-                .Property(au => au.FirstName)
-                .HasMaxLength(50)
-                .IsRequired(true)
-                .IsUnicode(true);
+            //appUser
+            //    .Property(au => au.FirstName)
+            //    .HasMaxLength(50)
+            //    .IsRequired(true)
+            //    .IsUnicode(true);
 
-            appUser
-               .Property(au => au.LastName)
-               .HasMaxLength(50)
-               .IsRequired(true)
-               .IsUnicode(true);
+            //appUser
+            //   .Property(au => au.LastName)
+            //   .HasMaxLength(50)
+            //   .IsRequired(true)
+            //   .IsUnicode(true);
 
-            appUser.Property(au => au.Email)
-                .IsRequired(true)
-                .IsUnicode(false);
+            //appUser.Property(au => au.Email)
+            //    .IsRequired(true)
+            //    .IsUnicode(false);
 
-            appUser.Property(au => au.Password)
-                .IsRequired(true)
-                .IsUnicode(false);
+            //appUser.Property(au => au.Password)
+            //    .IsRequired(true)
+            //    .IsUnicode(false);
 
-            appUser
-                .HasOne(au => au.Town)
-                .WithMany(t => t.Users)
-                .HasForeignKey(au => au.TownId);
+            //appUser
+            //    .HasOne(au => au.Town)
+            //    .WithMany(t => t.Users)
+            //    .HasForeignKey(au => au.TownId);
 
             appUser
                 .HasMany(e => e.Claims)
