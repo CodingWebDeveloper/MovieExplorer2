@@ -37,6 +37,10 @@ namespace MovieExplorer.Data.Configurations
                 .WithMany(c => c.Movies)
                 .HasForeignKey(m => m.CountryId);
 
+            builder.HasMany(m => m.Comments)
+                .WithOne(c => c.Movie)
+                .HasForeignKey(c => c.MovieId);
+
             builder.HasOne(m => m.Image);
         }
     }

@@ -2,10 +2,8 @@
 namespace MovieExplorer.Data.Models
 {
     using System;
-
-    using MovieExplorer.Data.Common.Models;
-
     using Microsoft.AspNetCore.Identity;
+    using MovieExplorer.Data.Common.Models;
 
     public class ApplicationRole : IdentityRole, IAuditInfo, IDeletableEntity
     {

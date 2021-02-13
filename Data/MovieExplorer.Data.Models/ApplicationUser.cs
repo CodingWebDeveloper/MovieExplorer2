@@ -3,10 +3,8 @@ namespace MovieExplorer.Data.Models
 {
     using System;
     using System.Collections.Generic;
-
-    using MovieExplorer.Data.Common.Models;
-
     using Microsoft.AspNetCore.Identity;
+    using MovieExplorer.Data.Common.Models;
 
     public class ApplicationUser : IdentityUser, IAuditInfo, IDeletableEntity
     {
@@ -19,7 +17,6 @@ namespace MovieExplorer.Data.Models
             this.Comments = new HashSet<Comment>();
             this.Movies = new HashSet<MovieUser>();
         }
-
 
         //public string FirstName { get; set; }
 
