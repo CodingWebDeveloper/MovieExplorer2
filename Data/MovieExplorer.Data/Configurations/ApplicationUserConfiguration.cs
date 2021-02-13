@@ -30,11 +30,6 @@
             //    .IsRequired(true)
             //    .IsUnicode(false);
 
-            //appUser
-            //    .HasOne(au => au.Town)
-            //    .WithMany(t => t.Users)
-            //    .HasForeignKey(au => au.TownId);
-
             appUser
                 .HasMany(e => e.Claims)
                 .WithOne()

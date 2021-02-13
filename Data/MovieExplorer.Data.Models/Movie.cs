@@ -12,6 +12,7 @@ namespace MovieExplorer.Data.Models
         {
             this.Genres = new HashSet<MovieGenre>();
             this.Users = new HashSet<MovieUser>();
+            this.Comments = new HashSet<Comment>();
         }
 
         public int Id { get; set; }
@@ -41,5 +42,7 @@ namespace MovieExplorer.Data.Models
         public virtual ICollection<MovieGenre> Genres { get; set; }
 
         public virtual ICollection<MovieUser> Users { get; set; }
+
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }
