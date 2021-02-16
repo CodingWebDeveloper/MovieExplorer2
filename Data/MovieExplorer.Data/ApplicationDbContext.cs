@@ -43,6 +43,11 @@
 
         public DbSet<MovieUser> MoviesUsers { get; set; }
 
+        public DbSet<Actor> Actors { get; set; }
+
+        public DbSet<MovieActor> MoviesActors { get; set; }
+
+
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)
@@ -77,7 +82,8 @@
             //builder.ApplyConfiguration(new TownConfiguration());
             //builder.ApplyConfiguration(new CommentConfiguration());
             //builder.ApplyConfiguration(new MovieUserConfiguration());
-
+            //builder.ApplyConfiguration(new ActorConfiguration());
+            //builder.ApplyConfiguration(new MovieActorConfiguration());
 
             EntityIndexesConfiguration.Configure(builder);
 
