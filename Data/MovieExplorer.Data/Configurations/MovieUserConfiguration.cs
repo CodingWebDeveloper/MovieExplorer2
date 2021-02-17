@@ -19,6 +19,10 @@ namespace MovieExplorer.Data.Configurations
                 mu.UserId
             });
 
+            builder.Property(mu => mu.AddedOn)
+                .IsRequired(true)
+                .HasDefaultValue(DateTime.UtcNow);
+
             builder
                 .HasOne(mu => mu.User)
                 .WithMany(u => u.Movies)

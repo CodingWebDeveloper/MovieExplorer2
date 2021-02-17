@@ -26,9 +26,7 @@ namespace MovieExplorer.Data.Models
 
         public double? Rate { get; set; }
 
-        public int ImageId { get; set; }
-
-        public virtual Image Image { get; set; }
+        public string ImageUrl { get; set; }
 
         public string Description { get; set; }
 

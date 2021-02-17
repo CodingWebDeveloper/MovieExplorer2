@@ -33,8 +33,6 @@
 
         public DbSet<Genre> Genres { get; set; }
 
-        public DbSet<Image> Images { get; set; }
-
         public DbSet<MovieGenre> MovieGenres { get; set; }
 
         public DbSet<Director> Directors { get; set; }
