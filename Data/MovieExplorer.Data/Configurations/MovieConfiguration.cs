@@ -25,6 +25,9 @@ namespace MovieExplorer.Data.Configurations
             builder.Property(m => m.Rate)
                 .IsRequired(false);
 
+            builder.Property(m => m.ImageUrl)
+                .IsRequired(true);
+
             builder.Property(m => m.Description)
                 .IsRequired(false)
                 .IsUnicode(true);
@@ -40,8 +43,6 @@ namespace MovieExplorer.Data.Configurations
             builder.HasMany(m => m.Comments)
                 .WithOne(c => c.Movie)
                 .HasForeignKey(c => c.MovieId);
-
-            builder.HasOne(m => m.Image);
         }
     }
 }
