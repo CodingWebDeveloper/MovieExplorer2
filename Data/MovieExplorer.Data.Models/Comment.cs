@@ -1,10 +1,11 @@
 ﻿namespace MovieExplorer.Data.Models
 {
+    using MovieExplorer.Data.Common.Models;
     using System;
     using System.Collections.Generic;
     using System.Text;
 
-    public class Comment
+    public class Comment : IDeletableEntity
     {
         public int Id { get; set; }
 
@@ -19,5 +20,9 @@
         public int MovieId { get; set; }
 
         public virtual Movie Movie { get; set; }
+
+        public bool IsDeleted { get; set; }
+
+        public DateTime? DeletedOn { get; set; }
     }
 }

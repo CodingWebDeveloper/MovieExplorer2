@@ -1,0 +1,60 @@
+﻿@using MovieExplorer.Web.ViewModels.Directors
+@using MovieExplorer.Web.ViewModels.Countries
+@model IList<DirectorViewModel>
+
+<h1>Create Movie</h1>
+
+<form  asp-controller="Movie" asp-action="Create" method="post">
+    <div>
+        <label for="Title">Title</label>
+        <input type="text" class="form-control col-md-6" name="Title" />
+    </div>
+
+    <div>
+        <label for="ReleaseDate">ReleaseDate</label>
+        <input type="date" class="form-control col-md-6" name="ReleaseDate" />
+    </div>
+
+    <div>
+        <label for="Minutes">Minutes</label>
+        <input type="text" class="form-control col-md-6" name="Minutes" />
+    </div>
+
+    <div>
+        <label for="Rate">Rate</label>
+        <input type="text" class="form-control col-md-6" name="Rate" />
+    </div>
+
+    <div>
+        <label for="Description">Description</label>
+        <textarea class="form-control"></textarea>>
+    </div>
+    <div>
+        <label for="ImageUrl">ImageUrl</label>
+        <input type="text" class="form-control col-md-6" name="ImageUrl"/>
+    </div>
+
+    <div>
+        <label for="DirectorId">Director</label>
+        <select id="director" class="form-control col-md-6" name="DirectorId">
+           @foreach (var item in Model)
+           {
+               <option value="@item.DirectorId">@item.DirectorName</option >
+           }
+        </select>
+    </div>
+
+    <div class="button-holder d-flex justify-content-center">
+        <button type="submit" class="btn btn-success ">Create Movie</button>
+    </div>
+
+    @*<div>
+        <label for="CountryId"></label>
+        <select>
+            @foreach (var item in Model.)
+            {
+                <option value="@item.Count"></option>
+            }
+        </select>>
+    </div>*@
+</form>

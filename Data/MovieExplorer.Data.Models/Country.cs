@@ -1,10 +1,11 @@
 ﻿namespace MovieExplorer.Data.Models
 {
+    using MovieExplorer.Data.Common.Models;
     using System;
     using System.Collections.Generic;
     using System.Text;
 
-    public class Country
+    public class Country : IDeletableEntity
     {
         public Country()
         {
@@ -16,5 +17,9 @@
         public string Name { get; set; }
 
         public ICollection<Movie> Movies { get; set; }
+
+        public bool IsDeleted { get; set; }
+
+        public DateTime? DeletedOn { get; set; }
     }
 }
