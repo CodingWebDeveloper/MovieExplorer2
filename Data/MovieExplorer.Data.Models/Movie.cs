@@ -1,12 +1,13 @@
 ﻿
 
+using MovieExplorer.Data.Common.Models;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 
 namespace MovieExplorer.Data.Models
 {
-    public class Movie
+    public class Movie : IDeletableEntity
     {
         public Movie()
         {
@@ -45,5 +46,9 @@ namespace MovieExplorer.Data.Models
         public virtual ICollection<Comment> Comments { get; set; }
 
         public virtual ICollection<MovieActor> MovieActors { get; set; }
+
+        public bool IsDeleted { get; set; }
+
+        public DateTime? DeletedOn { get; set; }
     }
 }

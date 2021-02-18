@@ -1,10 +1,11 @@
-﻿using System;
+﻿using MovieExplorer.Data.Common.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace MovieExplorer.Data.Models
 {
-    public class Actor
+    public class Actor : IDeletableEntity
     {
         public Actor()
         {
@@ -20,5 +21,9 @@ namespace MovieExplorer.Data.Models
         public string LastName { get; set; }
 
         public virtual ICollection<MovieActor> ActorMovies { get; set; }
+
+        public bool IsDeleted { get; set; }
+
+        public DateTime? DeletedOn { get; set; }
     }
 }

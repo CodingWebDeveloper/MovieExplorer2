@@ -1,10 +1,11 @@
 ﻿namespace MovieExplorer.Data.Models
 {
+    using MovieExplorer.Data.Common.Models;
     using System;
     using System.Collections.Generic;
     using System.Text;
 
-    public class Director
+    public class Director : IDeletableEntity
     {
 
         public Director()
@@ -19,5 +20,9 @@
         public string LastName { get; set; }
 
         public virtual ICollection<Movie> Movies { get; set; }
+
+        public bool IsDeleted { get; set; }
+
+        public DateTime? DeletedOn { get; set; }
     }
 }
