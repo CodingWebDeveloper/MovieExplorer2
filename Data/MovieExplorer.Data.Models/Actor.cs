@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MovieExplorer.Data.Models
 {
-    public class Actor : IDeletableEntity
+    public class Actor : BaseDeletableModel<int>
     {
         public Actor()
         {
@@ -22,8 +22,5 @@ namespace MovieExplorer.Data.Models
 
         public virtual ICollection<MovieActor> ActorMovies { get; set; }
 
-        public bool IsDeleted { get; set; }
-
-        public DateTime? DeletedOn { get; set; }
     }
 }

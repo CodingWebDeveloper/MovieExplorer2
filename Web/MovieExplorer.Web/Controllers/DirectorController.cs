@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using MovieExplorer.Common;
 using MovieExplorer.Data.Common.Repositories;
 using MovieExplorer.Data.Models;
 using MovieExplorer.Services.Data;
@@ -10,8 +12,8 @@ using System.Threading.Tasks;
 
 namespace MovieExplorer.Web.Controllers
 {
-    public class DirectorController : Controller
-    {
+    public class DirectorController : BaseController
+        {
         private readonly IDirectorService directorService;
 
         public DirectorController(IDirectorService directorService)
@@ -19,21 +21,22 @@ namespace MovieExplorer.Web.Controllers
             this.directorService = directorService;
         }
 
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public IActionResult Create()
         {
             return this.View();
         }
 
         [HttpPost]
-        public IActionResult Create(DirectorInputModel directorInputModel)
+        [Authorize(Roles =GlobalConstants.AdministratorRoleName)]
+        public async Task<IActionResult> Create(DirectorInputModel directorInputModel)
         {
-            if(!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
-                throw new ArgumentNullException("done");
+                return this.View();
             }
-
-            this.directorService.CreateDirector(directorInputModel.FirstnName, directorInputModel.LastName);
-            return this.View();
+            await this.directorService.CreateDirector(directorInputModel.FirstName, directorInputModel.LastName);
+            return this.Redirect("/");
         }
     }
 }

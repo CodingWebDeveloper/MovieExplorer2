@@ -1,14 +1,18 @@
-﻿<h1>Create Director</h1>
+﻿@using MovieExplorer.Web.ViewModels.Directors
+@model DirectorInputModel
+<h1>Create Director</h1>
 
 <form class="m-md-auto" asp-controller="Director" asp-action="Create" method="post">
     <div class="form-group">
-        <label>FirstName</label>
-        <input type="text" name="FirstName" />
+        <label asp-for="FirstName">FirstName</label>
+        <input asp-for="FirstName" class="form-control col-md-5" />
+        <span asp-validation-for="FirstName" class="alert-danger"></span>
     </div>
 
     <div class="form-group">
-        <label>LastName</label>
-        <input type="text" name="LastName" />
+        <label asp-for="LastName">LastName</label>
+        <input asp-for="LastName"  class="form-control col-md-5"/>
+        <span asp-validation-for="LastName" class="alert-danger" ></span>
     </div>
 
     <div class="button-holder d-flex justify-content-center">
