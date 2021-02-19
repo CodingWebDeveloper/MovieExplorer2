@@ -1,60 +1,55 @@
-﻿@using MovieExplorer.Web.ViewModels.Directors
-@using MovieExplorer.Web.ViewModels.Countries
-@model IList<DirectorViewModel>
+﻿@using MovieExplorer.Web.ViewModels.Movies
+@model MovieInputModel
 
 <h1>Create Movie</h1>
 
-<form  asp-controller="Movie" asp-action="Create" method="post">
+<form asp-controller="Movie" asp-action="Create" method="post">
     <div>
         <label for="Title">Title</label>
         <input type="text" class="form-control col-md-6" name="Title" />
+        <span asp-validation-for="Title"></span>
     </div>
 
     <div>
         <label for="ReleaseDate">ReleaseDate</label>
         <input type="date" class="form-control col-md-6" name="ReleaseDate" />
+        <span asp-validation-for="ReleaseDate"></span>
     </div>
 
     <div>
-        <label for="Minutes">Minutes</label>
+        <label asp-for="Minutes">Minutes</label>
         <input type="text" class="form-control col-md-6" name="Minutes" />
+        <span asp-validation-for="Minutes"></span>
     </div>
 
     <div>
-        <label for="Rate">Rate</label>
+        <label asp-for="Rate">Rate</label>
         <input type="text" class="form-control col-md-6" name="Rate" />
+        <span asp-validation-for="Rate"></span>
     </div>
 
     <div>
-        <label for="Description">Description</label>
-        <textarea class="form-control"></textarea>>
+        <label asp-for="Description"></label>
+        <textarea asp-for="Description" class="form-control" rows="6"></textarea>
+        <span asp-validation-for="Description"></span>
     </div>
     <div>
-        <label for="ImageUrl">ImageUrl</label>
-        <input type="text" class="form-control col-md-6" name="ImageUrl"/>
+        <label asp-for="ImageUrl"></label>
+        <input type="text" class="form-control col-md-6" name="ImageUrl" />
+        <span asp-validation-for="ImageUrl"></span>
     </div>
 
     <div>
-        <label for="DirectorId">Director</label>
-        <select id="director" class="form-control col-md-6" name="DirectorId">
-           @foreach (var item in Model)
-           {
-               <option value="@item.DirectorId">@item.DirectorName</option >
-           }
+        <label asp-for="DirectorId"></label>
+        <select asp-for="DirectorId" asp-items="@this.Model.AllListDirectors" class="form-control">
         </select>
     </div>
-
+    <div>
+        <label asp-for="CountryId"></label>
+        <select asp-for="CountryId" asp-items="@this.Model.AllListCoutries" class="form-control">
+        </select>
+    </div>
     <div class="button-holder d-flex justify-content-center">
         <button type="submit" class="btn btn-success ">Create Movie</button>
     </div>
-
-    @*<div>
-        <label for="CountryId"></label>
-        <select>
-            @foreach (var item in Model.)
-            {
-                <option value="@item.Count"></option>
-            }
-        </select>>
-    </div>*@
 </form>

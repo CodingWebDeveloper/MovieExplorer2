@@ -4,6 +4,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace MovieExplorer.Services.Data
 {
@@ -20,7 +21,7 @@ namespace MovieExplorer.Services.Data
             this.countryRepository = countryRepository;
         }
 
-        public void CreateMovie(string title, DateTime releaseDate, int minutes, double rate, string imageUrl, string description, int directorId, int countryId)
+        public async Task CreateMovie(string title, DateTime releaseDate, int minutes, double rate, string imageUrl, string description, int directorId, int countryId)
         {
             Movie movie = new Movie
             {
@@ -34,10 +35,14 @@ namespace MovieExplorer.Services.Data
 
             Director director = this.directorRepository.All().FirstOrDefault(m => m.Id == directorId);
             movie.Director = director;
+
             Country country = this.countryRepository.All().FirstOrDefault(m => m.Id == countryId);
             movie.Country = country;
 
-            this.movieRepository.SaveChangesAsync();
+            await this.movieRepository.AddAsync(movie);
+
+            await this.movieRepository.SaveChangesAsync();
         }
+
     }
 }

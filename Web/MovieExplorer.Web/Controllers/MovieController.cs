@@ -9,6 +9,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MovieExplorer.Web.ViewModels.Directors;
+using Microsoft.AspNetCore.Authorization;
+using MovieExplorer.Common;
 
 namespace MovieExplorer.Web.Controllers
 {
@@ -17,32 +19,44 @@ namespace MovieExplorer.Web.Controllers
         private readonly IDeletableEntityRepository<Movie> movieRepository;
         private readonly IMovieService movieService;
         private readonly IDeletableEntityRepository<Director> directorRepository;
+        private readonly IDirectorService directorService;
+        private readonly ICountryService countryService;
 
-        public MovieController(IDeletableEntityRepository<Movie> movieRepository, IMovieService movieService, IDeletableEntityRepository<Director> directorRepository)
+        public MovieController(IDeletableEntityRepository<Movie> movieRepository, IMovieService movieService, IDeletableEntityRepository<Director> directorRepository, IDirectorService directorService, ICountryService countryService)
         {
             this.movieRepository = movieRepository;
             this.movieService = movieService;
             this.directorRepository = directorRepository;
+            this.directorService = directorService;
+            this.countryService = countryService;
         }
 
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public IActionResult Create()
         {
-            var directors = this.directorRepository
-                .All().To<DirectorViewModel>().ToArray();
+            var directors = new MovieInputModel
+            {
+                AllListDirectors = this.directorService.GetAllItems(),
+                AllListCoutries = this.countryService.GetAllCoutries(),
+            };
+
 
             return this.View(directors);
         }
 
         [HttpPost]
-        public IActionResult Create(MovieInputModel inputModel)
+        [Authorize(Roles =GlobalConstants.AdministratorRoleName)]
+        public async Task<IActionResult> Create(MovieInputModel inputModel)
         {
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
-                throw new ArgumentException("Done");
+                inputModel.AllListDirectors = this.directorService.GetAllItems();
+                inputModel.AllListCoutries = this.countryService.GetAllCoutries();
+                return this.View(inputModel);
             }
 
-            this.movieService.CreateMovie(inputModel.Title, inputModel.ReleaseDate, inputModel.Minutes, inputModel.Rate, inputModel.ImageUrl, inputModel.Description, inputModel.DirectorId, inputModel.CountryId);
-            return this.RedirectToAction("Index", "Home");
+            await this.movieService.CreateMovie(inputModel.Title, inputModel.ReleaseDate, inputModel.Minutes, inputModel.Rate, inputModel.ImageUrl, inputModel.Description, inputModel.DirectorId, inputModel.CountryId);
+            return this.Redirect("/");
         }
     }
 }

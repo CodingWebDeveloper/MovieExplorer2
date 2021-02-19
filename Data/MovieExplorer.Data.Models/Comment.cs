@@ -5,7 +5,7 @@
     using System.Collections.Generic;
     using System.Text;
 
-    public class Comment : IDeletableEntity
+    public class Comment : BaseDeletableModel<int>
     {
         public int Id { get; set; }
 
@@ -20,9 +20,5 @@
         public int MovieId { get; set; }
 
         public virtual Movie Movie { get; set; }
-
-        public bool IsDeleted { get; set; }
-
-        public DateTime? DeletedOn { get; set; }
     }
 }

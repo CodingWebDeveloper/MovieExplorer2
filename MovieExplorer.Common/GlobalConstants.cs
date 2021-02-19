@@ -5,5 +5,6 @@
         public const string SystemName = "MovieExplorer";
 
         public const string AdministratorRoleName = "Administrator";
+
     }
 }
