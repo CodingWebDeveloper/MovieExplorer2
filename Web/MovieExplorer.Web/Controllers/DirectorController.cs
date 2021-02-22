@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace MovieExplorer.Web.Controllers
 {
     public class DirectorController : BaseController
-        {
+    {
         private readonly IDirectorService directorService;
 
         public DirectorController(IDirectorService directorService)
@@ -21,14 +21,14 @@ namespace MovieExplorer.Web.Controllers
             this.directorService = directorService;
         }
 
-        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+        //[Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public IActionResult Create()
         {
             return this.View();
         }
 
         [HttpPost]
-        [Authorize(Roles =GlobalConstants.AdministratorRoleName)]
+        //[Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public async Task<IActionResult> Create(DirectorInputModel directorInputModel)
         {
             if (!this.ModelState.IsValid)

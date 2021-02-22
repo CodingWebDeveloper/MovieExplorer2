@@ -31,13 +31,13 @@ namespace MovieExplorer.Web.Controllers
             this.countryService = countryService;
         }
 
-        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+        //[Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public IActionResult Create()
         {
             var directors = new MovieInputModel
             {
                 AllListDirectors = this.directorService.GetAllItems(),
-                AllListCoutries = this.countryService.GetAllCoutries(),
+                AllListCoutries = this.countryService.GetAllCountries(),
             };
 
 
@@ -45,13 +45,13 @@ namespace MovieExplorer.Web.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles =GlobalConstants.AdministratorRoleName)]
+        //[Authorize(Roles =GlobalConstants.AdministratorRoleName)]
         public async Task<IActionResult> Create(MovieInputModel inputModel)
         {
             if (!this.ModelState.IsValid)
             {
                 inputModel.AllListDirectors = this.directorService.GetAllItems();
-                inputModel.AllListCoutries = this.countryService.GetAllCoutries();
+                inputModel.AllListCoutries = this.countryService.GetAllCountries();
                 return this.View(inputModel);
             }
 

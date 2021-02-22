@@ -7,14 +7,19 @@
 
 <a class="btn-primary" asp-controller="Movie" asp-action="Create">Create Movie</a>
 <a class="btn-primary" asp-controller="Director" asp-action="Create">Create Director</a>
+<a class="btn-primary" asp-controller="Country" asp-action="Create">Create Country</a>
 
 <div class="row">
     @foreach (var item in this.Model)
     {
-        <div class="col-md-3">
+    
+    <form class="form-group" method="post">
+        <div class="col-md-4 justify-content-xl-center row">
             <img hight="300" width="250" src="@item.ImageUrl" alt="Image" />
-            <a asp-controller="Movie" asp-action="MoviePage">@item.Name</a>
-        </div>
+            <a class="row-cols-1" asp-controller="Movie" asp-action="MoviePage">@item.Name</a>
+            <button  class="form-control btn-success" asp-controller="Movie" asp-action="MoviePage">Delete</button>
+        </div>   
+    </form>
     }
 </div>
 <div class="text-center">

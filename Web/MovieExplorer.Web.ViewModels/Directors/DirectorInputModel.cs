@@ -7,7 +7,7 @@ namespace MovieExplorer.Web.ViewModels.Directors
 {
     public class DirectorInputModel
     {
-        [Required(ErrorMessage = "State firstName")]
+        [Required(ErrorMessage = "State firstName!")]
         public string FirstName { get; set; }
         [Required]
         public string LastName { get; set; }
