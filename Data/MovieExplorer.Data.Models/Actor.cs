@@ -12,8 +12,6 @@ namespace MovieExplorer.Data.Models
             this.ActorMovies = new HashSet<MovieActor>();
         }
 
-        public int Id { get; set; }
-
         public string FirstName { get; set; }
 
         public string? MiddleName { get; set; }

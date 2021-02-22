@@ -44,5 +44,13 @@ namespace MovieExplorer.Services.Data
             await this.movieRepository.SaveChangesAsync();
         }
 
+        public async Task DeleteMovie(string movieTitle)
+        {
+            Movie movie = this.movieRepository.All().FirstOrDefault(m => m.Title == movieTitle);
+
+            this.movieRepository.Delete(movie);
+
+            await this.movieRepository.SaveChangesAsync();
+        }
     }
 }

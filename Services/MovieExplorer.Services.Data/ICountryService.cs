@@ -2,11 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace MovieExplorer.Services.Data
 {
     public interface ICountryService
     {
-        IEnumerable<SelectListItem> GetAllCoutries();
+        Task CreateCounty(string name);
+
+        IEnumerable<SelectListItem> GetAllCountries();
     }
 }
