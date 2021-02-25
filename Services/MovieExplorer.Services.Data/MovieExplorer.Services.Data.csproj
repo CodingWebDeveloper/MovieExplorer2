@@ -22,6 +22,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\MovieExplorer.Data.Common\MovieExplorer.Data.Common.csproj" />
     <ProjectReference Include="..\..\Data\MovieExplorer.Data.Models\MovieExplorer.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Web\MovieExplorer.Web.ViewModels\MovieExplorer.Web.ViewModels.csproj" />
     <ProjectReference Include="..\MovieExplorer.Services.Mapping\MovieExplorer.Services.Mapping.csproj" />
   </ItemGroup>
 

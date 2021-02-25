@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Text;
 
 namespace MovieExplorer.Web.ViewModels.Movies
@@ -35,5 +36,9 @@ namespace MovieExplorer.Web.ViewModels.Movies
         public int CountryId { get; set; }
 
         public IEnumerable<SelectListItem> AllListCoutries { get; set; }
+
+        //public List<int> ActorsId => this.AllListActors.Select(x => int.Parse(x.Value)).ToList();
+
+        public IEnumerable<SelectListItem> AllListActors { get; set; }
     }
 }
