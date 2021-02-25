@@ -16,32 +16,32 @@ namespace MovieExplorer.Web.Controllers
 {
     public class MovieController : Controller
     {
-        private readonly IDeletableEntityRepository<Movie> movieRepository;
         private readonly IMovieService movieService;
-        private readonly IDeletableEntityRepository<Director> directorRepository;
         private readonly IDirectorService directorService;
         private readonly ICountryService countryService;
+        private readonly IActorService actorService;
 
-        public MovieController(IDeletableEntityRepository<Movie> movieRepository, IMovieService movieService, IDeletableEntityRepository<Director> directorRepository, IDirectorService directorService, ICountryService countryService)
+        public MovieController(IMovieService movieService, IDirectorService directorService, ICountryService countryService, IActorService actorService)
         {
-            this.movieRepository = movieRepository;
             this.movieService = movieService;
-            this.directorRepository = directorRepository;
             this.directorService = directorService;
             this.countryService = countryService;
+            this.actorService = actorService;
         }
 
         //[Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public IActionResult Create()
         {
-            var directors = new MovieInputModel
+            var movies = new MovieInputModel
             {
                 AllListDirectors = this.directorService.GetAllItems(),
                 AllListCoutries = this.countryService.GetAllCountries(),
+                AllListActors = this.actorService.GetAllActors(),
+               
             };
 
 
-            return this.View(directors);
+            return this.View(movies);
         }
 
         [HttpPost]
@@ -52,11 +52,27 @@ namespace MovieExplorer.Web.Controllers
             {
                 inputModel.AllListDirectors = this.directorService.GetAllItems();
                 inputModel.AllListCoutries = this.countryService.GetAllCountries();
+                inputModel.AllListActors = this.actorService.GetAllActors();
                 return this.View(inputModel);
             }
 
             await this.movieService.CreateMovie(inputModel.Title, inputModel.ReleaseDate, inputModel.Minutes, inputModel.Rate, inputModel.ImageUrl, inputModel.Description, inputModel.DirectorId, inputModel.CountryId);
             return this.Redirect("/");
         }
+
+        public async Task<IActionResult> MoviePage(string Id)
+        {
+            MoviePageViewModel movie = this.movieService.GetMovieById(Id);
+
+            return this.View(movie);
+        }
+
+        public async Task<IActionResult> Delete(string id)
+        {
+            await this.movieService.DeleteMovie(id);
+
+            return this.Redirect("/");
+        }
+
     }
 }

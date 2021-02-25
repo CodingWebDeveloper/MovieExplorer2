@@ -5,6 +5,9 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using MovieExplorer.Web.ViewModels;
+using MovieExplorer.Services.Mapping;
+using MovieExplorer.Web.ViewModels.Movies;
 
 namespace MovieExplorer.Services.Data
 {
@@ -31,6 +34,7 @@ namespace MovieExplorer.Services.Data
                 Rate = rate,
                 ImageUrl = imageUrl,
                 Description = description,
+                Country = this.countryRepository.All().FirstOrDefault(x => x.Id == countryId),
             };
 
             Director director = this.directorRepository.All().FirstOrDefault(m => m.Id == directorId);
@@ -51,6 +55,13 @@ namespace MovieExplorer.Services.Data
             this.movieRepository.Delete(movie);
 
             await this.movieRepository.SaveChangesAsync();
+        }
+
+        public MoviePageViewModel GetMovieById(string title)
+        {
+            MoviePageViewModel movie = this.movieRepository.All().To<MoviePageViewModel>().FirstOrDefault(x => x.Title == title);
+
+            return movie;
         }
     }
 }

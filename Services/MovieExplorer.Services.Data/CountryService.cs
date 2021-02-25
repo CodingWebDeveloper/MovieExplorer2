@@ -18,7 +18,7 @@ namespace MovieExplorer.Services.Data
             this.countryRepository = countryRepository;
         }
 
-        public async Task CreateCounty(string name)
+        public async Task CreateCountry(string name)
         {
             Country country = new Country
             {

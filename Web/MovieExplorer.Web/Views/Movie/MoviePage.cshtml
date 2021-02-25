@@ -1,0 +1,15 @@
+﻿@using MovieExplorer.Web.ViewModels.Movies
+@model  MoviePageViewModel
+    <h1>@Model.Title</h1>
+    <div>
+        <img hight="300" width="250" src="@Model.ImageUrl" alt="Image" />
+        <p>@Model.ReleaseDate</p>
+        <p>@Model.Description</p>
+        <p>@Model.CountryName</p>
+        <p>@Model.Minutes</p>
+        <p>@Model.DirectroName</p>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/8ugaeA-nMTc" frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen></iframe>
+    </div>
+

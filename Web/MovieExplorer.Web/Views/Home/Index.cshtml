@@ -16,8 +16,8 @@
     <form class="form-group" method="post">
         <div class="col-md-4 justify-content-xl-center row">
             <img hight="300" width="250" src="@item.ImageUrl" alt="Image" />
-            <a class="row-cols-1" asp-controller="Movie" asp-action="MoviePage">@item.Name</a>
-            <button  class="form-control btn-success" asp-controller="Movie" asp-action="MoviePage">Delete</button>
+            <a class="row-cols-1" asp-controller="Movie" asp-action="MoviePage" asp-route-id="@item.Name">@item.Name</a>
+            <button  class="form-control btn-success" asp-controller="Movie" asp-action="Delete" asp-route-id="@item.Name">Delete</button>
         </div>   
     </form>
     }

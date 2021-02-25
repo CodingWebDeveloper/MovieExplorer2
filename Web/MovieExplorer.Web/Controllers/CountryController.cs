@@ -33,7 +33,7 @@ namespace MovieExplorer.Web.Controllers
                 return this.View();
             }
 
-            await this.countryService.CreateCounty(countryInputModel.Name);
+            await this.countryService.CreateCountry(countryInputModel.Name);
             return this.Redirect("/");
         }
     }
