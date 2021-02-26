@@ -74,5 +74,11 @@ namespace MovieExplorer.Web.Controllers
             return this.Redirect("/");
         }
 
+        public async Task<IActionResult> AddToUser(string Id, string IdMovie)
+        {
+            await this.movieService.AddtoUser(Id, IdMovie);
+
+            return this.Redirect("/");
+        }
     }
 }

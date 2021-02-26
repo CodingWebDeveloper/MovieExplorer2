@@ -16,12 +16,15 @@ namespace MovieExplorer.Services.Data
         private readonly IDeletableEntityRepository<Movie> movieRepository;
         private readonly IDeletableEntityRepository<Director> directorRepository;
         private readonly IDeletableEntityRepository<Country> countryRepository;
+        private readonly IDeletableEntityRepository<ApplicationUser> userRepository;
 
-        public MovieService(IDeletableEntityRepository<Movie> movieRepository, IDeletableEntityRepository<Director> directorRepository, IDeletableEntityRepository<Country> countryRepository)
+
+        public MovieService(IDeletableEntityRepository<Movie> movieRepository, IDeletableEntityRepository<Director> directorRepository, IDeletableEntityRepository<Country> countryRepository, IDeletableEntityRepository<ApplicationUser> userRepository)
         {
             this.movieRepository = movieRepository;
             this.directorRepository = directorRepository;
             this.countryRepository = countryRepository;
+            this.userRepository = userRepository;
         }
 
         public async Task CreateMovie(string title, DateTime releaseDate, int minutes, double rate, string imageUrl, string trailer, string description, int directorId, int countryId)
@@ -63,6 +66,17 @@ namespace MovieExplorer.Services.Data
             MoviePageViewModel movie = this.movieRepository.All().To<MoviePageViewModel>().FirstOrDefault(x => x.Title == title);
 
             return movie;
+        }
+
+        public async Task AddtoUser(string userId, string movieId)
+        {
+            Movie movie = this.movieRepository.All().FirstOrDefault(m => m.Title == movieId);
+
+            ApplicationUser user = this.userRepository.All().FirstOrDefault(u => u.Id == userId);
+
+            user.Movies.Add(new MovieUser { UserId = user.Id, MovieId = movie.Id });
+
+            await this.userRepository.SaveChangesAsync();
         }
     }
 }
