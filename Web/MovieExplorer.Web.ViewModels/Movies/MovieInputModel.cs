@@ -24,6 +24,9 @@ namespace MovieExplorer.Web.ViewModels.Movies
         public string ImageUrl { get; set; }
 
         [Required]
+        public string Trailer { get; set; }
+
+        [Required]
         [MinLength(10, ErrorMessage = "Description's length should be more than {0}")]
         public string Description { get; set; }
 

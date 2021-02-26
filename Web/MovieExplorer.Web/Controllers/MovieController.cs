@@ -56,7 +56,7 @@ namespace MovieExplorer.Web.Controllers
                 return this.View(inputModel);
             }
 
-            await this.movieService.CreateMovie(inputModel.Title, inputModel.ReleaseDate, inputModel.Minutes, inputModel.Rate, inputModel.ImageUrl, inputModel.Description, inputModel.DirectorId, inputModel.CountryId);
+            await this.movieService.CreateMovie(inputModel.Title, inputModel.ReleaseDate, inputModel.Minutes, inputModel.Rate, inputModel.ImageUrl, inputModel.Trailer, inputModel.Description, inputModel.DirectorId, inputModel.CountryId);
             return this.Redirect("/");
         }
 

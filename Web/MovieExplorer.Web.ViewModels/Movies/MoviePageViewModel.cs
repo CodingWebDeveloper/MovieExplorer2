@@ -16,6 +16,8 @@ namespace MovieExplorer.Web.ViewModels.Movies
 
         public string ImageUrl { get; set; }
 
+        public string Trailer { get; set; }
+
         public string Description { get; set; }
 
         public string CountryName { get; set; }

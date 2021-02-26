@@ -28,6 +28,9 @@ namespace MovieExplorer.Data.Configurations
             builder.Property(m => m.ImageUrl)
                 .IsRequired(true);
 
+            builder.Property(m => m.Trailer)
+                .IsRequired(true);
+
             builder.Property(m => m.Description)
                 .IsRequired(false)
                 .IsUnicode(true);

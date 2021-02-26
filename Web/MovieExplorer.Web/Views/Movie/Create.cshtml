@@ -38,7 +38,11 @@
         <input type="text" class="form-control col-md-6" name="ImageUrl" />
         <span asp-validation-for="ImageUrl"></span>
     </div>
-
+    <div>
+        <label asp-for="Trailer"></label>
+        <input type="text" class="form-control col-md-6" name="Trailer" />
+        <span asp-validation-for="Trailer"></span>
+    </div>
     <div>
         <label asp-for="DirectorId"></label>
         <select asp-for="DirectorId" asp-items="@this.Model.AllListDirectors" class="form-control">
@@ -50,9 +54,9 @@
         </select>
     </div>
     @*<div>
-        <select multiple="multiple" class="multi-select form-control" id="ActorsId" asp-for="ActorsId" asp-items="@this.Model.AllListActors" >
-        </select>
-    </div>*@
+            <select multiple="multiple" class="multi-select form-control" id="ActorsId" asp-for="ActorsId" asp-items="@this.Model.AllListActors" >
+            </select>
+        </div>*@
     <div class="button-holder d-flex justify-content-center">
         <button type="submit" class="btn btn-success ">Create Movie</button>
     </div>
