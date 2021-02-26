@@ -24,7 +24,7 @@ namespace MovieExplorer.Services.Data
             this.countryRepository = countryRepository;
         }
 
-        public async Task CreateMovie(string title, DateTime releaseDate, int minutes, double rate, string imageUrl, string description, int directorId, int countryId)
+        public async Task CreateMovie(string title, DateTime releaseDate, int minutes, double rate, string imageUrl, string trailer, string description, int directorId, int countryId)
         {
             Movie movie = new Movie
             {
@@ -33,6 +33,7 @@ namespace MovieExplorer.Services.Data
                 Minutes = minutes,
                 Rate = rate,
                 ImageUrl = imageUrl,
+                Trailer = trailer,
                 Description = description,
                 Country = this.countryRepository.All().FirstOrDefault(x => x.Id == countryId),
             };

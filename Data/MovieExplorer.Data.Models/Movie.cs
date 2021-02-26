@@ -27,6 +27,8 @@ namespace MovieExplorer.Data.Models
 
         public string ImageUrl { get; set; }
 
+        public string Trailer { get; set; }
+
         public string Description { get; set; }
 
         public virtual Director Director { get; set; }

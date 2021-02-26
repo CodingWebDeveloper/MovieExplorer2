@@ -1,0 +1,27 @@
+﻿@using MovieExplorer.Web.ViewModels.Actors
+@model ActorInputModel
+<h1>Create Actor</h1>
+
+<form class="m-md-auto" asp-controller="Actor" asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="FirstName">FirstName</label>
+        <input asp-for="FirstName" class="form-control col-md-5" />
+        <span asp-validation-for="FirstName" class="alert-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MiddleName">MiddleName</label>
+        <input asp-for="MiddleName" class="form-control col-md-5" />
+        <span asp-validation-for="MiddleName" class="alert-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="LastName">LastName</label>
+        <input asp-for="LastName" class="form-control col-md-5" />
+        <span asp-validation-for="LastName" class="alert-danger"></span>
+    </div>
+
+    <div class="button-holder d-flex justify-content-center">
+        <button type="submit" class="btn btn-success">Create Actor</button>
+    </div>
+</form>
