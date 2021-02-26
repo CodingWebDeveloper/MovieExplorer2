@@ -25,20 +25,19 @@ namespace MovieExplorer.Data.Seeding
             ApplicationUser user1 = new ApplicationUser
             {
                 UserName = "Go4ko",
-                PasswordHash = "1234567890",
+                PasswordHash = "Miro%1234567890",
                 Email = "georgikostadinov14@abv.bg",
             };
 
             ApplicationUser user2 = new ApplicationUser
             {
                 UserName = "Miro123",
-                PasswordHash = "1234567890",
+                PasswordHash = "Gochko%1234567890",
                 Email = "miroslavuzunov14@abv.bg",
             };
 
-            await userManager.CreateAsync(user1);
-            await userManager.CreateAsync(user2);
-
+            await userManager.CreateAsync(user1, user1.PasswordHash);
+            await userManager.CreateAsync(user2, user2.PasswordHash);
 
             await userManager.AddToRoleAsync(user1, GlobalConstants.AdministratorRoleName);
             await userManager.AddToRoleAsync(user2, GlobalConstants.AdministratorRoleName);

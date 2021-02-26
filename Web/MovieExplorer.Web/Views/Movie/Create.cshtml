@@ -53,10 +53,11 @@
         <select asp-for="CountryId" asp-items="@this.Model.AllListCoutries" class="form-control">
         </select>
     </div>
-    @*<div>
+    <div>
+            <label asp-for="ActorsId">Actors</label>
             <select multiple="multiple" class="multi-select form-control" id="ActorsId" asp-for="ActorsId" asp-items="@this.Model.AllListActors" >
             </select>
-        </div>*@
+        </div>
     <div class="button-holder d-flex justify-content-center">
         <button type="submit" class="btn btn-success ">Create Movie</button>
     </div>

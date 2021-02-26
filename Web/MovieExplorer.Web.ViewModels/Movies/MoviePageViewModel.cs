@@ -10,6 +10,8 @@ namespace MovieExplorer.Web.ViewModels.Movies
 {
     public class MoviePageViewModel : IMapFrom<Movie>, IHaveCustomMappings
     {
+        public int MovieId { get; set; }
+
         public string Title { get; set; }
 
         public DateTime? ReleaseDate { get; set; }
@@ -30,7 +32,8 @@ namespace MovieExplorer.Web.ViewModels.Movies
         {
             configuration.CreateMap<Movie, MoviePageViewModel>()
                 .ForMember(x => x.DirectroName, y => y.MapFrom(x => x.Director.FirstName + " " + x.Director.LastName))
-                .ForMember(x => x.CountryName, y => y.MapFrom(x => x.Country.Name));
+                .ForMember(x => x.CountryName, y => y.MapFrom(x => x.Country.Name))
+                .ForMember(x => x.MovieId, y => y.MapFrom(x => x.Id));
         }
     }
 }
