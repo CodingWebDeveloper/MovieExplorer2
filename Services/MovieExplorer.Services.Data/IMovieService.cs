@@ -14,6 +14,8 @@ namespace MovieExplorer.Services.Data
 
         Task DeleteMovie(string movieTitle);
 
+        Task AddtoUser(string userId, string movieId);
+
         MoviePageViewModel GetMovieById(string title);
     }
 }
