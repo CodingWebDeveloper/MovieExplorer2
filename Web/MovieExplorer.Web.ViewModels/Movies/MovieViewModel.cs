@@ -9,6 +9,8 @@ namespace MovieExplorer.Web.ViewModels.Movies
 {
     public class MovieViewModel : IMapFrom<Movie>, IHaveCustomMappings
     {
+        public string MovieId { get; set; }
+
         public string Name { get; set; }
 
         public string ImageUrl { get; set; }
@@ -16,7 +18,8 @@ namespace MovieExplorer.Web.ViewModels.Movies
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<Movie, MovieViewModel>()
-                .ForMember(x => x.Name, y => y.MapFrom(x => x.Title));
+                .ForMember(x => x.Name, y => y.MapFrom(x => x.Title))
+                .ForMember(x => x.MovieId, y => y.MapFrom(x => x.Id));
         }
     }
 }

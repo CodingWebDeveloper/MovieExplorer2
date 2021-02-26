@@ -3,6 +3,7 @@ using MovieExplorer.Data.Common.Repositories;
 using MovieExplorer.Data.Models;
 using MovieExplorer.Services.Data;
 using MovieExplorer.Web.ViewModels.Movies;
+using Microsoft.AspNetCore.Identity;
 using System;
 using MovieExplorer.Services.Mapping;
 using System.Collections.Generic;
@@ -29,7 +30,7 @@ namespace MovieExplorer.Web.Controllers
             this.actorService = actorService;
         }
 
-        //[Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public IActionResult Create()
         {
             var movies = new MovieInputModel
@@ -37,7 +38,6 @@ namespace MovieExplorer.Web.Controllers
                 AllListDirectors = this.directorService.GetAllItems(),
                 AllListCoutries = this.countryService.GetAllCountries(),
                 AllListActors = this.actorService.GetAllActors(),
-               
             };
 
 
@@ -45,7 +45,7 @@ namespace MovieExplorer.Web.Controllers
         }
 
         [HttpPost]
-        //[Authorize(Roles =GlobalConstants.AdministratorRoleName)]
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public async Task<IActionResult> Create(MovieInputModel inputModel)
         {
             if (!this.ModelState.IsValid)
@@ -56,27 +56,28 @@ namespace MovieExplorer.Web.Controllers
                 return this.View(inputModel);
             }
 
-            await this.movieService.CreateMovie(inputModel.Title, inputModel.ReleaseDate, inputModel.Minutes, inputModel.Rate, inputModel.ImageUrl, inputModel.Trailer, inputModel.Description, inputModel.DirectorId, inputModel.CountryId);
+            await this.movieService.CreateMovie(inputModel.Title, inputModel.ReleaseDate, inputModel.Minutes, inputModel.Rate, inputModel.ImageUrl, inputModel.Trailer, inputModel.Description, inputModel.DirectorId, inputModel.CountryId, inputModel.ActorsId);
             return this.Redirect("/");
         }
 
-        public async Task<IActionResult> MoviePage(string Id)
+        public async Task<IActionResult> MoviePage(int id)
         {
-            MoviePageViewModel movie = this.movieService.GetMovieById(Id);
+            MoviePageViewModel movie = this.movieService.GetMovieById(id);
 
             return this.View(movie);
         }
 
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(int id)
         {
             await this.movieService.DeleteMovie(id);
 
             return this.Redirect("/");
         }
 
-        public async Task<IActionResult> AddToUser(string Id, string IdMovie)
+        public async Task<IActionResult> AddMovieToUser(int id)
         {
-            await this.movieService.AddtoUser(Id, IdMovie);
+            string userName = this.User.Identity.Name;
+            await this.movieService.AddToUser(userName, id);
 
             return this.Redirect("/");
         }

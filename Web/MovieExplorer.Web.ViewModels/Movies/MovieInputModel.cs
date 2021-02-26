@@ -40,7 +40,7 @@ namespace MovieExplorer.Web.ViewModels.Movies
 
         public IEnumerable<SelectListItem> AllListCoutries { get; set; }
 
-        //public List<int> ActorsId => this.AllListActors.Select(x => int.Parse(x.Value)).ToList();
+        public List<int> ActorsId { get; set; }
 
         public IEnumerable<SelectListItem> AllListActors { get; set; }
     }

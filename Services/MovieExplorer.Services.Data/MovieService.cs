@@ -27,7 +27,7 @@ namespace MovieExplorer.Services.Data
             this.userRepository = userRepository;
         }
 
-        public async Task CreateMovie(string title, DateTime releaseDate, int minutes, double rate, string imageUrl, string trailer, string description, int directorId, int countryId)
+        public async Task CreateMovie(string title, DateTime releaseDate, int minutes, double rate, string imageUrl, string trailer, string description, int directorId, int countryId, List<int> actorsId)
         {
             Movie movie = new Movie
             {
@@ -47,32 +47,38 @@ namespace MovieExplorer.Services.Data
             Country country = this.countryRepository.All().FirstOrDefault(m => m.Id == countryId);
             movie.Country = country;
 
+            foreach (var actorId in actorsId)
+            {
+                MovieActor movieActor = new MovieActor { MovieId = movie.Id, ActorId = actorId };
+                movie.MovieActors.Add(movieActor);
+            }
+
             await this.movieRepository.AddAsync(movie);
 
             await this.movieRepository.SaveChangesAsync();
         }
 
-        public async Task DeleteMovie(string movieTitle)
+        public async Task DeleteMovie(int movieId)
         {
-            Movie movie = this.movieRepository.All().FirstOrDefault(m => m.Title == movieTitle);
+            Movie movie = this.movieRepository.All().FirstOrDefault(m => m.Id == movieId);
 
             this.movieRepository.Delete(movie);
 
             await this.movieRepository.SaveChangesAsync();
         }
 
-        public MoviePageViewModel GetMovieById(string title)
+        public MoviePageViewModel GetMovieById(int movieId)
         {
-            MoviePageViewModel movie = this.movieRepository.All().To<MoviePageViewModel>().FirstOrDefault(x => x.Title == title);
+            MoviePageViewModel movie = this.movieRepository.All().To<MoviePageViewModel>().FirstOrDefault(x => x.MovieId == movieId);
 
             return movie;
         }
 
-        public async Task AddtoUser(string userId, string movieId)
+        public async Task AddToUser(string useName, int movieId)
         {
-            Movie movie = this.movieRepository.All().FirstOrDefault(m => m.Title == movieId);
+            Movie movie = this.movieRepository.All().FirstOrDefault(m => m.Id == movieId);
 
-            ApplicationUser user = this.userRepository.All().FirstOrDefault(u => u.Id == userId);
+            ApplicationUser user = this.userRepository.All().FirstOrDefault(u => u.UserName == useName);
 
             user.Movies.Add(new MovieUser { UserId = user.Id, MovieId = movie.Id });
 
