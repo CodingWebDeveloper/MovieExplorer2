@@ -1,0 +1,13 @@
+﻿@using MovieExplorer.Web.ViewModels.Comments
+@model CommentInputViewModel
+
+<form asp-controller="Comment" asp-action="Create" asp-route-id="@Model.MovieId" method="post">
+    <div class="form-group">
+        <input asp-for="Text" class="form-control"/>
+    </div>
+
+    <div class="button-holder d-flex justify-content-center">
+        <button type="submit" class="btn btn-success ">Create Comment</button>
+    </div>
+</form>
+

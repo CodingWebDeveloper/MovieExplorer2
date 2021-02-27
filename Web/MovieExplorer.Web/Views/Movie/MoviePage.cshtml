@@ -1,9 +1,11 @@
 ﻿@using MovieExplorer.Web.ViewModels.Movies
+@using MovieExplorer.Web.ViewModels.Comments
 @model  MoviePageViewModel
+
     <h1>@Model.Title</h1>
-    <div>
+    <div class="row m-md-auto">
         <img hight="300" width="250" src="@Model.ImageUrl" alt="Image" />
-        <p>@Model.ReleaseDate</p>
+        <p>@Model.ReleaseDate.Value.ToString("dd/MM/yyyy"+"г.")</p>
         <p>@Model.Description</p>
         <p>@Model.CountryName</p>
         <p>@Model.Minutes</p>
@@ -12,5 +14,16 @@
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                 allowfullscreen></iframe>
     </div>
+
+    <div>
+        @await Html.PartialAsync("_PartialComment", new CommentInputViewModel { MovieId = Model.MovieId })
+    </div>
+    
+    @foreach (var item in Model.Comments)
+    {
+        <div class="row">
+            <content style="text-transform;background-color:powderblue ">@item</content>
+        </div>
+    }
 
     

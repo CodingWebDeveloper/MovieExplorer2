@@ -35,7 +35,7 @@ namespace MovieExplorer.Web.Controllers
         [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public IActionResult Create()
         {
-            var movies = new MovieInputModel
+            var movie = new MovieInputModel
             {
                 AllListDirectors = this.directorService.GetAllItems(),
                 AllListCoutries = this.countryService.GetAllCountries(),
@@ -43,7 +43,7 @@ namespace MovieExplorer.Web.Controllers
                 AllListGenres = this.genreService.GetAllGenres(),
             };
 
-            return this.View(movies);
+            return this.View(movie);
         }
 
         [HttpPost]

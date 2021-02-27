@@ -31,7 +31,7 @@ namespace MovieExplorer.Web.Controllers
             }
 
             await this.genreService.CreateGenre(genreInputModel.Name);
-            return this.Redirect("/");
+            return this.View();
         }
 
     }
