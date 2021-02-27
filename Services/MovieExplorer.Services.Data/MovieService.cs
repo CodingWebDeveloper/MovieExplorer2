@@ -18,7 +18,6 @@ namespace MovieExplorer.Services.Data
         private readonly IDeletableEntityRepository<Country> countryRepository;
         private readonly IDeletableEntityRepository<ApplicationUser> userRepository;
 
-
         public MovieService(IDeletableEntityRepository<Movie> movieRepository, IDeletableEntityRepository<Director> directorRepository, IDeletableEntityRepository<Country> countryRepository, IDeletableEntityRepository<ApplicationUser> userRepository)
         {
             this.movieRepository = movieRepository;
@@ -27,7 +26,7 @@ namespace MovieExplorer.Services.Data
             this.userRepository = userRepository;
         }
 
-        public async Task CreateMovie(string title, DateTime releaseDate, int minutes, double rate, string imageUrl, string trailer, string description, int directorId, int countryId, List<int> actorsId)
+        public async Task CreateMovie(string title, DateTime releaseDate, int minutes, double rate, string imageUrl, string trailer, string description, int directorId, int countryId, List<int> actorsId, List<int> genresId)
         {
             Movie movie = new Movie
             {
@@ -51,6 +50,12 @@ namespace MovieExplorer.Services.Data
             {
                 MovieActor movieActor = new MovieActor { MovieId = movie.Id, ActorId = actorId };
                 movie.MovieActors.Add(movieActor);
+            }
+
+            foreach (var genreId in genresId)
+            {
+                MovieGenre movieGenre = new MovieGenre { MovieId = movie.Id, GenreId = genreId };
+                movie.Genres.Add(movieGenre);
             }
 
             await this.movieRepository.AddAsync(movie);

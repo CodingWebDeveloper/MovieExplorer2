@@ -1,0 +1,15 @@
+﻿@using MovieExplorer.Web.ViewModels.Genres
+@model GenreInputModel
+    <h1>Create Genre</h1>
+
+    <form class="m-md-auto" asp-controller="Genre" asp-action="Create" method="post">
+        <div class="form-group">
+            <label asp-for="Name">FirstName</label>
+            <input asp-for="Name" class="form-control col-md-5" />
+            <span asp-validation-for="Name" class="alert-danger"></span>
+        </div>
+
+        <div class="button-holder d-flex justify-content-center">
+            <button type="submit" class="btn btn-success">Create Genre</button>
+        </div>
+    </form>

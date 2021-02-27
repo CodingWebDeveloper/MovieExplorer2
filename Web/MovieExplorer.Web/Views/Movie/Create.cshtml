@@ -54,10 +54,15 @@
         </select>
     </div>
     <div>
-            <label asp-for="ActorsId">Actors</label>
-            <select multiple="multiple" class="multi-select form-control" id="ActorsId" asp-for="ActorsId" asp-items="@this.Model.AllListActors" >
-            </select>
-        </div>
+        <label asp-for="ActorsId">Actors</label>
+        <select multiple="multiple" class="multi-select form-control" id="ActorsId" asp-for="ActorsId" asp-items="@this.Model.AllListActors">
+        </select>
+    </div>
+    <div>
+        <label asp-for="GenresId">Genres</label>
+        <select multiple="multiple" class="multi-select form-control" id="GenresId" asp-for="GenresId" asp-items="@this.Model.AllListGenres">
+        </select>
+    </div>
     <div class="button-holder d-flex justify-content-center">
         <button type="submit" class="btn btn-success ">Create Movie</button>
     </div>

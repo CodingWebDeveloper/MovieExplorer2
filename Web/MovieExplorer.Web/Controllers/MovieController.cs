@@ -21,13 +21,15 @@ namespace MovieExplorer.Web.Controllers
         private readonly IDirectorService directorService;
         private readonly ICountryService countryService;
         private readonly IActorService actorService;
+        private readonly IGenreService genreService;
 
-        public MovieController(IMovieService movieService, IDirectorService directorService, ICountryService countryService, IActorService actorService)
+        public MovieController(IMovieService movieService, IDirectorService directorService, ICountryService countryService, IActorService actorService, IGenreService genreService)
         {
             this.movieService = movieService;
             this.directorService = directorService;
             this.countryService = countryService;
             this.actorService = actorService;
+            this.genreService = genreService;
         }
 
         [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
@@ -38,8 +40,8 @@ namespace MovieExplorer.Web.Controllers
                 AllListDirectors = this.directorService.GetAllItems(),
                 AllListCoutries = this.countryService.GetAllCountries(),
                 AllListActors = this.actorService.GetAllActors(),
+                AllListGenres = this.genreService.GetAllGenres(),
             };
-
 
             return this.View(movies);
         }
@@ -56,7 +58,7 @@ namespace MovieExplorer.Web.Controllers
                 return this.View(inputModel);
             }
 
-            await this.movieService.CreateMovie(inputModel.Title, inputModel.ReleaseDate, inputModel.Minutes, inputModel.Rate, inputModel.ImageUrl, inputModel.Trailer, inputModel.Description, inputModel.DirectorId, inputModel.CountryId, inputModel.ActorsId);
+            await this.movieService.CreateMovie(inputModel.Title, inputModel.ReleaseDate, inputModel.Minutes, inputModel.Rate, inputModel.ImageUrl, inputModel.Trailer, inputModel.Description, inputModel.DirectorId, inputModel.CountryId, inputModel.ActorsId, inputModel.GenresId);
             return this.Redirect("/");
         }
 
