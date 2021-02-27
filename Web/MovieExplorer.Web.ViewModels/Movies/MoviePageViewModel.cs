@@ -28,12 +28,15 @@ namespace MovieExplorer.Web.ViewModels.Movies
 
         public int Minutes { get; set; }
 
+        public List<string> Comments { get; set; }
+
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<Movie, MoviePageViewModel>()
                 .ForMember(x => x.DirectroName, y => y.MapFrom(x => x.Director.FirstName + " " + x.Director.LastName))
                 .ForMember(x => x.CountryName, y => y.MapFrom(x => x.Country.Name))
-                .ForMember(x => x.MovieId, y => y.MapFrom(x => x.Id));
+                .ForMember(x => x.MovieId, y => y.MapFrom(x => x.Id))
+                .ForMember(x => x.Comments, y => y.MapFrom(x => x.Comments.Select(x => x.Text)));
         }
     }
 }
