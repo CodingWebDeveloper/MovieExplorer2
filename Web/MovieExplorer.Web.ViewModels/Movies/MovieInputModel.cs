@@ -43,5 +43,9 @@ namespace MovieExplorer.Web.ViewModels.Movies
         public List<int> ActorsId { get; set; }
 
         public IEnumerable<SelectListItem> AllListActors { get; set; }
+
+        public List<int> GenresId { get; set; }
+
+        public IEnumerable<SelectListItem> AllListGenres { get; set; }
     }
 }
