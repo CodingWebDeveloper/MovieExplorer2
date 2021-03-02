@@ -8,6 +8,6 @@ namespace MovieExplorer.Services.Data
 {
     public interface IUserService
     {
-        //IEnumerable<MovieUser> GetAllMoviesOfUser(string id);
+        //IEnumerable<MovieUser> GetAllMovies(string username);
     }
 }

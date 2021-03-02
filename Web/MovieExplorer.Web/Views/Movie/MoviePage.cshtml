@@ -1,29 +1,31 @@
 ﻿@using MovieExplorer.Web.ViewModels.Movies
 @using MovieExplorer.Web.ViewModels.Comments
-@model  MoviePageViewModel
+@model MoviePageViewModel
 
-    <h1>@Model.Title</h1>
-    <div class="row m-md-auto">
-        <img hight="300" width="250" src="@Model.ImageUrl" alt="Image" />
-        <p>@Model.ReleaseDate.Value.ToString("dd/MM/yyyy"+"г.")</p>
-        <p>@Model.Description</p>
-        <p>@Model.CountryName</p>
-        <p>@Model.Minutes</p>
-        <p>@Model.DirectroName</p>
-        <iframe width="560" height="315" src="@Model.Trailer" frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen></iframe>
+<h1>@Model.Title</h1>
+<div class="row m-md-auto">
+    <img hight="300" width="250" src="@Model.ImageUrl" alt="Image" />
+    <p>@Model.ReleaseDate.Value.ToString("dd/MM/yyyy" + "г.")</p>
+    <p>@Model.Description</p>/
+    <p>@Model.CountryName</p>/ <!--I put this slashes at the end on Purpose!-->
+    <p>@Model.Minutes</p>/
+    <p>@Model.Rate</p>/
+    <p>@string.Join(", ", Model.Genres)</p>/
+    <p>@Model.DirectorName</p>/
+    <p>@string.Join(", ", Model.Actors)</p>/
+    <iframe width="560" height="315" src="@Model.Trailer" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+</div>
+
+<div>
+    @await Html.PartialAsync("_PartialComment", new CommentInputViewModel { MovieId = Model.MovieId })
+</div>
+
+@foreach (var item in Model.Comments)
+{
+    <div class="row">
+        <content style="text-transform;background-color:powderblue ">@item</content>
     </div>
+}
 
-    <div>
-        @await Html.PartialAsync("_PartialComment", new CommentInputViewModel { MovieId = Model.MovieId })
-    </div>
-    
-    @foreach (var item in Model.Comments)
-    {
-        <div class="row">
-            <content style="text-transform;background-color:powderblue ">@item</content>
-        </div>
-    }
-
-    

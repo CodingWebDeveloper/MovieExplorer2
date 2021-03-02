@@ -10,18 +10,22 @@ namespace MovieExplorer.Services.Data
 {
     public class UserService : IUserService
     {
-        private readonly IDeletableEntityRepository<Movie> userRepository;
+        //private readonly IDeletableEntityRepository<Movie> movieRepository;
+        //private readonly IDeletableEntityRepository<ApplicationUser> userRepository;
 
-        public UserService(IDeletableEntityRepository<Movie> movieRepository)
-        {
-            this.userRepository = userRepository;
-        }
-
-        //public IEnumerable<MovieUser> GetAllMoviesOfUser(string id)
+        //public UserService(IDeletableEntityRepository<Movie> movieRepository, IDeletableEntityRepository<ApplicationUser> userRepository)
         //{
-
-        //    return this.GetAllMoviesOfUser();
+        //    this.movieRepository = movieRepository;
+        //    this.userRepository = userRepository;
         //}
 
+        //public IEnumerable<MovieUser> GetAllMovies(string username)
+        //{
+        //    ApplicationUser user = this.userRepository.All().FirstOrDefault(u => u.UserName == username);
+
+        //    var userMovies = user.Movies.Where(m => m.User.UserName == username);
+
+        //    return userMovies;
+        //}
     }
 }
