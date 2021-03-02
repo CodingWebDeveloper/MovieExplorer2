@@ -1,31 +1,101 @@
 ﻿@using MovieExplorer.Web.ViewModels.Movies
 @using MovieExplorer.Web.ViewModels.Comments
+@using System.Globalization
 @model MoviePageViewModel
 
 <h1>@Model.Title</h1>
-<div class="row m-md-auto">
-    <img hight="300" width="250" src="@Model.ImageUrl" alt="Image" />
-    <p>@Model.ReleaseDate.Value.ToString("dd/MM/yyyy" + "г.")</p>
-    <p>@Model.Description</p>/
-    <p>@Model.CountryName</p>/ <!--I put this slashes at the end on Purpose!-->
-    <p>@Model.Minutes</p>/
-    <p>@Model.Rate</p>/
-    <p>@string.Join(", ", Model.Genres)</p>/
-    <p>@Model.DirectorName</p>/
-    <p>@string.Join(", ", Model.Actors)</p>/
-    <iframe width="560" height="315" src="@Model.Trailer" frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe>
+<div class="row">
+
+    <div class="col-md-6">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-8 col-centered">
+                    <div class="maintxt">
+                        <img height="400" width="650" src="@Model.ImageUrl" class="img-responsive justify-content-center">
+                        <div class="card-img-bottom text-dark">@Model.Minutes @Model.Rate</div>
+                        <div>
+                            Genres: @string.Join(", ", Model.Genres)
+                            Director: @Model.DirectorName
+                            Country: @Model.CountryName
+                        </div>
+                        <p>@Model.ReleaseDate.Value.ToString("dd/MM/yyyy" + "г.")</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p>
+    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#info">Info</button>
+    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#trailer">Trailer</button>
+</p>
+
+<div class="row">
+   
+    <div class="col">
+        <div class="collapse" id="info">
+            <div class="card card-body">
+                @Model.Description
+                <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#actors">Actors</button>
+                <div class="collapse" id="actors">
+                    <div class="card card-body">
+                        Actors:
+                        <p>@string.Join(", ", Model.Actors)
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="collapse" id="trailer">
+            <div class="card card-body ">
+                <iframe width="560" height="315" src="@Model.Trailer" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4"></div>
 </div>
 
 <div>
     @await Html.PartialAsync("_PartialComment", new CommentInputViewModel { MovieId = Model.MovieId })
 </div>
 
+
 @foreach (var item in Model.Comments)
 {
-    <div class="row">
-        <content style="text-transform;background-color:powderblue ">@item</content>
+    <div class="rounded p-3 mb-2 bg-secondary text-white row">
+        <div class="col-md-8">
+            @item.Comment
+        </div>
+        <div class="col-md-2">
+            @if (item.CreatedOn.Day == DateTime.UtcNow.Day)
+            {
+                <div>@($"Today {item.CreatedOn.ToString("t")}")</div>
+            }
+            else if (item.CreatedOn.Month == DateTime.UtcNow.Month)
+            {
+                <div>@item.CreatedOn.ToString("ddd t")</div>
+            }
+            else if (item.CreatedOn.Year == DateTime.UtcNow.Year)
+            {
+                <div>@item.CreatedOn.ToString("MMM d AT t")</div>
+            }
+            else
+            {
+                <div>@item.CreatedOn.ToString("MMM d, yyyy AT t")</div>
+            }
+        </div>
+        <div class="col-md-2">
+            @item.UserName
+        </div>
     </div>
 }
 

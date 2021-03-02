@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MovieExplorer.Data.Models;
 using MovieExplorer.Services.Mapping;
+using MovieExplorer.Web.ViewModels.Comments;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Text;
 
 namespace MovieExplorer.Web.ViewModels.Movies
 {
-    public class MoviePageViewModel : IMapFrom<Movie>, IHaveCustomMappings
+    public class MoviePageViewModel : IMapFrom<Movie>, IHaveCustomMappings, IMapFrom<CommentViewModel>
     {
         public int MovieId { get; set; }
 
@@ -30,7 +31,7 @@ namespace MovieExplorer.Web.ViewModels.Movies
 
         public int Minutes { get; set; }
 
-        public List<string> Comments { get; set; }
+        public List<CommentViewModel> Comments { get; set; }
 
         public List<string> Actors { get; set; }
 
@@ -44,7 +45,8 @@ namespace MovieExplorer.Web.ViewModels.Movies
                 .ForMember(x => x.MovieId, y => y.MapFrom(x => x.Id))
                 .ForMember(x => x.Comments, y => y.MapFrom(x => x.Comments.Select(x => x.Text)))
                 .ForMember(x => x.Actors, y => y.MapFrom(x => x.MovieActors.Select(x => x.Actor.FirstName + " " + x.Actor.MiddleName + " " + x.Actor.LastName)))
-                .ForMember(x => x.Genres, y => y.MapFrom(x => x.Genres.Select(x => x.Genre.Name)));
+                .ForMember(x => x.Genres, y => y.MapFrom(x => x.Genres.Select(x => x.Genre.Name)))
+                .ForMember(x => x.Comments, y => y.MapFrom(x => x.Comments));
         }
     }
 }
