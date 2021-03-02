@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using MovieExplorer.Web.ViewModels;
 using MovieExplorer.Services.Mapping;
 using MovieExplorer.Web.ViewModels.Movies;
+using MovieExplorer.Web.ViewModels.Comments;
 
 namespace MovieExplorer.Services.Data
 {
@@ -18,14 +19,15 @@ namespace MovieExplorer.Services.Data
         private readonly IDeletableEntityRepository<Country> countryRepository;
         private readonly IDeletableEntityRepository<ApplicationUser> userRepository;
         private readonly IDeletableEntityRepository<MovieUser> movieUserRepository;
-
+        private readonly IDeletableEntityRepository<Comment> commentRepository;
 
         public MovieService(
             IDeletableEntityRepository<Movie> movieRepository,
             IDeletableEntityRepository<Director> directorRepository,
             IDeletableEntityRepository<Country> countryRepository,
             IDeletableEntityRepository<ApplicationUser> userRepository,
-            IDeletableEntityRepository<MovieUser> movieUserRepository
+            IDeletableEntityRepository<MovieUser> movieUserRepository,
+            IDeletableEntityRepository<Comment> commentRepository
             )
         {
             this.movieRepository = movieRepository;
@@ -33,6 +35,7 @@ namespace MovieExplorer.Services.Data
             this.countryRepository = countryRepository;
             this.userRepository = userRepository;
             this.movieUserRepository = movieUserRepository;
+            this.commentRepository = commentRepository;
         }
 
         public async Task CreateMovie(string title, DateTime releaseDate, int minutes, double rate, string imageUrl, string trailer, string description, int directorId, int countryId, List<int> actorsId, List<int> genresId)
@@ -84,7 +87,6 @@ namespace MovieExplorer.Services.Data
         public MoviePageViewModel GetMovieById(int movieId)
         {
             MoviePageViewModel movie = this.movieRepository.All().To<MoviePageViewModel>().FirstOrDefault(x => x.MovieId == movieId);
-
             return movie;
         }
 

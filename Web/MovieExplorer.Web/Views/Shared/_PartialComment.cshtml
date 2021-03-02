@@ -2,11 +2,15 @@
 @model CommentInputViewModel
 
 <form asp-controller="Comment" asp-action="Create" asp-route-id="@Model.MovieId" method="post">
-    <div class="form-group">
-        <input asp-for="Text" class="form-control"/>
+    <div class="form-group row">
+        <div class="col-md-8"></div>
+        <div class="col-md-4">
+            <textarea asp-for="Text" class="form-control"></textarea>
+        </div>
+
     </div>
 
-    <div class="button-holder d-flex justify-content-center">
+    <div class="button-holder d-flex justify-content-end">
         <button type="submit" class="btn btn-success ">Create Comment</button>
     </div>
 </form>
