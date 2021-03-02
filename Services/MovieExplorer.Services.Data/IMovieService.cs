@@ -17,5 +17,7 @@ namespace MovieExplorer.Services.Data
         Task AddToUser(string userName, int movieId);
 
         MoviePageViewModel GetMovieById(int movieId);
+
+        IEnumerable<MovieUserViewModel> GetAllMovies(string username);
     }
 }

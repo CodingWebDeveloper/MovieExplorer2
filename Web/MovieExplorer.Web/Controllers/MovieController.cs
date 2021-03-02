@@ -83,5 +83,12 @@ namespace MovieExplorer.Web.Controllers
 
             return this.Redirect("/");
         }
+
+        public async Task<IActionResult> MovieUserPage(string id)
+        {
+            var userMovies = this.movieService.GetAllMovies(id);
+
+            return this.View(userMovies);
+        }
     }
 }

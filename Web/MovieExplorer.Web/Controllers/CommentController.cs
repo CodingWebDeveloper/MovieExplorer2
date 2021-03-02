@@ -18,11 +18,6 @@ namespace MovieExplorer.Web.Controllers
             this.commentService = commentService;
         }
 
-        public IActionResult Create(int id)
-        {
-            return this.RedirectToAction("MoviePage", "Movie", id);
-        }
-
         [HttpPost]
         public async Task<IActionResult> Create(CommentInputViewModel commentInputViewModel, int id)
         {
@@ -35,7 +30,7 @@ namespace MovieExplorer.Web.Controllers
 
             await this.commentService.AddComment(userName, id, commentInputViewModel.Text);
 
-            return this.RedirectToAction("MoviePage", "Movie", id);
+            return this.RedirectToAction("MoviePage", "Movie", new { id });
         }
     }
 }
