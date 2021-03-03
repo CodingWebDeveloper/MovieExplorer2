@@ -79,9 +79,16 @@ namespace MovieExplorer.Web.Controllers
         public async Task<IActionResult> AddMovieToUser(int id)
         {
             string userName = this.User.Identity.Name;
-            await this.movieService.AddToUser(userName, id);
+            try
+            {
+               await this.movieService.AddToUser(userName, id);
+            }
+            catch (Exception e)
+            {
+                this.ViewData["Error"] = e.Message;
+            }
 
-            return this.Redirect("/");
+            return this.RedirectToAction("Error", "Home");
         }
 
         public async Task<IActionResult> MovieUserPage(string id)
@@ -89,6 +96,15 @@ namespace MovieExplorer.Web.Controllers
             var userMovies = this.movieService.GetAllMovies(id);
 
             return this.View(userMovies);
+        }
+
+        public async Task<IActionResult> Remove(int id)
+        {
+            string userName = this.User.Identity.Name;
+
+            await this.movieService.RemoveMovie(userName, id);
+
+            return this.Redirect("/");
         }
     }
 }

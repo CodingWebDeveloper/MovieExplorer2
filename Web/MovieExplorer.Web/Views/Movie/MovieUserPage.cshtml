@@ -1,16 +1,23 @@
 ﻿@using MovieExplorer.Web.ViewModels.Movies
 @model IList<MovieUserViewModel>
 
-    <h1>YOUR MOVIES</h1>
+    <h1 class="text-light">YOUR MOVIES</h1>
 
     <div class="row">
         @foreach (var item in this.Model)
         {
-            <form class="form-group" method="post">
-                <div class="col-md-4 justify-content-xl-center row">
-                    <img hight="300" width="250" src="@item.ImageUrl" alt="Image" />
-                    <a class="row-cols-1" asp-controller="Movie" asp-action="UserMoviePage" asp-route-id="@item.MovieId">@item.MovieName</a>
-                </div>
-            </form>
+        <div class="card col-md-3 rounded" style="width: 60px; height: 550px; background-color: gray">
+            <img class="card-img-top" height="300" width="250" src="@item.ImageUrl" alt="Image" />
+            <div class="card-body">
+                <h4 class="card-title text-center">
+                    <a class="row-cols-1 text-dark" asp-controller="Movie" asp-action="MoviePage" asp-route-id="@item.MovieId">@item.MovieName</a>
+                </h4>
+                <form class="form-group row" method="post">
+                    <div class="col-md-6">
+                        <button class="form-control btn-dark" asp-controller="Movie" asp-action="Remove" asp-route-id="@item.MovieId">Remove</button>
+                    </div>
+                </form>
+            </div>
+        </div>
         }
     </div>

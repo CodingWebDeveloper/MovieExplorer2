@@ -1,65 +1,65 @@
 ﻿@using MovieExplorer.Web.ViewModels.Movies
 @model MovieInputModel
 
-<h1>Create Movie</h1>
+<h1 class="text-light">Create Movie</h1>
 
 <form asp-controller="Movie" asp-action="Create" method="post">
     <div>
-        <label for="Title">Title</label>
+        <label for="Title" class="text-light">Title</label>
         <input type="text" class="form-control col-md-6" name="Title" />
         <span asp-validation-for="Title"></span>
     </div>
 
     <div>
-        <label for="ReleaseDate">ReleaseDate</label>
+        <label for="ReleaseDate" class="text-light">ReleaseDate</label>
         <input type="date" class="form-control col-md-6" name="ReleaseDate" />
         <span asp-validation-for="ReleaseDate"></span>
     </div>
 
     <div>
-        <label asp-for="Minutes">Minutes</label>
+        <label asp-for="Minutes" class="text-light">Minutes</label>
         <input type="text" class="form-control col-md-6" name="Minutes" />
         <span asp-validation-for="Minutes"></span>
     </div>
 
     <div>
-        <label asp-for="Rate">Rate</label>
+        <label asp-for="Rate" class="text-light">Rate</label>
         <input type="text" class="form-control col-md-6" name="Rate" />
         <span asp-validation-for="Rate"></span>
     </div>
 
     <div>
-        <label asp-for="Description"></label>
+        <label asp-for="Description" class="text-light"></label>
         <textarea asp-for="Description" class="form-control" rows="6"></textarea>
         <span asp-validation-for="Description"></span>
     </div>
     <div>
-        <label asp-for="ImageUrl"></label>
+        <label asp-for="ImageUrl" class="text-light"></label>
         <input type="text" class="form-control col-md-6" name="ImageUrl" />
         <span asp-validation-for="ImageUrl"></span>
     </div>
     <div>
-        <label asp-for="Trailer"></label>
+        <label asp-for="Trailer" class="text-light"></label>
         <input type="text" class="form-control col-md-6" name="Trailer" />
         <span asp-validation-for="Trailer"></span>
     </div>
     <div>
-        <label asp-for="DirectorId"></label>
+        <label asp-for="DirectorId" class="text-light"></label>
         <select asp-for="DirectorId" asp-items="@this.Model.AllListDirectors" class="form-control">
         </select>
     </div>
     <div>
-        <label asp-for="CountryId"></label>
+        <label asp-for="CountryId" class="text-light"></label>
         <select asp-for="CountryId" asp-items="@this.Model.AllListCoutries" class="form-control">
         </select>
     </div>
     <div>
-        <label asp-for="ActorsId">Actors</label>
+        <label asp-for="ActorsId" class="text-light">Actors</label>
         <select multiple="multiple" class="multi-select form-control" id="ActorsId" asp-for="ActorsId" asp-items="@this.Model.AllListActors">
         </select>
     </div>
     <div>
-        <label asp-for="GenresId">Genres</label>
+        <label asp-for="GenresId" class="text-light">Genres</label>
         <select multiple="multiple" class="multi-select form-control" id="GenresId" asp-for="GenresId" asp-items="@this.Model.AllListGenres">
         </select>
     </div>

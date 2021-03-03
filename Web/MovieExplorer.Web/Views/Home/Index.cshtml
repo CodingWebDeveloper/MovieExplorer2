@@ -18,25 +18,31 @@
 
 @if (this.User.Identity.IsAuthenticated)
 {
+    @*if((string)this.ViewData["Error"] == "You have already added this movie!")
+    {
+        <span class="field-validation-error"><span id="ssn-message">The SSN already exists.</span></span>
+        <img height="380" width="60" src="https://s3.amazonaws.com/scribblelive-com-prod/wp-content/uploads/sites/4/2020/08/stage-en-error-1020.png" alt="Alternate Text" />
+    }*@
+
     <a class="btn-secondary" asp-controller="Movie" asp-action="MovieUserPage" asp-route-id="@this.User.Identity.Name">Your Collection</a>
 }
+
 <div class="row">
     @foreach (var item in this.Model)
     {
-        <div class="card col-md-4 rounded" style="width: 60px; height: 550px">
+        <div class="card col-md-3 rounded" style="width: 60px; height: 550px; background-color: gray">
             <img class="card-img-top" height="380" width="60" src="@item.ImageUrl" alt="Image" />
             <div class="card-body">
-                <h5 class="card-title">
-                    <a class="row-cols-1" asp-controller="Movie" asp-action="MoviePage" asp-route-id="@item.MovieId">@item.Name</a>
-                </h5>
+                <h4 class="card-title text-center">
+                    <a class="row-cols-1 text-dark" asp-controller="Movie" asp-action="MoviePage" asp-route-id="@item.MovieId">@item.Name</a>
+                </h4>
                 <form class="form-group row" method="post">
-                    <div class="col-md-6 justify-content-xl-center row">
-                        <button class="form-control btn-success" asp-controller="Movie" asp-action="Delete" asp-route-id="@item.MovieId">Delete</button>
-                    </div>
                     <div class="col-md-6">
-                        <button class="form-control btn-success" asp-controller="Movie" asp-action="AddMovieToUser" asp-route-id="@item.MovieId">Add</button>
+                        <button class="form-control btn-dark" asp-controller="Movie" asp-action="AddMovieToUser" asp-route-id="@item.MovieId">Add</button>
                     </div>
-
+                    <div class="col-md-6 justify-content-xl-center row">
+                        <button class="form-control btn-dark" asp-controller="Movie" asp-action="Delete" asp-route-id="@item.MovieId">Delete</button>
+                    </div>
                 </form>
             </div>
         </div>
