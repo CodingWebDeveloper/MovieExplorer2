@@ -3,7 +3,7 @@
 @using System.Globalization
 @model MoviePageViewModel
 
-<h1>@Model.Title</h1>
+<h1 class="text-light text-center">@Model.Title</h1>
 <div class="row">
 
     <div class="col-md-6">
@@ -11,14 +11,14 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-8 col-centered">
                     <div class="maintxt">
-                        <img height="400" width="650" src="@Model.ImageUrl" class="img-responsive justify-content-center">
-                        <div class="card-img-bottom text-dark">@Model.Minutes @Model.Rate</div>
-                        <div>
+                        <img height="400" width="450" src="@Model.ImageUrl" class="img-responsive justify-content-center">
+                        <div class="card-img-bottom text-light">Duration: @Model.Minutes Rate-IMDb: @Model.Rate</div>
+                        <div class="text-light">
                             Genres: @string.Join(", ", Model.Genres)
                             Director: @Model.DirectorName
                             Country: @Model.CountryName
                         </div>
-                        <p>@Model.ReleaseDate.Value.ToString("dd/MM/yyyy" + "г.")</p>
+                        <p class="text-light">@Model.ReleaseDate.Value.ToString("dd/MM/yyyy" + "г.")</p>
                     </div>
                 </div>
             </div>

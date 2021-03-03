@@ -96,9 +96,25 @@ namespace MovieExplorer.Services.Data
 
             ApplicationUser user = this.userRepository.All().FirstOrDefault(u => u.UserName == username);
 
-            user.Movies.Add(new MovieUser { UserId = user.Id, MovieId = movie.Id });
+            MovieUser movieUser = this.movieUserRepository.AllWithDeleted().FirstOrDefault(mu => mu.Movie.Id == movieId && mu.User.Id == user.Id);
 
-            await this.userRepository.SaveChangesAsync();
+            if(movieUser == null)
+            {
+                await this.movieUserRepository.AddAsync(new MovieUser { UserId = user.Id, MovieId = movie.Id });
+            }
+            else
+            {
+                if(movieUser.IsDeleted)
+                {
+                    this.movieUserRepository.Undelete(movieUser);
+                }
+                else
+                {
+                    throw new ArgumentException("You have already added this movie!");
+                }
+            }
+
+            await this.movieUserRepository.SaveChangesAsync();
         }
 
         public IEnumerable<MovieUserViewModel> GetAllMovies(string username)
@@ -112,6 +128,17 @@ namespace MovieExplorer.Services.Data
                 .ToList();
 
             return usersMovies;
+        }
+
+        public async Task RemoveMovie(string userName, int movieId)
+        {
+            ApplicationUser user = this.userRepository.All().FirstOrDefault(u => u.UserName == userName);
+
+            MovieUser movieUser = this.movieUserRepository.All().FirstOrDefault(m => m.Movie.Id == movieId && m.User.Id == user.Id);
+
+            this.movieUserRepository.Delete(movieUser);
+
+            await this.movieUserRepository.SaveChangesAsync();
         }
 
     }

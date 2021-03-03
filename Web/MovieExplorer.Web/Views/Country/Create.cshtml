@@ -1,10 +1,10 @@
 ﻿@using MovieExplorer.Web.ViewModels.Countries
 @model CountryInputModel
-<h1>Create Country</h1>
+<h1 class="text-light">Create Country</h1>
 
 <form class="m-md-auto" asp-controller="Country" asp-action="Create" method="post">
     <div class="form-group">
-        <label asp-for="Name">Name</label>
+        <label asp-for="Name" class="text-light">Name</label>
         <input asp-for="Name" class="form-control col-md-5" />
         <span asp-validation-for="Name" class="alert-danger"></span>
     </div>
