@@ -83,12 +83,13 @@ namespace MovieExplorer.Web.Controllers
             {
                await this.movieService.AddToUser(userName, id);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                this.ViewData["Error"] = e.Message;
+               this.ViewData["Error"] = ex.Message;
+               return this.RedirectToAction("Error", "Home");
             }
 
-            return this.RedirectToAction("Error", "Home");
+            return this.Redirect("/");
         }
 
         public async Task<IActionResult> MovieUserPage(string id)
