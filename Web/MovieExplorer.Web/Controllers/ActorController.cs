@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MovieExplorer.Services.Data;
 using MovieExplorer.Web.ViewModels.Actors;
+using MovieExplorer.Web.ViewModels.Movies;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +33,13 @@ namespace MovieExplorer.Web.Controllers
 
             await this.actorService.CreateActor(actorInputModel.FirstName, actorInputModel.MiddleName, actorInputModel.LastName);
             return this.Redirect("/");
+        }
+
+        public async Task<IActionResult> AllMovies(int id)
+        {
+            var movies = this.actorService.GetAllMoviesByActor(id);
+
+            return this.View(movies);
         }
     }
 }

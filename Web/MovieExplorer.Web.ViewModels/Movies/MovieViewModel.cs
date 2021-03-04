@@ -7,7 +7,7 @@ using System.Text;
 
 namespace MovieExplorer.Web.ViewModels.Movies
 {
-    public class MovieViewModel : IMapFrom<Movie>, IHaveCustomMappings
+    public class MovieViewModel : IMapFrom<Movie>, IMapFrom<MovieActor>, IHaveCustomMappings
     {
         public string MovieId { get; set; }
 
@@ -15,11 +15,19 @@ namespace MovieExplorer.Web.ViewModels.Movies
 
         public string ImageUrl { get; set; }
 
+        public DateTime ReleaseDate { get; set; }
+
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<Movie, MovieViewModel>()
                 .ForMember(x => x.Name, y => y.MapFrom(x => x.Title))
-                .ForMember(x => x.MovieId, y => y.MapFrom(x => x.Id));
+                .ForMember(x => x.MovieId, y => y.MapFrom(x => x.Id))
+                .ForMember(x => x.ReleaseDate, y => y.MapFrom(x => x.ReleaseDate));
+
+            configuration.CreateMap<MovieActor, MovieViewModel>()
+                .ForMember(x => x.Name, y => y.MapFrom(x => x.Movie.Title))
+                .ForMember(x => x.ImageUrl, y => y.MapFrom(x => x.Movie.ImageUrl))
+                .ForMember(x => x.ReleaseDate, y => y.MapFrom(x => x.Movie.ReleaseDate));
         }
     }
 }

@@ -1,10 +1,11 @@
-﻿using System;
+﻿using MovieExplorer.Data.Common.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace MovieExplorer.Data.Models
 {
-    public class MovieGenre
+    public class MovieGenre : BaseDeletableModel<int>
     {
         public int MovieId { get; set; }
 

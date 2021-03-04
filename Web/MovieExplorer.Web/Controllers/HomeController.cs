@@ -7,6 +7,8 @@
     using MovieExplorer.Data.Common.Repositories;
     using MovieExplorer.Data.Models;
     using MovieExplorer.Web.ViewModels.Movies;
+    using System.Collections;
+    using System.Collections.Generic;
 
     public class HomeController : BaseController
     {
@@ -22,6 +24,8 @@
             var movies = this.movieRepository.All().To<MovieViewModel>();
             return this.View(movies);
         }
+
+        
 
         public IActionResult Privacy()
         {

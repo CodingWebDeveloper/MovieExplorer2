@@ -62,6 +62,7 @@ namespace MovieExplorer.Web.Controllers
             return this.Redirect("/");
         }
 
+        [Authorize]
         public async Task<IActionResult> MoviePage(int id)
         {
             MoviePageViewModel movie = this.movieService.GetMovieById(id);
@@ -69,6 +70,7 @@ namespace MovieExplorer.Web.Controllers
             return this.View(movie);
         }
 
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public async Task<IActionResult> Delete(int id)
         {
             await this.movieService.DeleteMovie(id);
@@ -107,5 +109,7 @@ namespace MovieExplorer.Web.Controllers
 
             return this.Redirect("/");
         }
+
+        
     }
 }

@@ -2,30 +2,8 @@
 @using MovieExplorer.Web.ViewModels.Movies
 @using MovieExplorer.Data.Models
 @model IEnumerable<MovieViewModel>
-@{
-    this.ViewData["Title"] = "Home Page";
-}
 
-@if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
-{
-    <a class="btn-primary" asp-controller="Movie" asp-action="Create">Create Movie</a>
-    <a class="btn-primary" asp-controller="Director" asp-action="Create">Create Director</a>
-    <a class="btn-primary" asp-controller="Country" asp-action="Create">Create Country</a>
-    <a class="btn-primary" asp-controller="Actor" asp-action="Create">Create Actor</a>
-    <a class="btn-primary" asp-controller="Genre" asp-action="Create">Create Genre</a>
-
-}
-
-@if (this.User.Identity.IsAuthenticated)
-{
-    if((string)this.ViewData["Error"] == "You have already added this movie!")
-    {
-        <span class="field-validation-error"><span id="ssn-message">The SSN already exists.</span></span>
-        <img height="380" width="60" src="https://s3.amazonaws.com/scribblelive-com-prod/wp-content/uploads/sites/4/2020/08/stage-en-error-1020.png" alt="Alternate Text" />
-    }
-
-    <a class="rounded p-3 mb-2 bg-secondary text-white" asp-controller="Movie" asp-action="MovieUserPage" asp-route-id="@this.User.Identity.Name">Your Collection</a>
-}
+<a class="btn-secondary d-md-inline-block" asp-controller="Home" asp-action="Index" asp-route-id="@this.User.Identity.Name">Movie online</a>
 
 <div class="row">
     @foreach (var item in this.Model)
@@ -36,9 +14,8 @@
                 <h4 class="card-title text-center">
                     <a class="row-cols-1 text-dark" asp-controller="Movie" asp-action="MoviePage" asp-route-id="@item.MovieId">@item.Name</a>
                 </h4>
-                <form class="form-group row justify-content-center" method="post">
-
-                    <div class="col-md-4 ">
+                <form class="form-group row" method="post">
+                    <div class="col-md-4">
                         <p>@item.ReleaseDate.ToString("yyyy")</p>
                     </div>
                     <div class="col-md-6">

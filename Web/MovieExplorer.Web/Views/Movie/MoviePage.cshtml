@@ -1,6 +1,7 @@
 ﻿@using MovieExplorer.Web.ViewModels.Movies
 @using MovieExplorer.Web.ViewModels.Comments
 @using System.Globalization
+@using System.Linq
 @model MoviePageViewModel
 
 <h1 class="text-light text-center">@Model.Title</h1>
@@ -11,8 +12,9 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-8 col-centered">
                     <div class="maintxt">
-                        <img height="400" width="450" src="@Model.ImageUrl" class="img-responsive justify-content-center">
+                        <img height="400" width="450" src="@Model.ImageUrl" class="img-responsive justify-content-center rounded">
                         <div class="card-img-bottom text-light">Duration: @Model.Minutes Rate-IMDb: @Model.Rate</div>
+
                         <div class="text-light">
                             Genres: @string.Join(", ", Model.Genres)
                             Director: @Model.DirectorName
@@ -41,7 +43,11 @@
                 <div class="collapse" id="actors">
                     <div class="card card-body">
                         Actors:
-                        <p>@string.Join(", ", Model.Actors)
+                        <p>
+                            @foreach (var item in Model.Actors)
+                            {
+                                <a asp-controller="Actor" asp-action="AllMovies" asp-route-id="@item.ActorId">@item.ActorName</a>
+                            }
                         </p>
                     </div>
                 </div>
@@ -82,15 +88,21 @@
             }
             else if (item.CreatedOn.Month == DateTime.UtcNow.Month)
             {
-                <div>@item.CreatedOn.ToString("ddd t")</div>
+                <div>@item.CreatedOn.ToString("ddd AT HH:mm"
+                    ,CultureInfo.GetCultures(CultureTypes.AllCultures).First(r=>r.EnglishName=="English")).ToUpper()
+                </div>
             }
             else if (item.CreatedOn.Year == DateTime.UtcNow.Year)
             {
-                <div>@item.CreatedOn.ToString("MMM d AT t")</div>
+                <div>@item.CreatedOn.ToString("MMM d AT HH:MM"
+                    , CultureInfo.GetCultures(CultureTypes.AllCultures).First(r => r.EnglishName == "English")).ToUpper())
+                </div>
             }
             else
             {
-                <div>@item.CreatedOn.ToString("MMM d, yyyy AT t")</div>
+                <div>@item.CreatedOn.ToString("MMM d, yyyy AT HH-MM"
+                    , CultureInfo.GetCultures(CultureTypes.AllCultures).First(r => r.EnglishName == "English")).ToUpper())
+                </div>
             }
         </div>
         <div class="col-md-2">

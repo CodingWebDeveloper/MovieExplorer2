@@ -32,7 +32,9 @@ namespace MovieExplorer.Services.Data
         public IEnumerable<Comment> GetAllCommentsOfMovie(int movieId)
         {
             Movie movie = this.movieRepository.All().FirstOrDefault(x => x.Id == movieId);
-            return movie.Comments;
+
+            IEnumerable<Comment> comments = movie.Comments;
+            return comments;
         }
     }
 }

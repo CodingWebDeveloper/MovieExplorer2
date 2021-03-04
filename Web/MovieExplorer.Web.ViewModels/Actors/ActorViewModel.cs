@@ -7,16 +7,16 @@ using System.Text;
 
 namespace MovieExplorer.Web.ViewModels.Actors
 {
-    public class ActorViewModel : IMapFrom<Actor>, IHaveCustomMappings
+    public class ActorViewModel : IMapFrom<MovieActor>, IHaveCustomMappings
     {
-        public int Id { get; set; }
+        public int ActorId { get; set; }
 
         public string ActorName { get; set; }
 
         public void CreateMappings(IProfileExpression configuration)
         {
-            configuration.CreateMap<Actor, ActorViewModel>()
-                 .ForMember(x => x.ActorName, y => y.MapFrom(x => $"{x.FirstName} {x.MiddleName} {x.LastName}"));
+            configuration.CreateMap<MovieActor, ActorViewModel>()
+                 .ForMember(x => x.ActorName, y => y.MapFrom(x => $"{x.Actor.FirstName} {x.Actor.MiddleName} {x.Actor.LastName}"));
         }
     }
 }
