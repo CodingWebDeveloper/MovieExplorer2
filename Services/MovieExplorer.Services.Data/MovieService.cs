@@ -98,13 +98,13 @@ namespace MovieExplorer.Services.Data
 
             MovieUser movieUser = this.movieUserRepository.AllWithDeleted().FirstOrDefault(mu => mu.Movie.Id == movieId && mu.User.Id == user.Id);
 
-            if(movieUser == null)
+            if (movieUser == null)
             {
                 await this.movieUserRepository.AddAsync(new MovieUser { UserId = user.Id, MovieId = movie.Id });
             }
             else
             {
-                if(movieUser.IsDeleted)
+                if (movieUser.IsDeleted)
                 {
                     this.movieUserRepository.Undelete(movieUser);
                 }
