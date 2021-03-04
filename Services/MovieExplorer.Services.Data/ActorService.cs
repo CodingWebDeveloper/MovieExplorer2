@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using MovieExplorer.Data.Common.Repositories;
 using MovieExplorer.Data.Models;
+using MovieExplorer.Services.Mapping;
+using MovieExplorer.Web.ViewModels.Movies;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +14,14 @@ namespace MovieExplorer.Services.Data
     public class ActorService : IActorService
     {
         private readonly IDeletableEntityRepository<Actor> actorRepository;
+        private readonly IDeletableEntityRepository<MovieActor> movieActorRepository;
+        private readonly IDeletableEntityRepository<Movie> movieRepository;
 
-        public ActorService(IDeletableEntityRepository<Actor> actorRepository)
+        public ActorService(IDeletableEntityRepository<Actor> actorRepository, IDeletableEntityRepository<MovieActor> movieActorRepository, IDeletableEntityRepository<Movie> movieRepository)
         {
             this.actorRepository = actorRepository;
+            this.movieActorRepository = movieActorRepository;
+            this.movieRepository = movieRepository;
         }
 
         public async Task CreateActor(string firstName, string middleName, string lastName)
@@ -38,6 +44,12 @@ namespace MovieExplorer.Services.Data
                 Text = x.FirstName + " " + x.MiddleName + " " + x.LastName,
                 Value = x.Id.ToString(),
             });
+        }
+
+        public IEnumerable<MovieViewModel> GetAllMoviesByActor(int actorId)
+        {
+            IEnumerable<MovieViewModel> movies = this.movieActorRepository.All().Where(x => x.ActorId == actorId).To<MovieViewModel>();
+            return movies;
         }
     }
 }

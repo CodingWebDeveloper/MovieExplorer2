@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using MovieExplorer.Data.Models;
+using MovieExplorer.Web.ViewModels.Movies;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,5 +13,7 @@ namespace MovieExplorer.Services.Data
         Task CreateActor(string firstName, string middleName, string lastName);
 
         IEnumerable<SelectListItem> GetAllActors();
+
+        IEnumerable<MovieViewModel> GetAllMoviesByActor(int actorId);
     }
 }
