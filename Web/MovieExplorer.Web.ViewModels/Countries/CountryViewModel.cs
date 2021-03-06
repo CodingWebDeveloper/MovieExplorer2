@@ -7,16 +7,11 @@ using System.Text;
 
 namespace MovieExplorer.Web.ViewModels.Countries
 {
-    public class CountryViewModel : IMapFrom<Country>, IHaveCustomMappings
+    public class CountryViewModel : IMapFrom<Country>
     {
-        public int CountryId { get; set; }
+        public int Id { get; set; }
 
-        public string CountryName { get; set; }
+        public string Name { get; set; }
 
-        public void CreateMappings(IProfileExpression configuration)
-        {
-            configuration.CreateMap<Country, CountryViewModel>()
-                .ForMember(x => x.CountryName, y => y.MapFrom(x => x.Name));
-        }
     }
 }

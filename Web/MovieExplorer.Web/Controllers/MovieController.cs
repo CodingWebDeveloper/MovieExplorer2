@@ -97,6 +97,7 @@ namespace MovieExplorer.Web.Controllers
         public async Task<IActionResult> MovieUserPage(string id)
         {
             var userMovies = this.movieService.GetAllMovies(id);
+            
 
             return this.View(userMovies);
         }

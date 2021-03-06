@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using MovieExplorer.Web.ViewModels.Countries;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,5 +12,7 @@ namespace MovieExplorer.Services.Data
         Task CreateCountry(string name);
 
         IEnumerable<SelectListItem> GetAllCountries();
+
+        IEnumerable<CountryViewModel> GetCountries();
     }
 }

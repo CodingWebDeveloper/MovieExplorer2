@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using MovieExplorer.Data.Common.Repositories;
 using MovieExplorer.Data.Models;
+using MovieExplorer.Services.Mapping;
+using MovieExplorer.Web.ViewModels.Countries;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,6 +39,11 @@ namespace MovieExplorer.Services.Data
                 Text = x.Name,
                 Value = x.Id.ToString(),
             });
+        }
+
+        public IEnumerable<CountryViewModel> GetCountries()
+        {
+            return this.countryRepository.All().To<CountryViewModel>().ToList();
         }
     }
 }

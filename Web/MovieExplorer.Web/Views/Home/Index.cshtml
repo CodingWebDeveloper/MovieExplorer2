@@ -18,13 +18,16 @@
 
 @if (this.User.Identity.IsAuthenticated)
 {
-    if((string)this.ViewData["Error"] == "You have already added this movie!")
+    if ((string)this.ViewData["Error"] == "You have already added this movie!")
     {
         <span class="field-validation-error"><span id="ssn-message">The SSN already exists.</span></span>
         <img height="380" width="60" src="https://s3.amazonaws.com/scribblelive-com-prod/wp-content/uploads/sites/4/2020/08/stage-en-error-1020.png" alt="Alternate Text" />
     }
+    
+        <a class="rounded p-3 mb-2 bg-secondary text-white" asp-controller="Movie" asp-action="MovieUserPage" asp-route-id="@this.User.Identity.Name">
+            Your Collection <span class="badge bg-secondary">@this.ViewData["CountOfMovies"]</span>
+        </a>
 
-    <a class="rounded p-3 mb-2 bg-secondary text-white" asp-controller="Movie" asp-action="MovieUserPage" asp-route-id="@this.User.Identity.Name">Your Collection</a>
 }
 
 <div class="row">

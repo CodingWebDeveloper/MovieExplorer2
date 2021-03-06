@@ -1,0 +1,340 @@
+[
+  {
+    "Title": "The Falcon and The Winter Soldier ",
+    "ReleaseDate": "2021-03-25T00:00:00",
+    "Rate": 5.7,
+    "Minutes": 340,
+    "ImageUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/9/9a/The_Falcon_and_the_Winter_Soldier_logo.png/375px-The_Falcon_and_the_Winter_Soldier_logo.png",
+    "Trailer": "https://www.youtube.com/embed/IWBsDaFWyTE",
+    "Actors": [
+      {
+        "MovieId": 2,
+        "Movie": null,
+        "ActorId": 1,
+        "Actor": null,
+        "IsDeleted": false,
+        "DeletedOn": null,
+        "Id": 0,
+        "CreatedOn": "0001-01-01T00:00:00",
+        "ModifiedOn": null
+      },
+      {
+        "MovieId": 2,
+        "Movie": null,
+        "ActorId": 2,
+        "Actor": null,
+        "IsDeleted": false,
+        "DeletedOn": null,
+        "Id": 0,
+        "CreatedOn": "0001-01-01T00:00:00",
+        "ModifiedOn": null
+      }
+    ],
+    "Director": {
+      "FirstName": "Russo",
+      "LastName": "Brothers",
+      "Movies": [],
+      "IsDeleted": false,
+      "DeletedOn": null,
+      "Id": 1,
+      "CreatedOn": "2021-02-27T16:42:22.2669856",
+      "ModifiedOn": null
+    },
+    "Country": {
+      "Name": "USA",
+      "Movies": [],
+      "IsDeleted": false,
+      "DeletedOn": null,
+      "Id": 1,
+      "CreatedOn": "2021-02-27T16:43:53.8893539",
+      "ModifiedOn": null
+    },
+    "Genres": [
+      {
+        "MovieId": 2,
+        "Movie": null,
+        "GenreId": 3,
+        "Genre": null,
+        "IsDeleted": false,
+        "DeletedOn": null,
+        "Id": 0,
+        "CreatedOn": "0001-01-01T00:00:00",
+        "ModifiedOn": null
+      },
+      {
+        "MovieId": 2,
+        "Movie": null,
+        "GenreId": 5,
+        "Genre": null,
+        "IsDeleted": false,
+        "DeletedOn": null,
+        "Id": 0,
+        "CreatedOn": "0001-01-01T00:00:00",
+        "ModifiedOn": null
+      },
+      {
+        "MovieId": 2,
+        "Movie": null,
+        "GenreId": 6,
+        "Genre": null,
+        "IsDeleted": false,
+        "DeletedOn": null,
+        "Id": 0,
+        "CreatedOn": "0001-01-01T00:00:00",
+        "ModifiedOn": null
+      }
+    ]
+  },
+  {
+    "Title": "Ghost in Shell",
+    "ReleaseDate": "2021-03-05T00:00:00",
+    "Rate": 5.8,
+    "Minutes": 100,
+    "ImageUrl": "https://upload.wikimedia.org/wikipedia/en/1/11/Ghost_in_the_Shell_%282017_film%29.png",
+    "Trailer": "https://www.youtube.com/embed/G4VmJcZR0Yg",
+    "Actors": [
+      {
+        "MovieId": 3,
+        "Movie": null,
+        "ActorId": 1,
+        "Actor": null,
+        "IsDeleted": false,
+        "DeletedOn": null,
+        "Id": 0,
+        "CreatedOn": "2021-03-04T18:46:34.0859203",
+        "ModifiedOn": null
+      },
+      {
+        "MovieId": 3,
+        "Movie": null,
+        "ActorId": 3,
+        "Actor": null,
+        "IsDeleted": false,
+        "DeletedOn": null,
+        "Id": 0,
+        "CreatedOn": "2021-03-04T18:46:34.0859561",
+        "ModifiedOn": null
+      }
+    ],
+    "Director": {
+      "FirstName": "Russo",
+      "LastName": "Brothers",
+      "Movies": [],
+      "IsDeleted": false,
+      "DeletedOn": null,
+      "Id": 1,
+      "CreatedOn": "2021-02-27T16:42:22.2669856",
+      "ModifiedOn": null
+    },
+    "Country": {
+      "Name": "USA",
+      "Movies": [],
+      "IsDeleted": false,
+      "DeletedOn": null,
+      "Id": 1,
+      "CreatedOn": "2021-02-27T16:43:53.8893539",
+      "ModifiedOn": null
+    },
+    "Genres": [
+      {
+        "MovieId": 3,
+        "Movie": null,
+        "GenreId": 3,
+        "Genre": null,
+        "IsDeleted": false,
+        "DeletedOn": null,
+        "Id": 0,
+        "CreatedOn": "2021-03-04T18:46:34.0856883",
+        "ModifiedOn": null
+      },
+      {
+        "MovieId": 3,
+        "Movie": null,
+        "GenreId": 5,
+        "Genre": null,
+        "IsDeleted": false,
+        "DeletedOn": null,
+        "Id": 0,
+        "CreatedOn": "2021-03-04T18:46:34.0858452",
+        "ModifiedOn": null
+      }
+    ]
+  },
+  {
+    "Title": "Thor Ragnarok",
+    "ReleaseDate": "2017-10-10T00:00:00",
+    "Rate": 10.0,
+    "Minutes": 130,
+    "ImageUrl": "https://upload.wikimedia.org/wikipedia/en/7/7d/Thor_Ragnarok_poster.jpg",
+    "Trailer": "https://www.youtube.com/embed/ue80QwXMRHg",
+    "Actors": [
+      {
+        "MovieId": 4,
+        "Movie": null,
+        "ActorId": 2,
+        "Actor": null,
+        "IsDeleted": false,
+        "DeletedOn": null,
+        "Id": 0,
+        "CreatedOn": "2021-03-04T19:30:17.3914646",
+        "ModifiedOn": null
+      },
+      {
+        "MovieId": 4,
+        "Movie": null,
+        "ActorId": 1003,
+        "Actor": null,
+        "IsDeleted": false,
+        "DeletedOn": null,
+        "Id": 0,
+        "CreatedOn": "2021-03-04T19:30:17.3914883",
+        "ModifiedOn": null
+      },
+      {
+        "MovieId": 4,
+        "Movie": null,
+        "ActorId": 1004,
+        "Actor": null,
+        "IsDeleted": false,
+        "DeletedOn": null,
+        "Id": 0,
+        "CreatedOn": "2021-03-04T19:30:17.3914951",
+        "ModifiedOn": null
+      },
+      {
+        "MovieId": 4,
+        "Movie": null,
+        "ActorId": 1005,
+        "Actor": null,
+        "IsDeleted": false,
+        "DeletedOn": null,
+        "Id": 0,
+        "CreatedOn": "2021-03-04T19:30:17.3914956",
+        "ModifiedOn": null
+      },
+      {
+        "MovieId": 4,
+        "Movie": null,
+        "ActorId": 1006,
+        "Actor": null,
+        "IsDeleted": false,
+        "DeletedOn": null,
+        "Id": 0,
+        "CreatedOn": "2021-03-04T19:30:17.3914961",
+        "ModifiedOn": null
+      }
+    ],
+    "Director": {
+      "FirstName": "Russo",
+      "LastName": "Brothers",
+      "Movies": [],
+      "IsDeleted": false,
+      "DeletedOn": null,
+      "Id": 1,
+      "CreatedOn": "2021-02-27T16:42:22.2669856",
+      "ModifiedOn": null
+    },
+    "Country": {
+      "Name": "USA",
+      "Movies": [],
+      "IsDeleted": false,
+      "DeletedOn": null,
+      "Id": 1,
+      "CreatedOn": "2021-02-27T16:43:53.8893539",
+      "ModifiedOn": null
+    },
+    "Genres": [
+      {
+        "MovieId": 4,
+        "Movie": null,
+        "GenreId": 3,
+        "Genre": null,
+        "IsDeleted": false,
+        "DeletedOn": null,
+        "Id": 0,
+        "CreatedOn": "2021-03-04T19:30:17.3913859",
+        "ModifiedOn": null
+      },
+      {
+        "MovieId": 4,
+        "Movie": null,
+        "GenreId": 4,
+        "Genre": null,
+        "IsDeleted": false,
+        "DeletedOn": null,
+        "Id": 0,
+        "CreatedOn": "2021-03-04T19:30:17.3914381",
+        "ModifiedOn": null
+      },
+      {
+        "MovieId": 4,
+        "Movie": null,
+        "GenreId": 5,
+        "Genre": null,
+        "IsDeleted": false,
+        "DeletedOn": null,
+        "Id": 0,
+        "CreatedOn": "2021-03-04T19:30:17.3914594",
+        "ModifiedOn": null
+      }
+    ]
+  },
+  {
+    "Title": "The crying woman",
+    "ReleaseDate": "2003-12-03T00:00:00",
+    "Rate": 5.2,
+    "Minutes": 130,
+    "ImageUrl": "https://th.bing.com/th/id/OIP.Wv4K6rxOMC8ezdydyoTXPQHaEH?pid=ImgDet&rs=1",
+    "Trailer": "https://www.youtube.com/embed/FEFTEyFUSzM",
+    "Actors": [],
+    "Director": {
+      "FirstName": "Steven",
+      "LastName": "Hocking",
+      "Movies": [],
+      "IsDeleted": false,
+      "DeletedOn": null,
+      "Id": 3,
+      "CreatedOn": "2021-03-05T13:20:08.9160282",
+      "ModifiedOn": null
+    },
+    "Country": {
+      "Name": "New Guinea",
+      "Movies": [],
+      "IsDeleted": false,
+      "DeletedOn": null,
+      "Id": 2,
+      "CreatedOn": "2021-03-05T13:20:08.9160233",
+      "ModifiedOn": null
+    },
+    "Genres": []
+  },
+  {
+    "Title": "The crying woman",
+    "ReleaseDate": "2003-12-03T00:00:00",
+    "Rate": 5.2,
+    "Minutes": 130,
+    "ImageUrl": "https://th.bing.com/th/id/OIP.Wv4K6rxOMC8ezdydyoTXPQHaEH?pid=ImgDet&rs=1",
+    "Trailer": "https://www.youtube.com/embed/FEFTEyFUSzM",
+    "Actors": [],
+    "Director": {
+      "FirstName": "Steven",
+      "LastName": "Hocking",
+      "Movies": [],
+      "IsDeleted": false,
+      "DeletedOn": null,
+      "Id": 4,
+      "CreatedOn": "2021-03-05T13:29:29.4077853",
+      "ModifiedOn": null
+    },
+    "Country": {
+      "Name": "New Guinea",
+      "Movies": [],
+      "IsDeleted": false,
+      "DeletedOn": null,
+      "Id": 3,
+      "CreatedOn": "2021-03-05T13:29:29.4077817",
+      "ModifiedOn": null
+    },
+    "Genres": []
+  }
+]
