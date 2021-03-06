@@ -1,7 +1,7 @@
 ﻿@using MovieExplorer.Common
 @using MovieExplorer.Web.ViewModels.Movies
 @using MovieExplorer.Data.Models
-@model IEnumerable<MovieViewModel>
+@model ListMovieViewModel
 @{
     this.ViewData["Title"] = "Home Page";
 }
@@ -13,7 +13,6 @@
     <a class="btn-primary" asp-controller="Country" asp-action="Create">Create Country</a>
     <a class="btn-primary" asp-controller="Actor" asp-action="Create">Create Actor</a>
     <a class="btn-primary" asp-controller="Genre" asp-action="Create">Create Genre</a>
-
 }
 
 @if (this.User.Identity.IsAuthenticated)
@@ -23,15 +22,25 @@
         <span class="field-validation-error"><span id="ssn-message">The SSN already exists.</span></span>
         <img height="380" width="60" src="https://s3.amazonaws.com/scribblelive-com-prod/wp-content/uploads/sites/4/2020/08/stage-en-error-1020.png" alt="Alternate Text" />
     }
-    
-        <a class="rounded p-3 mb-2 bg-secondary text-white" asp-controller="Movie" asp-action="MovieUserPage" asp-route-id="@this.User.Identity.Name">
-            Your Collection <span class="badge bg-secondary">@this.ViewData["CountOfMovies"]</span>
-        </a>
-
 }
+@*<form class="rounded-pill" asp-controller="Movie" asp-action="Search">
+        <p>
+            <input type="text" placeholder="Search..." name="title" />
+            <input type="submit" class="text-dark" value="Go" />
+        </p>
+    </form>*@
+
+<form method="post" asp-controller="Movie" asp-action="Search">
+    <div class="row- rounded-pill text-center">
+        <input asp-for="@this.Model.Search.Title" class="form-control" placeholder="Search">
+    </div>
+    <div>
+          <button type="submit" class="btn btn-success">Go</button>
+        </div>
+</form>
 
 <div class="row">
-    @foreach (var item in this.Model)
+    @foreach (var item in this.Model.AllMovies)
     {
         <div class="card col-md-3 rounded" style="width: 60px; height: 550px; background-color: gray">
             <img class="card-img-top" height="380" width="60" src="@item.ImageUrl" alt="Image" />
