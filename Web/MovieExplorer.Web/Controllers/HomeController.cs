@@ -11,23 +11,32 @@
     using System.Collections.Generic;
     using Microsoft.AspNetCore.Identity;
     using MovieExplorer.Services.Data;
+    using System.Linq;
 
     public class HomeController : BaseController
     {
         private readonly IDeletableEntityRepository<Movie> movieRepository;
         private readonly IUserService userService;
+        private readonly IMovieService movieService;
 
-        public HomeController(IDeletableEntityRepository<Movie> movieRepository, IUserService userService)
+        public HomeController(IDeletableEntityRepository<Movie> movieRepository, IUserService userService, IMovieService movieService)
         {
             this.movieRepository = movieRepository;
             this.userService = userService;
+            this.movieService = movieService;
         }
 
         public IActionResult Index()
         {
-            var movies = this.movieRepository.All().To<MovieViewModel>();
+            var movies = this.movieRepository.All().To<MovieViewModel>().ToList();
+
+            ListMovieViewModel movie = new ListMovieViewModel
+            {
+                AllMovies = movies,
+            };
+
             this.ViewData["CountOfMovies"] = this.userService.MoviesOfCount(this.User.Identity.Name);
-            return this.View(movies);
+            return this.View(movie);
         }
 
         public IActionResult Privacy()

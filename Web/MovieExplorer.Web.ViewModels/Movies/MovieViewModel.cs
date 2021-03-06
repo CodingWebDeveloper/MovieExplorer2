@@ -15,6 +15,7 @@ namespace MovieExplorer.Web.ViewModels.Movies
 
         public string ImageUrl { get; set; }
 
+        public InputSearchModel SearchInput { get; set; }
 
         public DateTime ReleaseDate { get; set; }
 

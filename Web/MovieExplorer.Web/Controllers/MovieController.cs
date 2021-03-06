@@ -98,7 +98,6 @@ namespace MovieExplorer.Web.Controllers
         {
             var userMovies = this.movieService.GetAllMovies(id);
             
-
             return this.View(userMovies);
         }
 
@@ -111,6 +110,12 @@ namespace MovieExplorer.Web.Controllers
             return this.Redirect("/");
         }
 
-        
+        [HttpPost]
+        public IActionResult Search(InputSearchModel search)
+        {
+            IEnumerable<MovieViewModel> movie = this.movieService.SearchMovie(search.Title);
+
+            return this.View(movie);
+        }
     }
 }

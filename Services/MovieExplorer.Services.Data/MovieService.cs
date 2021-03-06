@@ -141,5 +141,11 @@ namespace MovieExplorer.Services.Data
             await this.movieUserRepository.SaveChangesAsync();
         }
 
+        public IEnumerable<MovieViewModel> SearchMovie(string movieName)
+        {
+           IEnumerable<MovieViewModel> movie = this.movieRepository.All().To<MovieViewModel>().Where(m => m.Name.ToLower().Contains(movieName.ToLower()));
+
+           return movie;
+        }
     }
 }
