@@ -19,6 +19,7 @@ namespace MovieExplorer.Services.Data.Tests
         {
             return new List<Country>() { new Country { Id = 1, Name = "Guinea" } };
         }
+     
 
         public CountryServiceTest()
         {
@@ -36,5 +37,13 @@ namespace MovieExplorer.Services.Data.Tests
             Assert.Equal(countries.Count, actualCountries.Count());
         }
 
+        public void CheckCreateCountry()
+        {
+            Mock<IDeletableEntityRepository<Country>> mock = new Mock<IDeletableEntityRepository<Country>>();
+            int count = 1;
+            mock.Setup(x => x.All().Count()).Returns(count);
+            ICountryService countryService = new CountryService(mock.Object);
+            countryService.CreateCountry()
+        }
     }
 }

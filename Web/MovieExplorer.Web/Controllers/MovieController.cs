@@ -58,7 +58,6 @@ namespace MovieExplorer.Web.Controllers
                 return this.View(inputModel);
             }
 
-            await this.movieService.CreateMovie(inputModel.Title, inputModel.ReleaseDate, inputModel.Minutes, inputModel.Rate, inputModel.ImageUrl, inputModel.Trailer, inputModel.Description, inputModel.DirectorId, inputModel.CountryId, inputModel.ActorsId, inputModel.GenresId);
             return this.Redirect("/");
         }
 
@@ -94,10 +93,10 @@ namespace MovieExplorer.Web.Controllers
             return this.Redirect("/");
         }
 
+        [Authorize]
         public async Task<IActionResult> MovieUserPage(string id)
         {
             var userMovies = this.movieService.GetAllMovies(id);
-            
             return this.View(userMovies);
         }
 

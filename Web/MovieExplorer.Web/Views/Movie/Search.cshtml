@@ -1,6 +1,20 @@
 ﻿@using MovieExplorer.Web.ViewModels.Movies
 @model IEnumerable<MovieViewModel>
 
+@if (this.Model.Count() == 0)
+{
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-3">
+            <img width="500" height="500" src="https://www.clker.com/cliparts/9/g/p/H/1/F/search-icon-dark-grey-hi.png" class="img-responsive col-centered" alt="Image" />
+        </div>
+        <div class="text-center col-md-12">
+            <h2>
+                Nothing Found!
+            </h2>
+        </div>
+    </div>
+}
 @foreach (var item in this.Model)
 {
     <h4 class="card-title text-center">
