@@ -43,7 +43,7 @@ namespace MovieExplorer.Services.Data.Tests
             int count = 1;
             mock.Setup(x => x.All().Count()).Returns(count);
             ICountryService countryService = new CountryService(mock.Object);
-            countryService.CreateCountry()
+            //countryService.CreateCountry();
         }
     }
 }

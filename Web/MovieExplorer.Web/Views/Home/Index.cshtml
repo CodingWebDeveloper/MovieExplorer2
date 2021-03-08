@@ -23,6 +23,7 @@
         <img height="380" width="60" src="https://s3.amazonaws.com/scribblelive-com-prod/wp-content/uploads/sites/4/2020/08/stage-en-error-1020.png" alt="Alternate Text" />
     }
 }
+
 @*<form class="rounded-pill" asp-controller="Movie" asp-action="Search">
         <p>
             <input type="text" placeholder="Search..." name="title" />
@@ -30,41 +31,103 @@
         </p>
     </form>*@
 
-<form method="post" asp-controller="Movie" asp-action="Search">
-    <div class="row- rounded-pill text-center">
-        <input asp-for="@this.Model.Search.Title" class="form-control" placeholder="Search">
-    </div>
-    <div>
-          <button type="submit" class="btn btn-success">Go</button>
+<div class="d-flex" id="wrapper">
+
+    <div class="border-right" style="background-color: lightslategrey" id="sidebar-wrapper">
+        <div class="sidebar-heading">Menu</div>
+        <div class="list-group list-group-flush">
+            <a href="#" class="list-group-item list-group-item-action bg-dark">Dashboard</a>
+            <a href="#" class="list-group-item list-group-item-action bg-dark">Shortcuts</a>
+            <a href="#" class="list-group-item list-group-item-action bg-dark">Overview</a>
+            <a href="#" class="list-group-item list-group-item-action bg-dark">Events</a>
+            <a href="#" class="list-group-item list-group-item-action bg-dark">Profile</a>
+            <a href="#" class="list-group-item list-group-item-action bg-dark">Status</a>
         </div>
-</form>
+    </div>
 
-<div class="row">
-    @foreach (var item in this.Model.AllMovies)
-    {
-        <div class="card col-md-3 rounded" style="width: 60px; height: 550px; background-color: gray">
-            <img class="card-img-top" height="380" width="60" src="@item.ImageUrl" alt="Image" />
-            <div class="card-body">
-                <h4 class="card-title text-center">
-                    <a class="row-cols-1 text-dark" asp-controller="Movie" asp-action="MoviePage" asp-route-id="@item.MovieId">@item.Name</a>
-                </h4>
-                <form class="form-group row justify-content-center" method="post">
+    <div id="page-content-wrapper">
 
-                    <div class="col-md-4 ">
-                        <p>@item.ReleaseDate.ToString("yyyy")</p>
-                    </div>
-                    <div class="col-md-6">
-                        <button class="form-control btn-dark" asp-controller="Movie" asp-action="AddMovieToUser" asp-route-id="@item.MovieId">Add</button>
-                    </div>
-                    @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
-                    {
-                        <div class="col-md-6 justify-content-xl-center row">
-                            <button class="form-control btn-dark" asp-controller="Movie" asp-action="Delete" asp-route-id="@item.MovieId">Delete</button>
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: lightslategrey">
+            <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+        </nav>
+
+        <div class="container-fluid">
+            <div class="slideshow-container">
+                @for (int i = 0; i <= 3; i++)
+                {
+                    <div class="mySlides">
+                        <div class="row">
+                            @foreach (var item in this.Model.AllMovies.Skip(i * 4).Take(4))
+                            {
+                                <div class="col-md-3">
+                                    <div class="numbertext col-md-">1 / 3</div>
+                                    <a class="row-cols-1 text-dark" asp-controller="Movie" asp-action="MoviePage" asp-route-id="@item.MovieId">
+                                        <img class="embed-responsive rounded" src="@item.ImageUrl" height="200" width="200" alt="Image">
+                                    </a>
+                                </div>
+                            }
                         </div>
-                    }
-                </form>
+                    </div>
+                }
 
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
+            <br>
+
+
+            <div style="text-align:center">
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+            </div>
+
+            <form method="post" asp-controller="Movie" asp-action="Search">
+                <div class="row- rounded-pill text-center">
+                    <input asp-for="@this.Model.Search.Title" class="form-control" placeholder="Search">
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-success">Go</button>
+                </div>
+            </form>
+
+            <div class="row">
+                @foreach (var item in this.Model.AllMovies)
+                {
+                    <div class="card col-md-3 rounded" style="width: 60px; height: 550px; background-color: gray">
+                        <img class="card-img-top" height="380" width="60" src="@item.ImageUrl" alt="Image" />
+                        <div class="card-body">
+                            <h4 class="card-title text-center">
+                                <a class="row-cols-1 text-dark" asp-controller="Movie" asp-action="MoviePage" asp-route-id="@item.MovieId">@item.Name</a>
+                            </h4>
+                            <form class="form-group row justify-content-center" method="post">
+
+                                <div class="col-md-4 ">
+                                    <p>@item.ReleaseDate.ToString("yyyy")</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <button class="form-control btn-dark" asp-controller="Movie" asp-action="AddMovieToUser" asp-route-id="@item.MovieId">Add</button>
+                                </div>
+                                @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+                                {
+                                    <div class="col-md-6 justify-content-xl-center row">
+                                        <button class="form-control btn-dark" asp-controller="Movie" asp-action="Delete" asp-route-id="@item.MovieId">Delete</button>
+                                    </div>
+                                }
+                            </form>
+
+                        </div>
+                    </div>
+                 }
             </div>
         </div>
-    }
+    </div>
+
 </div>
+
