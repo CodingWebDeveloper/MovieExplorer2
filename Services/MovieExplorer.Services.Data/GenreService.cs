@@ -20,6 +20,11 @@ namespace MovieExplorer.Services.Data
 
         public async Task CreateGenre(string genreName)
         {
+            if (this.genreRepository.All().Any(g => g.Name == genreName))
+            {
+                throw new ArgumentException("This genre already exists!");
+            }
+
             Genre genre = new Genre
             {
                 Name = genreName,

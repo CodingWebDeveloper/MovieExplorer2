@@ -55,6 +55,21 @@ namespace MovieExplorer.Web.Controllers
                 inputModel.AllListDirectors = this.directorService.GetAllItems();
                 inputModel.AllListCoutries = this.countryService.GetAllCountries();
                 inputModel.AllListActors = this.actorService.GetAllActors();
+                inputModel.AllListGenres = this.genreService.GetAllGenres();
+                return this.View(inputModel);
+            }
+
+            try
+            {
+                await this.movieService.CreateMovie(inputModel.Title, inputModel.ReleaseDate, inputModel.Minutes, inputModel.Rate, inputModel.ImageUrl, inputModel.Trailer, inputModel.Description, inputModel.DirectorId, inputModel.CountryId, inputModel.ActorsId, inputModel.GenresId);
+            }
+            catch (Exception e)
+            {
+                inputModel.AllListDirectors = this.directorService.GetAllItems();
+                inputModel.AllListCoutries = this.countryService.GetAllCountries();
+                inputModel.AllListActors = this.actorService.GetAllActors();
+                inputModel.AllListGenres = this.genreService.GetAllGenres();
+                this.TempData["Message"] = e.Message;
                 return this.View(inputModel);
             }
 

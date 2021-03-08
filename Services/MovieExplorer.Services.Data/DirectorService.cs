@@ -20,6 +20,11 @@ namespace MovieExplorer.Services.Data
 
         public async Task CreateDirector(string firstName, string lastName)
         {
+
+            if (this.directorRepository.All().Any(d => d.FirstName == firstName && d.LastName == lastName)) 
+            {
+                throw new ArgumentException("This director already exists!");
+            }
             Director director = new Director
             {
                 FirstName = firstName,

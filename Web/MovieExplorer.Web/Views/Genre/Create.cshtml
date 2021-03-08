@@ -3,6 +3,12 @@
     <h1 class="text-light">Create Genre</h1>
 
     <form class="m-md-auto" asp-controller="Genre" asp-action="Create" method="post">
+        @if (this.TempData.ContainsKey("MessageErrorGenre"))
+        {
+            <div class="alert alert-danger">
+                @this.TempData["MessageErrorGenre"]
+            </div>
+        }
         <div class="form-group">
             <label asp-for="Name" class="text-light">Genre</label>
             <input asp-for="Name" class="form-control col-md-5" />

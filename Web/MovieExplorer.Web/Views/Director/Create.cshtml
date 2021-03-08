@@ -3,6 +3,12 @@
 <h1 class="text-light">Create Director</h1>
 
 <form class="m-md-auto" asp-controller="Director" asp-action="Create" method="post">
+    @if (this.TempData.ContainsKey("MessageErrorDirector"))
+    {
+        <div class="alert alert-danger">
+            @this.TempData["MessageErrorDirector"]
+        </div>
+    }
     <div class="form-group">
         <label asp-for="FirstName" class="text-light">FirstName</label>
         <input asp-for="FirstName" class="form-control col-md-5" />

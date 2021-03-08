@@ -30,7 +30,16 @@ namespace MovieExplorer.Web.Controllers
                 return this.View();
             }
 
-            await this.genreService.CreateGenre(genreInputModel.Name);
+            try
+            {
+                await this.genreService.CreateGenre(genreInputModel.Name);
+            }
+            catch (Exception e)
+            {
+                this.TempData["MessageErrorGenre"] = e.Message;
+                return this.View();
+            }
+
             return this.View();
         }
 

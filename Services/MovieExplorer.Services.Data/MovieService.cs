@@ -40,6 +40,11 @@ namespace MovieExplorer.Services.Data
 
         public async Task CreateMovie(string title, DateTime releaseDate, int minutes, double rate, string imageUrl, string trailer, string description, int directorId, int countryId, List<int> actorsId, List<int> genresId)
         {
+            if (this.movieRepository.All().Any(x => x.Title == title)) 
+            {
+                throw new ArgumentException("This film already exists!");
+            }
+
             Movie movie = new Movie
             {
                 Title = title,

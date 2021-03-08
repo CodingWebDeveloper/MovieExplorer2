@@ -8,6 +8,10 @@
         <label for="Title" class="text-light">Title</label>
         <input type="text" class="form-control col-md-6" name="Title" />
         <span asp-validation-for="Title"></span>
+        @if(this.TempData.ContainsKey("Message"))
+        {
+            <div class="alert-danger alert"> @this.TempData["Message"]</div>
+        }
     </div>
 
     <div>

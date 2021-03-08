@@ -35,7 +35,17 @@ namespace MovieExplorer.Web.Controllers
             {
                 return this.View();
             }
-            await this.directorService.CreateDirector(directorInputModel.FirstName, directorInputModel.LastName);
+
+            try
+            {
+                await this.directorService.CreateDirector(directorInputModel.FirstName, directorInputModel.LastName);
+            }
+            catch (Exception e)
+            {
+                this.TempData["MessageErrorDirector"] = e.Message;
+                return this.View();
+            }
+
             return this.Redirect("/");
         }
     }

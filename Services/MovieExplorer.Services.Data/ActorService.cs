@@ -26,6 +26,11 @@ namespace MovieExplorer.Services.Data
 
         public async Task CreateActor(string firstName, string middleName, string lastName)
         {
+            if (this.actorRepository.All().Any(a => a.FirstName == firstName && a.LastName == lastName))
+            {
+                throw new ArgumentException("This actor already exists!");
+            }
+           
             Actor actor = new Actor
             {
                FirstName = firstName,

@@ -31,7 +31,16 @@ namespace MovieExplorer.Web.Controllers
                 return this.View();
             }
 
-            await this.actorService.CreateActor(actorInputModel.FirstName, actorInputModel.MiddleName, actorInputModel.LastName);
+            try
+            {
+                await this.actorService.CreateActor(actorInputModel.FirstName, actorInputModel.MiddleName, actorInputModel.LastName);
+            }
+            catch (Exception e)
+            {
+                this.TempData["MessageErrorActor"] = e.Message;
+                return this.View();
+            }
+
             return this.Redirect("/");
         }
 

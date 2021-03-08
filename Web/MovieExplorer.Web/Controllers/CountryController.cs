@@ -33,7 +33,16 @@ namespace MovieExplorer.Web.Controllers
                 return this.View();
             }
 
-            await this.countryService.CreateCountry(countryInputModel.Name);
+            try
+            {
+                await this.countryService.CreateCountry(countryInputModel.Name);
+            }
+            catch (Exception e)
+            {
+                this.TempData["MessaegErrorCountry"] = e.Message;
+                return this.View();
+            }
+
             return this.Redirect("/");
         }
     }

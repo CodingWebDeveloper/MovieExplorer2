@@ -22,6 +22,11 @@ namespace MovieExplorer.Services.Data
 
         public async Task CreateCountry(string name)
         {
+            if (this.countryRepository.All().Any(c => c.Name == name))
+            {
+                throw new ArgumentException("This country already exists!");
+            }
+
             Country country = new Country
             {
                 Name = name,

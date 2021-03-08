@@ -3,6 +3,10 @@
 <h1 class="text-light">Create Actor</h1>
 
 <form class="m-md-auto" asp-controller="Actor" asp-action="Create" method="post">
+    @if (this.TempData.ContainsKey("MessageErrorActor"))
+    {
+        <div class="alert alert-danger">@this.TempData["MessageErrorActor"]</div>
+    }
     <div class="form-group">
         <label asp-for="FirstName" class="text-light">FirstName</label>
         <input asp-for="FirstName" class="form-control col-md-5" />
