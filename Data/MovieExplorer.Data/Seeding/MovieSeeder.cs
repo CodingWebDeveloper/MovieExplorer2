@@ -15,6 +15,7 @@ namespace MovieExplorer.Data.Seeding
 
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
         {
+
             if (dbContext.Movies.Any())
             {
                 return;
@@ -29,7 +30,7 @@ namespace MovieExplorer.Data.Seeding
                 ImageUrl = "https://filmisub.com/uploads/posts/zamunda/themoviedb-1585322934/thumbs/themoviedb-1585322934-poster.jpg",
                 Trailer = "https://www.youtube.com/embed/jKCj3XuPG8M",
                 Country = new Country { Name = "USA" },
-                Director = new Director {FirstName="Edi ", LastName = "El Abri" },
+                Director = new Director { FirstName = "Edi ", LastName = "El Abri" },
                 MovieActors = new List<MovieActor>()
                 {
                     new MovieActor
@@ -83,27 +84,26 @@ namespace MovieExplorer.Data.Seeding
                         },
                     },
                 },
-
                 Genres = new List<MovieGenre>()
-                {
-                    new MovieGenre
                     {
-                        Genre = new Genre
+                        new MovieGenre
                         {
-                            Name = "Action",
+                            Genre = new Genre
+                            {
+                                Name = "Action",
+                            },
                         },
-                    },
 
-                    new MovieGenre
-                    {
-                        Genre = new Genre
+                        new MovieGenre
                         {
-                            Name = "Criminal",
+                            Genre = new Genre
+                            {
+                                Name = "Criminal",
+                            },
                         },
                     },
-                },
             };
-            dbContext.Movies.Add(movie);
+            await dbContext.Movies.AddAsync(movie);
             await dbContext.SaveChangesAsync();
         }
     }
