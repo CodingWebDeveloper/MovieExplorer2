@@ -30,18 +30,17 @@
             <input type="submit" class="text-dark" value="Go" />
         </p>
     </form>*@
+   
 
 <div class="d-flex" id="wrapper">
 
     <div class="border-right" style="background-color: lightslategrey" id="sidebar-wrapper">
-        <div class="sidebar-heading">Menu</div>
+        <div class="sidebar-heading">Genre options</div>
         <div class="list-group list-group-flush">
-            <a href="#" class="list-group-item list-group-item-action bg-dark">Dashboard</a>
-            <a href="#" class="list-group-item list-group-item-action bg-dark">Shortcuts</a>
-            <a href="#" class="list-group-item list-group-item-action bg-dark">Overview</a>
-            <a href="#" class="list-group-item list-group-item-action bg-dark">Events</a>
-            <a href="#" class="list-group-item list-group-item-action bg-dark">Profile</a>
-            <a href="#" class="list-group-item list-group-item-action bg-dark">Status</a>
+            @foreach (var item in this.Model.AllGenres)
+            {
+                <a asp-controller="Genre" asp-action="AllMovies" asp-route-id="@item.Id" class="list-group-item list-group-item-action bg-dark">@item.GenreName</a>
+            }
         </div>
     </div>
 
@@ -100,31 +99,8 @@
             <div class="row">
                 @foreach (var item in this.Model.AllMovies)
                 {
-                    <div class="card col-md-3 rounded" style="width: 60px; height: 550px; background-color: gray">
-                        <img class="card-img-top" height="380" width="60" src="@item.ImageUrl" alt="Image" />
-                        <div class="card-body">
-                            <h4 class="card-title text-center">
-                                <a class="row-cols-1 text-dark" asp-controller="Movie" asp-action="MoviePage" asp-route-id="@item.MovieId">@item.Name</a>
-                            </h4>
-                            <form class="form-group row justify-content-center" method="post">
-
-                                <div class="col-md-4 ">
-                                    <p>@item.ReleaseDate.ToString("yyyy")</p>
-                                </div>
-                                <div class="col-md-6">
-                                    <button class="form-control btn-dark" asp-controller="Movie" asp-action="AddMovieToUser" asp-route-id="@item.MovieId">Add</button>
-                                </div>
-                                @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
-                                {
-                                    <div class="col-md-6 justify-content-xl-center row">
-                                        <button class="form-control btn-dark" asp-controller="Movie" asp-action="Delete" asp-route-id="@item.MovieId">Delete</button>
-                                    </div>
-                                }
-                            </form>
-
-                        </div>
-                    </div>
-                 }
+                    @await Html.PartialAsync("_PartialViewMovie", item)
+                }
             </div>
         </div>
     </div>

@@ -12,27 +12,31 @@
     using Microsoft.AspNetCore.Identity;
     using MovieExplorer.Services.Data;
     using System.Linq;
+    using MovieExplorer.Web.ViewModels.Genres;
 
     public class HomeController : BaseController
     {
         private readonly IDeletableEntityRepository<Movie> movieRepository;
         private readonly IUserService userService;
         private readonly IMovieService movieService;
+        private readonly IGenreService genreService;
 
-        public HomeController(IDeletableEntityRepository<Movie> movieRepository, IUserService userService, IMovieService movieService)
+        public HomeController(IDeletableEntityRepository<Movie> movieRepository, IUserService userService, IMovieService movieService, IGenreService genreService)
         {
             this.movieRepository = movieRepository;
             this.userService = userService;
             this.movieService = movieService;
+            this.genreService = genreService;
         }
 
         public IActionResult Index()
         {
             var movies = this.movieRepository.All().To<MovieViewModel>().ToList();
-
+            IEnumerable<GenreViewModel> geners = this.genreService.GetAllGenres();
             ListMovieViewModel movie = new ListMovieViewModel
             {
                 AllMovies = movies,
+                AllGenres = geners.ToArray(),
             };
 
             this.ViewData["CountOfMovies"] = this.userService.MoviesOfCount(this.User.Identity.Name);

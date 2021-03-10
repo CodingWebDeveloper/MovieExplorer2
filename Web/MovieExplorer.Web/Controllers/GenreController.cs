@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MovieExplorer.Services.Data;
 using MovieExplorer.Web.ViewModels.Genres;
+using MovieExplorer.Web.ViewModels.Movies;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,5 +44,11 @@ namespace MovieExplorer.Web.Controllers
             return this.View();
         }
 
+        public IActionResult AllMovies(int id)
+        {
+            IEnumerable<MovieViewModel> movies = this.genreService.GetAllMoviesByGenre(id);
+
+            return this.View(movies);
+        }
     }
 }

@@ -29,7 +29,7 @@
                               new SettingsSeeder(),
                               new UserSeeder(),
                               new GenreSeeder(),
-                              new MovieSeeder(),
+                              //new MovieSeeder(),
                           };
 
             foreach (var seeder in seeders)

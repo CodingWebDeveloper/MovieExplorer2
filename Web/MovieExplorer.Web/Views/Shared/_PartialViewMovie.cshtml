@@ -1,0 +1,27 @@
+﻿@using MovieExplorer.Web.ViewModels.Movies
+@using MovieExplorer.Common 
+@model MovieViewModel
+
+<div class="card col-md-3 rounded" style="width: 60px; height: 550px; background-color: gray">
+    <img class="card-img-top" height="380" width="60" src="@this.Model.ImageUrl" alt="Image" />
+    <div class="card-body">
+        <h4 class="card-title text-center">
+            <a class="row-cols-1 text-dark" asp-controller="Movie" asp-action="MoviePage" asp-route-id="@this.Model.MovieId">@this.Model.Name</a>
+        </h4>
+        <form class="form-group row" method="post">
+            <div class="col-md-4">
+                <p>@this.Model.ReleaseDate.ToString("yyyy")</p>
+            </div>
+            <div class="col-md-6">
+                <button class="form-control btn-dark" asp-controller="Movie" asp-action="AddMovieToUser" asp-route-id="@this.Model.MovieId">Add</button>
+            </div>
+            @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+            {
+                <div class="col-md-6 justify-content-xl-center row">
+                    <button class="form-control btn-dark" asp-controller="Movie" asp-action="Delete" asp-route-id="@this.Model.MovieId">Delete</button>
+                </div>
+            }
+        </form>
+
+    </div>
+</div>

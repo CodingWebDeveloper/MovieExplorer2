@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using MovieExplorer.Web.ViewModels.Genres;
+using MovieExplorer.Web.ViewModels.Movies;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,6 +12,10 @@ namespace MovieExplorer.Services.Data
     {
         Task CreateGenre(string genreName);
 
-        IEnumerable<SelectListItem> GetAllGenres();
+        IEnumerable<SelectListItem> GetListGenres();
+
+        IEnumerable<GenreViewModel> GetAllGenres();
+
+        IEnumerable<MovieViewModel> GetAllMoviesByGenre(int genereId);
     }
 }

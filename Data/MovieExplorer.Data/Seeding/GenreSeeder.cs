@@ -17,66 +17,64 @@ namespace MovieExplorer.Data.Seeding
         {
             if (dbContext.Genres.Any())
             {
-                await this.SendToJson(dbContext);
-                using (StreamReader reader = new StreamReader(PATH + "/genre.json"))
-                {
-                    string inputJson = reader.ReadToEnd().Trim();
-                    IEnumerable<Genre> genresFromJson = JsonConvert.DeserializeObject<IEnumerable<Genre>>(inputJson);
-                    foreach (var genre in genresFromJson)
-                    {
-                        if (!dbContext.Genres.Any(x => x.Name == genre.Name))
-                        {
-                            await dbContext.AddAsync(genre);
-                        }
-                    }
-                }
-
-                await dbContext.SaveChangesAsync();
-            }
-        }
-
-        public async Task SendToJson(ApplicationDbContext dbContext)
-        {
-            var genres = dbContext.Genres.Select(x => new
-            {
-                Name = x.Name,
-            }).ToArray();
-
-            if (!Directory.Exists(PATH))
-            {
-                Directory.CreateDirectory(PATH);
-            }
-
-            using FileStream file = new FileStream(PATH + "/genre.json", FileMode.OpenOrCreate);
-            file.Close();
-
-            string inputJson = string.Empty;
-            string json = string.Empty;
-
-            using StreamReader reader = new StreamReader(file.Name);
-            inputJson = reader.ReadToEnd().Trim();
-
-            if (string.IsNullOrEmpty(inputJson))
-            {
-                json = JsonConvert.SerializeObject(genres.Select(x => new { Name = x.Name }), Formatting.Indented);
-                reader.Close();
-                await File.WriteAllTextAsync(file.Name, json);
                 return;
             }
 
-            List<Genre> genresFromJson = JsonConvert.DeserializeObject<IEnumerable<Genre>>(inputJson).ToList();
-
-            foreach (var genre in genres)
+            IEnumerable<Genre> genres = new List<Genre>()
             {
-                if (!genresFromJson.Any(x => x.Name == genre.Name))
+                new Genre
                 {
-                    genresFromJson.Add(new Genre { Name = genre.Name });
-                }
-            }
+                    Name = "Action",
+                },
+                new Genre
+                {
+                    Name = "Comedy",
+                },
+                new Genre
+                {
+                    Name = "Criminal",
+                },
+                new Genre
+                {
+                    Name = "Thriller",
+                },
+                new Genre
+                {
+                    Name = "Horror",
+                },
+                new Genre
+                {
+                    Name = "Science fiction",
+                },
+                new Genre
+                {
+                    Name = "Drama",
+                },
+                new Genre
+                {
+                    Name = "Romantic",
+                },
+                new Genre
+                {
+                    Name = "Adventure",
+                },
+                new Genre
+                {
+                    Name = "Mystery",
+                },
+                new Genre
+                {
+                    Name = "Fantasy",
+                },
+                new Genre
+                {
+                    Name = "Animation",
+                },
+            };
 
-            reader.Close();
-            json = JsonConvert.SerializeObject(genresFromJson.Select(x => new { Name = x.Name }), Formatting.Indented);
-            await File.WriteAllTextAsync(file.Name, json);
+            await dbContext.Genres.AddRangeAsync(genres);
+
+            await dbContext.SaveChangesAsync();
         }
     }
 }

@@ -40,7 +40,7 @@ namespace MovieExplorer.Web.Controllers
                 AllListDirectors = this.directorService.GetAllItems(),
                 AllListCoutries = this.countryService.GetAllCountries(),
                 AllListActors = this.actorService.GetAllActors(),
-                AllListGenres = this.genreService.GetAllGenres(),
+                AllListGenres = this.genreService.GetListGenres(),
             };
 
             return this.View(movie);
@@ -55,7 +55,7 @@ namespace MovieExplorer.Web.Controllers
                 inputModel.AllListDirectors = this.directorService.GetAllItems();
                 inputModel.AllListCoutries = this.countryService.GetAllCountries();
                 inputModel.AllListActors = this.actorService.GetAllActors();
-                inputModel.AllListGenres = this.genreService.GetAllGenres();
+                inputModel.AllListGenres = this.genreService.GetListGenres();
                 return this.View(inputModel);
             }
 
@@ -68,7 +68,7 @@ namespace MovieExplorer.Web.Controllers
                 inputModel.AllListDirectors = this.directorService.GetAllItems();
                 inputModel.AllListCoutries = this.countryService.GetAllCountries();
                 inputModel.AllListActors = this.actorService.GetAllActors();
-                inputModel.AllListGenres = this.genreService.GetAllGenres();
+                inputModel.AllListGenres = this.genreService.GetListGenres();
                 this.TempData["Message"] = e.Message;
                 return this.View(inputModel);
             }
