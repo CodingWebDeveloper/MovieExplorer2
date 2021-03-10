@@ -20,7 +20,7 @@ namespace MovieExplorer.Web.ViewModels.Comments
             configuration.CreateMap<Comment, CommentViewModel>()
                 .ForMember(x => x.Comment, y => y.MapFrom(x => x.Text))
                 .ForMember(x => x.CreatedOn, y => y.MapFrom(x => x.CreatedOn))
-                .ForMember(x => x.UserName, y => y.MapFrom(x => x.User.FirstName + " " + x.User.LastName));
+                .ForMember(x => x.UserName, y => y.MapFrom(x => x.User.UserName));
         }
     }
 }

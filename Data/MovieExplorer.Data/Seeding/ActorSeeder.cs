@@ -11,10 +11,10 @@
     {
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
         {
-            if (dbContext.Actors.Any())
-            {
-                return;
-            }
+            //if (dbContext.Actors.Any())
+            //{
+            //    return;
+            //}
 
             IEnumerable<Actor> actors = new List<Actor>()
             {
