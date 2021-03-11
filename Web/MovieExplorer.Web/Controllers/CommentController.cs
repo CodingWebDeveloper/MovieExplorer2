@@ -1,14 +1,14 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using MovieExplorer.Services.Data;
-using MovieExplorer.Web.ViewModels.Comments;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace MovieExplorer.Web.Controllers
+﻿namespace MovieExplorer.Web.Controllers
 {
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+    using MovieExplorer.Services.Data;
+    using MovieExplorer.Web.ViewModels.Comments;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+
     public class CommentController : Controller
     {
         private readonly ICommentService commentService;
@@ -27,8 +27,9 @@ namespace MovieExplorer.Web.Controllers
             }
 
             string userName = this.User.Identity.Name;
-
-            await this.commentService.AddComment(userName, id, commentInputViewModel.Text);
+            commentInputViewModel.UserName = userName;
+            commentInputViewModel.MovieId = id;
+            await this.commentService.AddComment(commentInputViewModel);
 
             return this.RedirectToAction("MoviePage", "Movie", new { id });
         }

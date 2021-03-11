@@ -1,17 +1,17 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using MovieExplorer.Common;
-using MovieExplorer.Data.Common.Repositories;
-using MovieExplorer.Data.Models;
-using MovieExplorer.Services.Data;
-using MovieExplorer.Web.ViewModels.Directors;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace MovieExplorer.Web.Controllers
+﻿namespace MovieExplorer.Web.Controllers
 {
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+    using MovieExplorer.Common;
+    using MovieExplorer.Data.Common.Repositories;
+    using MovieExplorer.Data.Models;
+    using MovieExplorer.Services.Data;
+    using MovieExplorer.Web.ViewModels.Directors;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+
     public class DirectorController : BaseController
     {
         private readonly IDirectorService directorService;
@@ -21,14 +21,14 @@ namespace MovieExplorer.Web.Controllers
             this.directorService = directorService;
         }
 
-        //[Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public IActionResult Create()
         {
             return this.View();
         }
 
         [HttpPost]
-        //[Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public async Task<IActionResult> Create(DirectorInputModel directorInputModel)
         {
             if (!this.ModelState.IsValid)
@@ -38,7 +38,7 @@ namespace MovieExplorer.Web.Controllers
 
             try
             {
-                await this.directorService.CreateDirector(directorInputModel.FirstName, directorInputModel.LastName);
+                await this.directorService.CreateDirector(directorInputModel);
             }
             catch (Exception e)
             {

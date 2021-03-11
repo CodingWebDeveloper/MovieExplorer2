@@ -7,7 +7,7 @@ using System.Text;
 
 namespace MovieExplorer.Web.ViewModels.Comments
 {
-    public class CommentViewModel  : IMapFrom<Comment>, IHaveCustomMappings
+    public class CommentViewModel : IMapFrom<Comment>, IHaveCustomMappings
     {
         public string Comment { get; set; }
 

@@ -2,6 +2,7 @@
 using MovieExplorer.Data.Common.Repositories;
 using MovieExplorer.Data.Models;
 using MovieExplorer.Services.Mapping;
+using MovieExplorer.Web.ViewModels.Actors;
 using MovieExplorer.Web.ViewModels.Movies;
 using System;
 using System.Collections.Generic;
@@ -24,18 +25,18 @@ namespace MovieExplorer.Services.Data
             this.movieRepository = movieRepository;
         }
 
-        public async Task CreateActor(string firstName, string middleName, string lastName)
+        public async Task CreateActor(ActorInputModel actorInputModel)
         {
-            if (this.actorRepository.All().Any(a => a.FirstName == firstName && a.LastName == lastName))
+            if (this.actorRepository.All().Any(a => a.FirstName == actorInputModel.FirstName && a.LastName == actorInputModel.LastName))
             {
                 throw new ArgumentException("This actor already exists!");
             }
-           
+
             Actor actor = new Actor
             {
-               FirstName = firstName,
-               MiddleName = middleName,
-               LastName = lastName,
+               FirstName = actorInputModel.FirstName,
+               MiddleName = actorInputModel.MiddleName,
+               LastName = actorInputModel.LastName,
             };
 
             await this.actorRepository.AddAsync(actor);

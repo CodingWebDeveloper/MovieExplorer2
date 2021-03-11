@@ -1,14 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using MovieExplorer.Services.Data;
-using MovieExplorer.Web.ViewModels.Genres;
-using MovieExplorer.Web.ViewModels.Movies;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿
 
 namespace MovieExplorer.Web.Controllers
 {
+    using Microsoft.AspNetCore.Mvc;
+    using MovieExplorer.Services.Data;
+    using MovieExplorer.Web.ViewModels.Genres;
+    using MovieExplorer.Web.ViewModels.Movies;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+
     public class GenreController : BaseController
     {
         private readonly IGenreService genreService;
@@ -33,7 +35,7 @@ namespace MovieExplorer.Web.Controllers
 
             try
             {
-                await this.genreService.CreateGenre(genreInputModel.Name);
+                await this.genreService.CreateGenre(genreInputModel);
             }
             catch (Exception e)
             {

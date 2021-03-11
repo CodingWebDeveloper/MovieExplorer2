@@ -1,14 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using MovieExplorer.Services.Data;
-using System;
-using MovieExplorer.Web.ViewModels.Directors;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using MovieExplorer.Web.ViewModels.Countries;
-
-namespace MovieExplorer.Web.Controllers
+﻿namespace MovieExplorer.Web.Controllers
 {
+    using Microsoft.AspNetCore.Mvc;
+    using MovieExplorer.Services.Data;
+    using System;
+    using MovieExplorer.Web.ViewModels.Directors;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using MovieExplorer.Web.ViewModels.Countries;
+    using MovieExplorer.Common;
+    using Microsoft.AspNetCore.Authorization;
+
     public class CountryController : BaseController
     {
         private readonly ICountryService countryService;
@@ -18,14 +20,14 @@ namespace MovieExplorer.Web.Controllers
             this.countryService = countryService;
         }
 
-        //[Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public IActionResult Create()
         {
             return this.View();
         }
 
         [HttpPost]
-        //[Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public async Task<IActionResult> Create(CountryInputModel countryInputModel)
         {
             if (!this.ModelState.IsValid)
@@ -35,7 +37,7 @@ namespace MovieExplorer.Web.Controllers
 
             try
             {
-                await this.countryService.CreateCountry(countryInputModel.Name);
+                await this.countryService.CreateCountry(countryInputModel);
             }
             catch (Exception e)
             {

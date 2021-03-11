@@ -15,6 +15,11 @@
     <a class="btn-primary" asp-controller="Genre" asp-action="Create">Create Genre</a>
 }
 
+@if(this.TempData.ContainsKey("AlreadyAdded"))
+{ 
+    <div class="alert alert-danger">@this.TempData["AlreadyAdded"]</div>
+}
+
 @if (this.User.Identity.IsAuthenticated)
 {
     if ((string)this.ViewData["Error"] == "You have already added this movie!")

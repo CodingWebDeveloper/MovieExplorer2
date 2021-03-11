@@ -1,20 +1,20 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using MovieExplorer.Data.Common.Repositories;
-using MovieExplorer.Data.Models;
-using MovieExplorer.Services.Data;
-using MovieExplorer.Web.ViewModels.Movies;
-using Microsoft.AspNetCore.Identity;
-using System;
-using MovieExplorer.Services.Mapping;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using MovieExplorer.Web.ViewModels.Directors;
-using Microsoft.AspNetCore.Authorization;
-using MovieExplorer.Common;
-
-namespace MovieExplorer.Web.Controllers
+﻿namespace MovieExplorer.Web.Controllers
 {
+    using Microsoft.AspNetCore.Mvc;
+    using MovieExplorer.Data.Common.Repositories;
+    using MovieExplorer.Data.Models;
+    using MovieExplorer.Services.Data;
+    using MovieExplorer.Web.ViewModels.Movies;
+    using Microsoft.AspNetCore.Identity;
+    using System;
+    using MovieExplorer.Services.Mapping;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using MovieExplorer.Web.ViewModels.Directors;
+    using Microsoft.AspNetCore.Authorization;
+    using MovieExplorer.Common;
+
     public class MovieController : Controller
     {
         private readonly IMovieService movieService;
@@ -22,14 +22,21 @@ namespace MovieExplorer.Web.Controllers
         private readonly ICountryService countryService;
         private readonly IActorService actorService;
         private readonly IGenreService genreService;
+        private readonly ICommentService commentService;
 
-        public MovieController(IMovieService movieService, IDirectorService directorService, ICountryService countryService, IActorService actorService, IGenreService genreService)
+        public MovieController(IMovieService movieService
+            ,IDirectorService directorService
+            ,ICountryService countryService
+            ,IActorService actorService
+            ,IGenreService genreService
+            ,ICommentService commentService)
         {
             this.movieService = movieService;
             this.directorService = directorService;
             this.countryService = countryService;
             this.actorService = actorService;
             this.genreService = genreService;
+            this.commentService = commentService;
         }
 
         [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
@@ -61,7 +68,7 @@ namespace MovieExplorer.Web.Controllers
 
             try
             {
-                await this.movieService.CreateMovie(inputModel.Title, inputModel.ReleaseDate, inputModel.Minutes, inputModel.Rate, inputModel.ImageUrl, inputModel.Trailer, inputModel.Description, inputModel.DirectorId, inputModel.CountryId, inputModel.ActorsId, inputModel.GenresId);
+                await this.movieService.CreateMovie(inputModel);
             }
             catch (Exception e)
             {
@@ -80,6 +87,8 @@ namespace MovieExplorer.Web.Controllers
         public async Task<IActionResult> MoviePage(int id)
         {
             MoviePageViewModel movie = this.movieService.GetMovieById(id);
+
+            movie.Comments = this.commentService.GetAllCommentsOfMovie(id);
 
             return this.View(movie);
         }
@@ -101,8 +110,7 @@ namespace MovieExplorer.Web.Controllers
             }
             catch (Exception ex)
             {
-               this.ViewData["Error"] = ex.Message;
-               return this.RedirectToAction("Error", "Home");
+                this.TempData["AlreadyAdded"] = ex.Message;
             }
 
             return this.Redirect("/");

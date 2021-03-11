@@ -9,7 +9,7 @@ namespace MovieExplorer.Services.Data
 {
     public interface ICountryService
     {
-        Task CreateCountry(string name);
+        Task CreateCountry(CountryInputModel countryInputModel);
 
         IEnumerable<SelectListItem> GetAllCountries();
 

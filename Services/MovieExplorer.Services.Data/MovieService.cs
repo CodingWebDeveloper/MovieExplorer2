@@ -38,38 +38,37 @@ namespace MovieExplorer.Services.Data
             this.commentRepository = commentRepository;
         }
 
-        public async Task CreateMovie(string title, DateTime releaseDate, int minutes, double rate, string imageUrl, string trailer, string description, int directorId, int countryId, List<int> actorsId, List<int> genresId)
+        public async Task CreateMovie(MovieInputModel movieInputModel)
         {
-            if (this.movieRepository.All().Any(x => x.Title == title)) 
+            if (this.movieRepository.All().Any(x => x.Title == movieInputModel.Title)) 
             {
                 throw new ArgumentException("This film already exists!");
             }
 
             Movie movie = new Movie
             {
-                Title = title,
-                ReleaseDate = releaseDate,
-                Minutes = minutes,
-                Rate = rate,
-                ImageUrl = imageUrl,
-                Trailer = trailer,
-                Description = description,
-                Country = this.countryRepository.All().FirstOrDefault(x => x.Id == countryId),
+                Title = movieInputModel.Title,
+                ReleaseDate = movieInputModel.ReleaseDate,
+                Minutes = movieInputModel.Minutes,
+                Rate = movieInputModel.Rate,
+                ImageUrl = movieInputModel.ImageUrl,
+                Trailer = movieInputModel.Trailer,
+                Description = movieInputModel.Description,
             };
 
-            Director director = this.directorRepository.All().FirstOrDefault(m => m.Id == directorId);
+            Director director = this.directorRepository.All().FirstOrDefault(m => m.Id == movieInputModel.DirectorId);
             movie.Director = director;
 
-            Country country = this.countryRepository.All().FirstOrDefault(m => m.Id == countryId);
+            Country country = this.countryRepository.All().FirstOrDefault(m => m.Id == movieInputModel.CountryId);
             movie.Country = country;
 
-            foreach (var actorId in actorsId)
+            foreach (var actorId in movieInputModel.ActorsId)
             {
                 MovieActor movieActor = new MovieActor { MovieId = movie.Id, ActorId = actorId };
                 movie.MovieActors.Add(movieActor);
             }
 
-            foreach (var genreId in genresId)
+            foreach (var genreId in movieInputModel.GenresId)
             {
                 MovieGenre movieGenre = new MovieGenre { MovieId = movie.Id, GenreId = genreId };
                 movie.Genres.Add(movieGenre);
