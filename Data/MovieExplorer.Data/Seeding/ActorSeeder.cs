@@ -11,10 +11,10 @@
     {
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
         {
-            //if (dbContext.Actors.Any())
-            //{
-            //    return;
-            //}
+            if (dbContext.Actors.Any())
+            {
+                return;
+            }
 
             IEnumerable<Actor> actors = new List<Actor>()
             {
@@ -219,6 +219,42 @@
                     FirstName = "Jake",
                     MiddleName = "Dylan",
                     LastName = "Grazer",
+                },
+                new Actor
+                {
+                    FirstName = "Alexandra",
+                    MiddleName = "Maria",
+                    LastName = "Lara",
+                },
+                new Actor
+                {
+                    FirstName = "Ulrich",
+                    LastName = "Matthes",
+                },
+                new Actor
+                {
+                    FirstName = "Bruno",
+                    LastName = "Ganz",
+                },
+                new Actor
+                {
+                    FirstName = "Christian",
+                    LastName = "Bale",
+                },
+                new Actor
+                {
+                    FirstName = "Heath",
+                    LastName = "Ledger",
+                },
+                new Actor
+                {
+                    FirstName = "Aaron",
+                    LastName = "Eckhart",
+                },
+                new Actor
+                {
+                    FirstName = "Gary",
+                    LastName = "Oldman",
                 },
             };
 

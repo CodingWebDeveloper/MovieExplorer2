@@ -20,26 +20,23 @@ namespace MovieExplorer.Services.Data.Tests
             MapperInitializer.InitializeMapper();
         }
 
-        public IEnumerable<Director> GetDirectors()
-        {
-            return new List<Director>()
-            { new Director{Id = 1, FirstName = "Steven", LastName = "Spilberg" }, };
-        }
-
         [Fact]
-        public void CreateDirector()
+        public void CheckCreateDirector()
         {
             ICollection<Director> directors = new List<Director>();
+
             DirectorInputModel firstDirector = new DirectorInputModel
             {
                 FirstName = "Steven",
                 LastName = "Spilberg",
             };
+
             DirectorInputModel secondDirector = new DirectorInputModel
             {
                 FirstName = "some name",
                 LastName = "some name",
             };
+
             Mock<IDeletableEntityRepository<Director>> mockDirector = new Mock<IDeletableEntityRepository<Director>>();
 
             mockDirector.Setup(x => x.AddAsync(It.IsAny<Director>()))
