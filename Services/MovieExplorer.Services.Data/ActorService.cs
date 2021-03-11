@@ -16,13 +16,11 @@ namespace MovieExplorer.Services.Data
     {
         private readonly IDeletableEntityRepository<Actor> actorRepository;
         private readonly IDeletableEntityRepository<MovieActor> movieActorRepository;
-        private readonly IDeletableEntityRepository<Movie> movieRepository;
 
-        public ActorService(IDeletableEntityRepository<Actor> actorRepository, IDeletableEntityRepository<MovieActor> movieActorRepository, IDeletableEntityRepository<Movie> movieRepository)
+        public ActorService(IDeletableEntityRepository<Actor> actorRepository, IDeletableEntityRepository<MovieActor> movieActorRepository)
         {
             this.actorRepository = actorRepository;
             this.movieActorRepository = movieActorRepository;
-            this.movieRepository = movieRepository;
         }
 
         public async Task CreateActor(ActorInputModel actorInputModel)
