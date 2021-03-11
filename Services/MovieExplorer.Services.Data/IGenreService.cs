@@ -10,7 +10,7 @@ namespace MovieExplorer.Services.Data
 {
     public interface IGenreService
     {
-        Task CreateGenre(string genreName);
+        Task CreateGenre(GenreInputModel genreInputModel);
 
         IEnumerable<SelectListItem> GetListGenres();
 

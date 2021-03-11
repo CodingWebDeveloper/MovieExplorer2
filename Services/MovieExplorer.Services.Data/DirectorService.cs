@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using MovieExplorer.Data.Common.Repositories;
 using MovieExplorer.Data.Models;
+using MovieExplorer.Web.ViewModels.Directors;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,17 +19,18 @@ namespace MovieExplorer.Services.Data
             this.directorRepository = directorRepository;
         }
 
-        public async Task CreateDirector(string firstName, string lastName)
+        public async Task CreateDirector(DirectorInputModel directorInputModel)
         {
 
-            if (this.directorRepository.All().Any(d => d.FirstName == firstName && d.LastName == lastName)) 
+            if (this.directorRepository.All().Any(d => d.FirstName == directorInputModel.FirstName && d.LastName == directorInputModel.LastName))
             {
                 throw new ArgumentException("This director already exists!");
             }
+
             Director director = new Director
             {
-                FirstName = firstName,
-                LastName = lastName,
+                FirstName = directorInputModel.FirstName,
+                LastName = directorInputModel.LastName,
             };
 
             await this.directorRepository.AddAsync(director);

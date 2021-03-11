@@ -10,7 +10,7 @@ namespace MovieExplorer.Services.Data
 {
     public interface IMovieService
     {
-        Task CreateMovie(string title, DateTime releaseDate, int minutes, double rate, string imageUrl, string trailer, string description, int directorId, int countryId, List<int> actorsId, List<int> genresId);
+        Task CreateMovie(MovieInputModel movieInputModel);
 
         Task DeleteMovie(int movieId);
 

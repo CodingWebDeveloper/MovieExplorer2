@@ -23,16 +23,16 @@ namespace MovieExplorer.Services.Data
             this.movieGenreRepository = movieGenreRepository;
         }
 
-        public async Task CreateGenre(string genreName)
+        public async Task CreateGenre(GenreInputModel genreInputModel)
         {
-            if (this.genreRepository.All().Any(g => g.Name == genreName))
+            if (this.genreRepository.All().Any(g => g.Name == genreInputModel.Name))
             {
                 throw new ArgumentException("This genre already exists!");
             }
 
             Genre genre = new Genre
             {
-                Name = genreName,
+                Name = genreInputModel.Name,
             };
 
             await this.genreRepository.AddAsync(genre);

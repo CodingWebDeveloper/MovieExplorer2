@@ -1,14 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using MovieExplorer.Services.Data;
-using MovieExplorer.Web.ViewModels.Actors;
-using MovieExplorer.Web.ViewModels.Movies;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace MovieExplorer.Web.Controllers
+﻿namespace MovieExplorer.Web.Controllers
 {
+    using Microsoft.AspNetCore.Mvc;
+    using MovieExplorer.Services.Data;
+    using MovieExplorer.Web.ViewModels.Actors;
+    using MovieExplorer.Web.ViewModels.Movies;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+
     public class ActorController : BaseController
     {
         private readonly IActorService actorService;
@@ -33,7 +33,7 @@ namespace MovieExplorer.Web.Controllers
 
             try
             {
-                await this.actorService.CreateActor(actorInputModel.FirstName, actorInputModel.MiddleName, actorInputModel.LastName);
+                await this.actorService.CreateActor(actorInputModel);
             }
             catch (Exception e)
             {

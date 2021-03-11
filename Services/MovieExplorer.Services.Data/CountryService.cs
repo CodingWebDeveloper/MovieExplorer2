@@ -20,16 +20,16 @@ namespace MovieExplorer.Services.Data
             this.countryRepository = countryRepository;
         }
 
-        public async Task CreateCountry(string name)
+        public async Task CreateCountry(CountryInputModel countryInputModel)
         {
-            if (this.countryRepository.All().Any(c => c.Name == name))
+            if (this.countryRepository.All().Any(c => c.Name == countryInputModel.Name))
             {
                 throw new ArgumentException("This country already exists!");
             }
 
             Country country = new Country
             {
-                Name = name,
+                Name = countryInputModel.Name,
             };
 
             await this.countryRepository.AddAsync(country);

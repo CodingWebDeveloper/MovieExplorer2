@@ -1,5 +1,6 @@
 ﻿using MovieExplorer.Data.Models;
 using MovieExplorer.Services.Mapping;
+using MovieExplorer.Web.ViewModels.Comments;
 using MovieExplorer.Web.ViewModels.Countries;
 using MovieExplorer.Web.ViewModels.Directors;
 using System;
@@ -18,6 +19,10 @@ namespace MovieExplorer.Services.Data.Tests.Common
             AutoMapperConfig.RegisterMappings(
                 typeof(CountryViewModel).GetTypeInfo().Assembly,
                 typeof(Country).GetTypeInfo().Assembly);
+
+            AutoMapperConfig.RegisterMappings(
+                typeof(CommentViewModel).GetTypeInfo().Assembly,
+                typeof(Comment).GetTypeInfo().Assembly);
 
             AutoMapperConfig.RegisterMappings(
                typeof(DirectorViewModel).GetTypeInfo().Assembly,
