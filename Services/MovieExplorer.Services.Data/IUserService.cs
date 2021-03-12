@@ -9,6 +9,6 @@ namespace MovieExplorer.Services.Data
     public interface IUserService
     {
         //IEnumerable<MovieUser> GetAllMovies(string username);
-        int MoviesOfCount(string username);
+        int MoviesOfUserCount(string username);
     }
 }

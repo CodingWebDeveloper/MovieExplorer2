@@ -39,7 +39,7 @@
                 AllGenres = geners.ToArray(),
             };
 
-            this.ViewData["CountOfMovies"] = this.userService.MoviesOfCount(this.User.Identity.Name);
+            this.ViewData["CountOfMovies"] = this.userService.MoviesOfUserCount(this.User.Identity.Name);
             return this.View(movie);
         }
 
