@@ -15,13 +15,13 @@ namespace MovieExplorer.Services.Data.Tests
 {
     public class ActorServiceTests
     {
-        public ActorServiceTests()
+        private ActorServiceTests()
         {
             MapperInitializer.InitializeMapper();
         }
 
         [Fact]
-        public void CheckCreateActor()
+        private void CheckCreateActor()
         {
             ICollection<Actor> actors = new List<Actor>();
 
@@ -50,16 +50,77 @@ namespace MovieExplorer.Services.Data.Tests
             Assert.Equal(2, actors.Count);
         }
 
+
+        private IEnumerable<MovieActor> GetData()
+        {
+            return new List<MovieActor>()
+            {
+                new MovieActor
+                {
+                   Movie = new Movie
+                   {
+                       Id = 1,
+                       Title = "some title",
+                       ReleaseDate = DateTime.Parse("2020/03/02"),
+                       Minutes = 123,
+                       ImageUrl = "image url",
+                       Trailer = "trailer url",
+                       Description = "desription info",
+                       Director = new Director
+                       {
+                           Id = 1,
+                           FirstName = "director firstName",
+                           LastName = "director lastName",
+                       },
+                       DirectorId = 1,
+                       Country = new Country
+                       {
+                           Id = 1,
+                           Name = "USA",
+                       },
+                       CountryId = 1,
+                   },
+                   Actor = new Actor
+                   {
+                       FirstName = "some firstname",
+                       LastName = "some lastname",
+                   },
+                },
+                new MovieActor
+                {
+                   Movie = new Movie
+                   {
+                       Id = 1,
+                       Title = "some title",
+                       ReleaseDate = DateTime.Parse("2020/03/02"),
+                       Minutes = 123,
+                       ImageUrl = "image url",
+                       Trailer = "trailer url",
+                       Description = "desription info",
+                       Director = new Director
+                       {
+                           Id = 1,
+                           FirstName = "director firstName",
+                           LastName = "director lastName",
+                       },
+                       DirectorId = 1,
+                       Country = new Country
+                       {
+                           Id = 1,
+                           Name = "USA",
+                       },
+                       CountryId = 1,
+                   },
+                   ActorId = 1,
+                },
+            };
+        }
+
         [Fact]
         public void CheckForGettingAllMvoiesByActor()
         {
-            ICollection<MovieActor> movies = new List<MovieActor>()
-            { 
-                new MovieActor { MovieId = 1, ActorId = 1 },
-                new MovieActor { MovieId = 2, ActorId = 1 },
-            };
 
-            IEnumerable<MovieActor> expectedMovies = movies.Where(x => x.ActorId == 1);
+            IEnumerable<MovieActor> expectedMovies = this.GetData().Where(x => x.ActorId == 1);
             Mock<IDeletableEntityRepository<MovieActor>> mockMovies = new Mock<IDeletableEntityRepository<MovieActor>>();
 
             mockMovies.Setup(x => x.All()).Returns(expectedMovies.AsQueryable());

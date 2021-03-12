@@ -25,12 +25,8 @@ namespace MovieExplorer.Services.Data
 
         public async Task AddComment(CommentInputViewModel commentInputModel)
         {
-            Movie movie = this.movieRepository.All().FirstOrDefault(x => x.Id == commentInputModel.MovieId);
-
-            ApplicationUser user = this.userRepository.All().FirstOrDefault(u => u.UserName == commentInputModel.UserName);
-            movie.Comments.Add(new Comment { Text = commentInputModel.Text, UserId = user.Id, MovieId = commentInputModel.MovieId });
-
-            await this.movieRepository.SaveChangesAsync();
+            await this.commentRepository.AddAsync(new Comment { Text = commentInputModel.Text, UserId = commentInputModel.UserId, MovieId = commentInputModel.MovieId });
+            await this.commentRepository.SaveChangesAsync();
         }
 
         public IEnumerable<CommentViewModel> GetAllCommentsOfMovie(int movieId)

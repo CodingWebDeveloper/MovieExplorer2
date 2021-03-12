@@ -19,6 +19,38 @@ namespace MovieExplorer.Services.Data.Tests
             MapperInitializer.InitializeMapper();
         }
 
+        [Fact]
+        public async Task CheckCreateComments()
+        {
+            ICollection<Comment> comments = new List<Comment>();
+            CommentInputViewModel firstCommentInputModel = new CommentInputViewModel
+            {
+                MovieId = 1,
+                UserId = "user1",
+                Text = "some text",
+            };
+
+            CommentInputViewModel secondCommentInputViewModel = new CommentInputViewModel
+            {
+                MovieId = 1,
+                UserId = "user1",
+                Text = "some text",
+            };
+
+            Mock<IDeletableEntityRepository<Comment>> mockComment = new Mock<IDeletableEntityRepository<Comment>>();
+            Mock<IDeletableEntityRepository<ApplicationUser>> mockUser = new Mock<IDeletableEntityRepository<ApplicationUser>>();
+
+            mockComment.Setup(x => x.AddAsync(It.IsAny<Comment>()))
+                .Callback((Comment comment) => comments.Add(comment));
+
+            ICommentService commentService = new CommentService(null, mockComment.Object, null);
+
+            await commentService.AddComment(firstCommentInputModel);
+            await commentService.AddComment(secondCommentInputViewModel);
+
+            Assert.Equal(2, comments.Count());
+        }
+
         public IEnumerable<Comment> GetData()
         {
             return new List<Comment>()
@@ -31,11 +63,12 @@ namespace MovieExplorer.Services.Data.Tests
                        Id = "user 1",
                        UserName = "user1",
                    },
+                   UserId = "user 1",
                    Movie = new Movie
                    {
                        Id = 1,
                        Title = "some title",
-                       ReleaseDate = DateTime.Parse("2020/03/02"),
+                       ReleaseDate = DateTime.UtcNow,
                        Minutes = 123,
                        ImageUrl = "image url",
                        Trailer = "trailer url",
@@ -43,24 +76,51 @@ namespace MovieExplorer.Services.Data.Tests
                        Director = new Director
                        {
                            Id = 1,
-                           FirstName ="director firstName",
+                           FirstName = "director firstName",
                            LastName = "director lastName",
                        },
+                       DirectorId = 1,
+                       Rate = 1,
                        Country = new Country
                        {
                            Id = 1,
                            Name = "USA",
                        },
+                       CountryId = 1,
                    },
+                   MovieId = 1,
                    Text = "Text of the comment",
                    CreatedOn = DateTime.UtcNow,
                 },
                 new Comment
                 {
                    Id = 2,
+                   Movie = new Movie
+                   {
+                       Id = 1,
+                       Title = "some title",
+                       ReleaseDate = DateTime.UtcNow,
+                       Minutes = 123,
+                       ImageUrl = "image url",
+                       Trailer = "trailer url",
+                       Description = "desription info",
+                       Director = new Director
+                       {
+                           Id = 1,
+                           FirstName = "director firstName",
+                           LastName = "director lastName",
+                       },
+                       DirectorId = 1,
+                       Rate = 1,
+                       Country = new Country
+                       {
+                           Id = 1,
+                           Name = "USA",
+                       },
+                       CountryId = 1,
+                   },
+                   Text = "some text",
                    UserId = "user 1",
-                   MovieId = 1,
-                   Text = "Text of the comment",
                    CreatedOn = DateTime.UtcNow,
                 },
             };

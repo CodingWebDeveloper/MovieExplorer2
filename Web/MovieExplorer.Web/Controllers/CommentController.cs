@@ -1,7 +1,9 @@
 ﻿namespace MovieExplorer.Web.Controllers
 {
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
+    using MovieExplorer.Data.Models;
     using MovieExplorer.Services.Data;
     using MovieExplorer.Web.ViewModels.Comments;
     using System;
@@ -12,10 +14,12 @@
     public class CommentController : Controller
     {
         private readonly ICommentService commentService;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        public CommentController(ICommentService commentService)
+        public CommentController(ICommentService commentService, UserManager<ApplicationUser> userManager)
         {
             this.commentService = commentService;
+            this.userManager = userManager;
         }
 
         [HttpPost]
@@ -26,9 +30,9 @@
                 return this.RedirectToAction("Error", "Home");
             }
 
-            string userName = this.User.Identity.Name;
-            commentInputViewModel.UserName = userName;
+            ApplicationUser user = await this.userManager.GetUserAsync(this.User);
             commentInputViewModel.MovieId = id;
+            commentInputViewModel.UserId = user.Id;
             await this.commentService.AddComment(commentInputViewModel);
 
             return this.RedirectToAction("MoviePage", "Movie", new { id });
