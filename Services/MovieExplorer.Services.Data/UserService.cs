@@ -37,7 +37,7 @@ namespace MovieExplorer.Services.Data
             this.movieUserRepository = movieUserRepository;
         }
 
-        public int MoviesOfCount(string username)
+        public int MoviesOfUserCount(string username)
         {
             return this.movieUserRepository.All().Where(x => x.User.UserName == username).Count();
         }

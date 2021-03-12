@@ -83,6 +83,10 @@ namespace MovieExplorer.Services.Data
         {
             Movie movie = this.movieRepository.All().FirstOrDefault(m => m.Id == movieId);
 
+            MovieUser movieUser = this.movieUserRepository.All().FirstOrDefault(m => m.MovieId == movieId);
+
+            this.movieUserRepository.Delete(movieUser);
+
             this.movieRepository.Delete(movie);
 
             await this.movieRepository.SaveChangesAsync();
