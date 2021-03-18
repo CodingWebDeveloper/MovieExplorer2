@@ -12,10 +12,12 @@
     public class ActorController : BaseController
     {
         private readonly IActorService actorService;
+        private readonly IGenreService genreService;
 
-        public ActorController(IActorService actorService)
+        public ActorController(IActorService actorService, IGenreService genreService)
         {
             this.actorService = actorService;
+            this.genreService = genreService;
         }
 
         public IActionResult Create()
@@ -46,7 +48,11 @@
 
         public async Task<IActionResult> AllMovies(int id)
         {
-            var movies = this.actorService.GetAllMoviesByActor(id);
+            ListMovieViewModel movies = new ListMovieViewModel
+            {
+                AllMovies = this.actorService.GetAllMoviesByActor(id).ToList(),
+                AllGenres = this.genreService.GetAllGenres().ToList(),
+            };
 
             return this.View(movies);
         }

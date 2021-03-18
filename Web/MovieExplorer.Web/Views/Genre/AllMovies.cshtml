@@ -1,13 +1,59 @@
 ﻿@using MovieExplorer.Web.ViewModels.Movies
 @using MovieExplorer.Common
-@model IEnumerable<MovieViewModel>
+@model ListMovieViewModel
 
 <a class="btn-secondary d-md-inline-block" asp-controller="Home" asp-action="Index" asp-route-id="@this.User.Identity.Name">Movie online</a>
 
 <h3>These movies for this genre</h3>
-<div class="row">
-    @foreach (var item in this.Model)
-    {
-        @await Html.PartialAsync("_PartialViewMovie", item)
-    }
+
+
+<div class="d-flex" id="wrapper">
+
+    <div class="border-right" style="background-color: lightslategrey" id="sidebar-wrapper">
+        <div class="sidebar-heading">Genre options</div>
+        <div class="list-group list-group-flush">
+            @foreach (var item in this.Model.AllGenres)
+            {
+                <a asp-controller="Genre" asp-action="AllMovies" asp-route-id="@item.Id" class="list-group-item list-group-item-action bg-dark">@item.GenreName</a>
+            }
+        </div>
+    </div>
+
+    <div id="page-content-wrapper">
+
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: lightslategrey">
+            <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+        </nav>
+
+        <div class="container-fluid">
+            @if (this.Model.AllMovies.Count() == 0)
+            {
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3">
+                        <img width="500" height="500" src="https://www.clker.com/cliparts/9/g/p/H/1/F/search-icon-dark-grey-hi.png" class="img-responsive col-centered" alt="Image" />
+                    </div>
+                    <div class="text-center col-md-12">
+                        <h2>
+                            Nothing Found!
+                        </h2>
+                    </div>
+                </div>
+            }
+
+            <div class="row">
+                @foreach (var item in this.Model.AllMovies)
+                {
+                    @await Html.PartialAsync("_PartialViewMovie", item)
+                }
+            </div>
+        </div>
+    </div>
+
 </div>

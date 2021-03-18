@@ -259,6 +259,7 @@
             };
 
             await dbContext.Actors.AddRangeAsync(actors);
+            await dbContext.SaveChangesAsync();
         }
     }
 }

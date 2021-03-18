@@ -31,6 +31,7 @@
                               new GenreSeeder(),
                               new CountrySeeder(),
                               new ActorSeeder(),
+                              new DirectorSeeder(),
                               new MovieSeeder(),
                           };
 

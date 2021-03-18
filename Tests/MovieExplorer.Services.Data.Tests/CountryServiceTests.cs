@@ -48,6 +48,7 @@ namespace MovieExplorer.Services.Data.Tests
             Mock<IDeletableEntityRepository<Country>> mock = new Mock<IDeletableEntityRepository<Country>>();
             mock.Setup(x => x.AddAsync(It.IsAny<Country>())).Callback((Country country) => countries.Add(country));
             ICountryService countryService = new CountryService(mock.Object);
+
             CountryInputModel firstCountryInput = new CountryInputModel()
             {
                 Name = "USA",

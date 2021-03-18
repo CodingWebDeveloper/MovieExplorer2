@@ -31,6 +31,9 @@
                     Name = "Japan",
                 },
             };
+
+            await dbContext.Countries.AddRangeAsync(coutries);
+            await dbContext.SaveChangesAsync();
         }
     }
 }

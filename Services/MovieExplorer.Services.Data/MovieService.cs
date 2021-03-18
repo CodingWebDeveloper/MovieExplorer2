@@ -138,7 +138,7 @@ namespace MovieExplorer.Services.Data
             return usersMovies;
         }
 
-        public async Task RemoveMovie(string userName, int movieId)
+        public async Task RemoveMovieFromUserCollection(string userName, int movieId)
         {
             ApplicationUser user = this.userRepository.All().FirstOrDefault(u => u.UserName == userName);
 
