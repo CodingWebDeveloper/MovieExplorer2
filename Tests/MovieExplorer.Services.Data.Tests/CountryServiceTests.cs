@@ -15,14 +15,14 @@ namespace MovieExplorer.Services.Data.Tests
 {
     public class CountryServiceTests
     {
-        public ICollection<Country> GetTestData()
-        {
-            return new List<Country>() { new Country { Id = 1, Name = "Guinea" } };
-        }
-
         public CountryServiceTests()
         {
             MapperInitializer.InitializeMapper();
+        }
+
+        public ICollection<Country> GetTestData()
+        {
+            return new List<Country>() { new Country { Id = 1, Name = "Guinea" } };
         }
 
         [Fact]

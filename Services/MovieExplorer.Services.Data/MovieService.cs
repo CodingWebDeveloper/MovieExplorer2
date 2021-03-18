@@ -62,16 +62,22 @@ namespace MovieExplorer.Services.Data
             Country country = this.countryRepository.All().FirstOrDefault(m => m.Id == movieInputModel.CountryId);
             movie.Country = country;
 
-            foreach (var actorId in movieInputModel.ActorsId)
+            if (movieInputModel.ActorsId != null)
             {
-                MovieActor movieActor = new MovieActor { MovieId = movie.Id, ActorId = actorId };
-                movie.MovieActors.Add(movieActor);
+                foreach (var actorId in movieInputModel.ActorsId)
+                {
+                    MovieActor movieActor = new MovieActor { MovieId = movie.Id, ActorId = actorId };
+                    movie.MovieActors.Add(movieActor);
+                }
             }
 
-            foreach (var genreId in movieInputModel.GenresId)
+            if (movieInputModel.GenresId != null)
             {
-                MovieGenre movieGenre = new MovieGenre { MovieId = movie.Id, GenreId = genreId };
-                movie.Genres.Add(movieGenre);
+                foreach (var genreId in movieInputModel.GenresId)
+                {
+                    MovieGenre movieGenre = new MovieGenre { MovieId = movie.Id, GenreId = genreId };
+                    movie.Genres.Add(movieGenre);
+                }
             }
 
             await this.movieRepository.AddAsync(movie);
@@ -98,17 +104,15 @@ namespace MovieExplorer.Services.Data
             return movie;
         }
 
-        public async Task AddToUser(string username, int movieId)
+        public async Task AddToUser(string userId, int movieId)
         {
             Movie movie = this.movieRepository.All().FirstOrDefault(m => m.Id == movieId);
 
-            ApplicationUser user = this.userRepository.All().FirstOrDefault(u => u.UserName == username);
-
-            MovieUser movieUser = this.movieUserRepository.AllWithDeleted().FirstOrDefault(mu => mu.Movie.Id == movieId && mu.User.Id == user.Id);
+            MovieUser movieUser = this.movieUserRepository.AllWithDeleted().FirstOrDefault(mu => mu.Movie.Id == movieId && mu.User.Id == userId);
 
             if (movieUser == null)
             {
-                await this.movieUserRepository.AddAsync(new MovieUser { UserId = user.Id, MovieId = movie.Id });
+                await this.movieUserRepository.AddAsync(new MovieUser { UserId = userId, MovieId = movie.Id });
             }
             else
             {

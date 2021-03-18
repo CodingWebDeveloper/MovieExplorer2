@@ -256,6 +256,31 @@
                     FirstName = "Gary",
                     LastName = "Oldman",
                 },
+                new Actor
+                {
+                    FirstName = "Frances",
+                    LastName = "Fisher",
+                },
+                new Actor
+                {
+                    FirstName = "Kathy",
+                    LastName = "Bates",
+                },
+                new Actor
+                {
+                    FirstName = "Billy",
+                    LastName = "Zane",
+                },
+                new Actor
+                {
+                    FirstName = "Zach",
+                    LastName = "Aguilar",
+                },
+                new Actor
+                {
+                    FirstName = "Bryce",
+                    LastName = "Papenbrook",
+                },
             };
 
             await dbContext.Actors.AddRangeAsync(actors);

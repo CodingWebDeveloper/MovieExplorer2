@@ -14,7 +14,7 @@ namespace MovieExplorer.Services.Data
 
         Task DeleteMovie(int movieId);
 
-        Task AddToUser(string userName, int movieId);
+        Task AddToUser(string userId, int movieId);
 
         MoviePageViewModel GetMovieById(int movieId);
 

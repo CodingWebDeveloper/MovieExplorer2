@@ -23,13 +23,15 @@
         private readonly IActorService actorService;
         private readonly IGenreService genreService;
         private readonly ICommentService commentService;
+        private readonly UserManager<ApplicationUser> userManager;
 
         public MovieController(IMovieService movieService
             ,IDirectorService directorService
             ,ICountryService countryService
             ,IActorService actorService
             ,IGenreService genreService
-            ,ICommentService commentService)
+            ,ICommentService commentService
+            ,UserManager<ApplicationUser> userManager)
         {
             this.movieService = movieService;
             this.directorService = directorService;
@@ -37,6 +39,7 @@
             this.actorService = actorService;
             this.genreService = genreService;
             this.commentService = commentService;
+            this.userManager = userManager;
         }
 
         [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
@@ -104,9 +107,11 @@
         public async Task<IActionResult> AddMovieToUser(int id)
         {
             string userName = this.User.Identity.Name;
+            ApplicationUser user = await this.userManager.GetUserAsync(this.User);
+
             try
             {
-               await this.movieService.AddToUser(userName, id);
+               await this.movieService.AddToUser(user.Id, id);
             }
             catch (Exception ex)
             {
@@ -136,7 +141,7 @@
         public IActionResult Search(InputSearchModel search)
         {
             ListMovieViewModel movie = new ListMovieViewModel
-            { 
+            {
                 AllMovies = this.movieService.SearchMovie(search.Title).ToList(),
                 AllGenres = this.genreService.GetAllGenres().ToList(),
             };

@@ -32,6 +32,10 @@ namespace MovieExplorer.Services.Data.Tests.Common
             AutoMapperConfig.RegisterMappings(
                 typeof(MovieViewModel).GetTypeInfo().Assembly,
                 typeof(MovieActor).GetTypeInfo().Assembly);
+
+            AutoMapperConfig.RegisterMappings(
+                typeof(MoviePageViewModel).GetTypeInfo().Assembly,
+                typeof(Movie).GetTypeInfo().Assembly);
         }
     }
 }
