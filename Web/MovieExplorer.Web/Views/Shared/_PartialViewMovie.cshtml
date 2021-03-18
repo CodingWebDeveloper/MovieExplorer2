@@ -8,19 +8,23 @@
         <h4 class="card-title text-center">
             <a class="row-cols-1 text-dark" asp-controller="Movie" asp-action="MoviePage" asp-route-id="@this.Model.MovieId">@this.Model.Name</a>
         </h4>
-        <form class="form-group row" method="post">
+        <form class="form-group" method="post">
             <div class="col-md-4">
                 <p>@this.Model.ReleaseDate.ToString("yyyy")</p>
             </div>
-            <div class="col-md-6">
-                <button class="form-control btn-dark" asp-controller="Movie" asp-action="AddMovieToUser" asp-route-id="@this.Model.MovieId">Add</button>
-            </div>
-            @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
-            {
-                <div class="col-md-6 justify-content-xl-center row">
-                    <button class="form-control btn-dark" asp-controller="Movie" asp-action="Delete" asp-route-id="@this.Model.MovieId">Delete</button>
+            <div class="row">
+                <div class="col-md-4">
+                    <button class="form-control btn-dark" asp-controller="Movie" asp-action="AddMovieToUser" asp-route-id="@this.Model.MovieId">Add</button>
                 </div>
-            }
+                <div class="col-md-3">
+                </div>
+                @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+                {
+                    <div class="col-md-5 justify-content-xl-center row">
+                        <button class="form-control btn-dark" asp-controller="Movie" asp-action="Delete" asp-route-id="@this.Model.MovieId">Delete</button>
+                    </div>
+                }
+            </div>
         </form>
 
     </div>
