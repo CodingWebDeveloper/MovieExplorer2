@@ -15,13 +15,13 @@ namespace MovieExplorer.Services.Data.Tests
 {
     public class ActorServiceTests
     {
-        private ActorServiceTests()
+        public ActorServiceTests()
         {
             MapperInitializer.InitializeMapper();
         }
 
         [Fact]
-        private void CheckCreateActor()
+        public void CheckCreateActor()
         {
             ICollection<Actor> actors = new List<Actor>();
 
@@ -51,7 +51,7 @@ namespace MovieExplorer.Services.Data.Tests
         }
 
 
-        private IEnumerable<MovieActor> GetData()
+        public IEnumerable<MovieActor> GetData()
         {
             return new List<MovieActor>()
             {

@@ -48,7 +48,11 @@ namespace MovieExplorer.Web.Controllers
 
         public IActionResult AllMovies(int id)
         {
-            IEnumerable<MovieViewModel> movies = this.genreService.GetAllMoviesByGenre(id);
+            ListMovieViewModel movies = new ListMovieViewModel
+            {
+                AllMovies = this.genreService.GetAllMoviesByGenre(id).ToList(),
+                AllGenres = this.genreService.GetAllGenres().ToList(),
+            };
 
             return this.View(movies);
         }

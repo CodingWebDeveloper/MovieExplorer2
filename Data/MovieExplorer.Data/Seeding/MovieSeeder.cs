@@ -35,7 +35,7 @@ namespace MovieExplorer.Data.Seeding
                  " Directed by David S. F. Wilson (in his feature directorial debut) from a screenplay by Jeff Wadlow and Eric Heisserer and a story by Wadlow, the film stars Vin Diesel, Eiza González, Sam Heughan, Toby Kebbell, and Guy Pearce." +
                  " It follows a Marine who was killed in action, only to be brought back to life with superpowers by an organization that wants to use him as a weapon.",
                  Country = dbContext.Countries.FirstOrDefault(x => x.Name == "USA"),
-                 Director = new Director { FirstName = "Edi ", LastName = "El Abri" },
+                 Director = dbContext.Directors.FirstOrDefault(x => x.FirstName == "Edi" && x.LastName == "El Abri"),
                  MovieActors = new List<MovieActor>()
                  {
                     new MovieActor
@@ -80,72 +80,73 @@ namespace MovieExplorer.Data.Seeding
                  },
                 },
 
-                new Movie
-                {
-                    Title = "Avengers: Infinity War",
-                    ReleaseDate = DateTime.Parse("2018/04/27"),
-                    Rate = 9.0,
-                    Minutes = 149,
-                    ImageUrl = "https://filmisub.com/uploads/posts/zamunda/535884/thumbs/535884-poster.jpg",
-                    Trailer = "https://www.youtube.com/embed/6ZfuNTqbHE8",
-                    Description = "The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the powerful Thanos before his blitz of devastation and ruin puts an end to the universe.",
-                    Country = dbContext.Countries.FirstOrDefault(x => x.Name == "USA"),
-                    Director = new Director { FirstName = "Russo ", LastName = "Brothers" },
-                    MovieActors = new List<MovieActor>()
-                    {
-                      new MovieActor
-                      {
-                        Actor =dbContext.Actors.FirstOrDefault(x=>x.FirstName=="Robert" && x.LastName == "Jr" ),
-                      },
-                      new MovieActor
-                      {
-                        Actor=dbContext.Actors.FirstOrDefault(x=>x.FirstName == "Chris" && x.LastName == "Hemsworth"),
-                      },
-                      new MovieActor
-                      {
-                        Actor =dbContext.Actors.FirstOrDefault(x=>x.FirstName == "Mark" && x.LastName == "Ruffalo"),
-                      },
-                      new MovieActor
-                      {
-                       Actor = dbContext.Actors.FirstOrDefault(x=>x.FirstName=="Chris" && x.LastName=="Evans"),
-                      },
-                      new MovieActor
-                      {
-                        Actor = dbContext.Actors.FirstOrDefault(x=>x.FirstName == "Josh" && x.LastName == "Brolin"),
-                      },
-                      new MovieActor
-                      {
-                       Actor = dbContext.Actors.FirstOrDefault(x=>x.FirstName=="Benedict" && x.LastName=="Cumberbatch"),
-                      },
-                    },
-                    Genres = new List<MovieGenre>()
-                    {
-                        new MovieGenre
-                        {
-                            Genre = dbContext.Genres.FirstOrDefault(x => x.Name == "Action"),
-                        },
+                //new Movie
+                //{
+                //    Title = "Avengers: Infinity War",
+                //    ReleaseDate = DateTime.Parse("2018/04/27"),
+                //    Rate = 9.0,
+                //    Minutes = 149,
+                //    ImageUrl = "https://filmisub.com/uploads/posts/zamunda/535884/thumbs/535884-poster.jpg",
+                //    Trailer = "https://www.youtube.com/embed/6ZfuNTqbHE8",
+                //    Description = "The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the powerful Thanos before his blitz of devastation and ruin puts an end to the universe.",
+                //    Country = dbContext.Countries.FirstOrDefault(x => x.Name == "USA"),
+                //    Director = dbContext.Directors.FirstOrDefault(x => x.FirstName == "Russo" && x.LastName == "Brothers"),
+                //    MovieActors = new List<MovieActor>()
+                //    {
+                //      new MovieActor
+                //      {
+                //        Actor =dbContext.Actors.FirstOrDefault(x=>x.FirstName=="Robert" && x.LastName == "Jr" ),
+                //      },
+                //      new MovieActor
+                //      {
+                //        Actor=dbContext.Actors.FirstOrDefault(x=>x.FirstName == "Chris" && x.LastName == "Hemsworth"),
+                //      },
+                //      new MovieActor
+                //      {
+                //        Actor =dbContext.Actors.FirstOrDefault(x=>x.FirstName == "Mark" && x.LastName == "Ruffalo"),
+                //      },
+                //      new MovieActor
+                //      {
+                //       Actor = dbContext.Actors.FirstOrDefault(x=>x.FirstName=="Chris" && x.LastName=="Evans"),
+                //      },
+                //      new MovieActor
+                //      {
+                //        Actor = dbContext.Actors.FirstOrDefault(x=>x.FirstName == "Josh" && x.LastName == "Brolin"),
+                //      },
+                //      new MovieActor
+                //      {
+                //       Actor = dbContext.Actors.FirstOrDefault(x=>x.FirstName=="Benedict" && x.LastName=="Cumberbatch"),
+                //      },
+                //    },
+                //    Genres = new List<MovieGenre>()
+                //    {
+                //        new MovieGenre
+                //        {
+                //            Genre = dbContext.Genres.FirstOrDefault(x => x.Name == "Action"),
+                //        },
 
-                        new MovieGenre
-                        {
-                           Genre = dbContext.Genres.FirstOrDefault(x => x.Name == "Adventure"),
-                        },
-                        new MovieGenre
-                        {
-                            Genre = dbContext.Genres.FirstOrDefault(x => x.Name == "Fantasy"),
-                        },
-                    },
-                },
+                //        new MovieGenre
+                //        {
+                //           Genre = dbContext.Genres.FirstOrDefault(x => x.Name == "Adventure"),
+                //        },
+                //        new MovieGenre
+                //        {
+                //            Genre = dbContext.Genres.FirstOrDefault(x => x.Name == "Fantasy"),
+                //        },
+                //    },
+                //},
 
                 //new Movie
                 //{
-                //      Title = "Miami detectives Mike Lowrey and Marcus Burnett must face off against a mother-and-son pair of drug lords who wreak vengeful havoc on their city.",
+                //      Title = "Bad Boys for Life",
                 //      ReleaseDate = DateTime.Parse("2020/01/17"),
                 //      Rate = 7.2,
                 //      Minutes = 124,
                 //      ImageUrl = "https://filmisub.com/uploads/posts/zamunda/themoviedb-1585322934/thumbs/themoviedb-1585322934-poster.jpg",
                 //      Trailer = "https://www.youtube.com/embed/jKCj3XuPG8M",
-                //      Country = new Country { Name = "USA" },
-                //      Director = new Director { FirstName = "Edi ", LastName = "El Abri" },
+                //      Description = "Miami detectives Mike Lowrey and Marcus Burnett must face off against a mother-and-son pair of drug lords who wreak vengeful havoc on their city.",
+                //      Country = dbContext.Countries.FirstOrDefault(x => x.Name == "USA"),
+                //      Director = dbContext.Directors.FirstOrDefault(x => x.FirstName == "Edi" && x.LastName == "El Abri"),
                 //      MovieActors = new List<MovieActor>()
                 //      {
                 //        new MovieActor
@@ -197,8 +198,8 @@ namespace MovieExplorer.Data.Seeding
                 //    ImageUrl = "https://upload.wikimedia.org/wikipedia/en/0/0d/Avengers_Endgame_poster.jpg",
                 //    Trailer = "https://www.youtube.com/embed/TcMBFSGVi1c",
                 //    Description = "After the devastating events of Avengers: Infinity War (2018), the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos' actions and restore balance to the universe.",
-                //    Country = new Country { Name = "USA" },
-                //    Director = new Director { FirstName = "Russo ", LastName = "Brothers" },
+                //    Country = dbContext.Countries.FirstOrDefault(x => x.Name == "USA"),
+                //    Director = dbContext.Directors.FirstOrDefault(x => x.FirstName == "Russo" && x.LastName == "Brothers"),
                 //    MovieActors = new List<MovieActor>()
                 //    {
                 //       new MovieActor
@@ -253,8 +254,8 @@ namespace MovieExplorer.Data.Seeding
                 //     ImageUrl = "http://static1.squarespace.com/static/59525610e4fcb5c94e4a3187/t/597bb466bf629a536f884b54/1501279338565/?format=1500w",
                 //     Trailer = "https://www.youtube.com/embed/44LdLqgOpjo",
                 //     Description = "After the Vietnam war, a team of scientists explores an uncharted island in the Pacific, venturing into the domain of the mighty Kong, and must fight to escape a primal Eden.",
-                //     Country = new Country { Name = "USA" },
-                //     Director = new Director { FirstName = "Jordan ", LastName = "Vogt-Roberts" },
+                //     Country = dbContext.Countries.FirstOrDefault(x => x.Name == "USA"),
+                //     Director = dbContext.Directors.FirstOrDefault(x => x.FirstName == "Jordan" && x.LastName == "Vogt-Roberts"),
                 //     MovieActors = new List<MovieActor>()
                 //     {
                 //        new MovieActor
@@ -310,8 +311,8 @@ namespace MovieExplorer.Data.Seeding
                 //     ImageUrl = "https://img.over-blog-kiwi.com/3/58/82/27/20190818/ob_7fc451_fq40gmfm4p03txwmxqqkh2ccbw4.jpg",
                 //     Trailer = "https://www.youtube.com/embed/QFxN2oDKk0E",
                 //     Description = "The crypto-zoological agency Monarch faces off against a battery of god-sized monsters, including the mighty Godzilla, who collides with Mothra, Rodan, and his ultimate nemesis, the three-headed King Ghidorah.",
-                //     Country = new Country { Name = "USA" },
-                //     Director = new Director { FirstName = "Michael ", LastName = "Dougherty" },
+                //     Country = dbContext.Countries.FirstOrDefault(x => x.Name == "USA"),
+                //     Director = dbContext.Directors.FirstOrDefault(x => x.FirstName == "Michael" && x.LastName == "Dougherty"),
                 //     MovieActors = new List<MovieActor>()
                 //     {
                 //        new MovieActor
@@ -362,8 +363,8 @@ namespace MovieExplorer.Data.Seeding
                 //     ImageUrl = "https://m.media-amazon.com/images/M/MV5BOTg4ZTNkZmUtMzNlZi00YmFjLTk1MmUtNWQwNTM0YjcyNTNkXkEyXkFqcGdeQXVyNjg2NjQwMDQ@._V1_UY1200_CR90,0,630,1200_AL_.jpg",
                 //     Trailer = "https://www.youtube.com/embed/ELeMaP8EPAA  ",
                 //     Description = "A faded television actor and his stunt double strive to achieve fame and success in the final years of Hollywood's Golden Age in 1969 Los Angeles.",
-                //     Country = new Country { Name = "USA" },
-                //     Director = new Director { FirstName = "Quentin ", LastName = "Tarantino" },
+                //     Country = dbContext.Countries.FirstOrDefault(x => x.Name == "USA"),
+                //     Director = dbContext.Directors.FirstOrDefault(x => x.FirstName == "Quentin" && x.LastName == "Tarantino"),
                 //     MovieActors = new List<MovieActor>()
                 //     {
                 //        new MovieActor
@@ -372,7 +373,7 @@ namespace MovieExplorer.Data.Seeding
                 //        },
                 //        new MovieActor
                 //        {
-                //          Actor=dbContext.Actors.FirstOrDefault(x=>x.FirstName == "Leonardo" && x.LastName == "DiCaprio"),
+                //           Actor=dbContext.Actors.FirstOrDefault(x=>x.FirstName == "Leonardo" && x.LastName == "DiCaprio"),
                 //        },
                 //        new MovieActor
                 //        {
@@ -406,8 +407,8 @@ namespace MovieExplorer.Data.Seeding
                 //     ImageUrl = "https://m.media-amazon.com/images/M/MV5BMDdmZGU3NDQtY2E5My00ZTliLWIzOTUtMTY4ZGI1YjdiNjk3XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_UY1200_CR88,0,630,1200_AL_.jpg",
                 //     Trailer = "https://www.youtube.com/embed/kVrqfYjkTdQ",
                 //     Description = "A seventeen-year-old aristocrat falls in love with a kind but poor artist aboard the luxurious, ill-fated R.M.S. Titanic.",
-                //     Country = new Country { Name = "USA" },
-                //     Director = new Director { FirstName = "James ", LastName = "Cameron" },
+                //     Country = dbContext.Countries.FirstOrDefault(x => x.Name == "USA"),
+                //     Director = dbContext.Directors.FirstOrDefault(x => x.FirstName == "James" && x.LastName == "Cameron"),
                 //     MovieActors = new List<MovieActor>()
                 //     {
                 //        new MovieActor
@@ -455,8 +456,8 @@ namespace MovieExplorer.Data.Seeding
                 //     Trailer = "https://www.youtube.com/embed/ATJYac_dORw",
                 //     Description = "After his family was brutally murdered and his sister turned into a demon, Tanjiro Kamado's journey as a demon slayer began." +
                 //     " Tanjiro and his comrades embark on a new mission aboard the Mugen Train, on track to despair.",
-                //     Country = new Country { Name = "Japan" },
-                //     Director = new Director { FirstName = "Haruo ", LastName = "Sotozaki" },
+                //     Country = dbContext.Countries.FirstOrDefault(x => x.Name == "Japan"),
+                //     Director = dbContext.Directors.FirstOrDefault(x => x.FirstName == "Haruo" && x.LastName == "Sotozaki"),
                 //     MovieActors = new List<MovieActor>()
                 //     {
                 //        new MovieActor
@@ -499,89 +500,89 @@ namespace MovieExplorer.Data.Seeding
                 //     },
                 //},
 
-            //    new Movie
-            //    {
-            //         Title = "The Dark Knight",
-            //         ReleaseDate = DateTime.Parse("2008/07/25"),
-            //         Rate = 9,
-            //         Minutes = 152,
-            //         ImageUrl = "https://images-na.ssl-images-amazon.com/images/I/91ebheNmoUL._RI_.jpg",
-            //         Trailer = "https://www.youtube.com/embed/EXeTwQWrcwY",
-            //         Description = "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
-            //         Country = new Country { Name = "Japan" },
-            //         Director = new Director { FirstName = "Christopher ", LastName = "Nolan" },
-            //         MovieActors = new List<MovieActor>()
-            //         {
-            //            new MovieActor
-            //            {
-            //               Actor=dbContext.Actors.FirstOrDefault(x=>x.FirstName == "Christian" && x.LastName == "Bale"),
-            //            },
-            //            new MovieActor
-            //            {
-            //              Actor=dbContext.Actors.FirstOrDefault(x=>x.FirstName == "Heath" && x.LastName == "Ledger"),
-            //            },
-            //            new MovieActor
-            //            {
-            //              Actor=dbContext.Actors.FirstOrDefault(x=>x.FirstName == "Aaron" && x.LastName == "Eckhart"),
-            //            },
-            //            new MovieActor
-            //            {
-            //              Actor=dbContext.Actors.FirstOrDefault(x=>x.FirstName == "Gary" && x.LastName == "Oldman"),
-            //            },
-            //         },
-            //         Genres = new List<MovieGenre>()
-            //         {
-            //            new MovieGenre
-            //            {
-            //                Genre = dbContext.Genres.FirstOrDefault(x => x.Name == "Action"),
-            //            },
+                //new Movie
+                //{
+                //     Title = "The Dark Knight",
+                //     ReleaseDate = DateTime.Parse("2008/07/25"),
+                //     Rate = 9,
+                //     Minutes = 152,
+                //     ImageUrl = "https://images-na.ssl-images-amazon.com/images/I/91ebheNmoUL._RI_.jpg",
+                //     Trailer = "https://www.youtube.com/embed/EXeTwQWrcwY",
+                //     Description = "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
+                //     Country = dbContext.Countries.FirstOrDefault(x => x.Name == "Japan"),
+                //     Director = dbContext.Directors.FirstOrDefault(x => x.FirstName == "Christopher" && x.LastName == "Nolan"),
+                //     MovieActors = new List<MovieActor>()
+                //     {
+                //        new MovieActor
+                //        {
+                //           Actor=dbContext.Actors.FirstOrDefault(x=>x.FirstName == "Christian" && x.LastName == "Bale"),
+                //        },
+                //        new MovieActor
+                //        {
+                //          Actor=dbContext.Actors.FirstOrDefault(x=>x.FirstName == "Heath" && x.LastName == "Ledger"),
+                //        },
+                //        new MovieActor
+                //        {
+                //          Actor=dbContext.Actors.FirstOrDefault(x=>x.FirstName == "Aaron" && x.LastName == "Eckhart"),
+                //        },
+                //        new MovieActor
+                //        {
+                //          Actor=dbContext.Actors.FirstOrDefault(x=>x.FirstName == "Gary" && x.LastName == "Oldman"),
+                //        },
+                //     },
+                //     Genres = new List<MovieGenre>()
+                //     {
+                //        new MovieGenre
+                //        {
+                //            Genre = dbContext.Genres.FirstOrDefault(x => x.Name == "Action"),
+                //        },
 
-            //            new MovieGenre
-            //            {
-            //                Genre = dbContext.Genres.FirstOrDefault(x => x.Name == "Animation"),
-            //            },
-            //         },
-            //    },
+                //        new MovieGenre
+                //        {
+                //            Genre = dbContext.Genres.FirstOrDefault(x => x.Name == "Animation"),
+                //        },
+                //     },
+                //},
 
-            //    new Movie
-            //    {
-            //         Title = "Downfall",
-            //         ReleaseDate = DateTime.Parse("2004/04/8"),
-            //         Rate = 9,
-            //         Minutes = 156,
-            //         ImageUrl = "https://images-na.ssl-images-amazon.com/images/I/91ebheNmoUL._RI_.jpg",
-            //         Trailer = "https://www.youtube.com/embed/EXeTwQWrcwY",
-            //         Description = "Traudl Junge, the final secretary for Adolf Hitler, tells of the Nazi dictator's final days in his Berlin bunker at the end of WWII.",
-            //         Country = new Country { Name = "Germany" },
-            //         Director = new Director { FirstName = "Oliver ", LastName = "Hirschbiegel" },
-            //         MovieActors = new List<MovieActor>()
-            //         {
-            //            new MovieActor
-            //            {
-            //               Actor=dbContext.Actors.FirstOrDefault(x=>x.FirstName == "Bruno" && x.LastName == "Ganz"),
-            //            },
-            //            new MovieActor
-            //            {
-            //              Actor=dbContext.Actors.FirstOrDefault(x=>x.FirstName == "Alexandra" && x.MiddleName == "Maria" && x.LastName == "Lara"),
-            //            },
-            //            new MovieActor
-            //            {
-            //              Actor=dbContext.Actors.FirstOrDefault(x=>x.FirstName == "Ulrich" && x.LastName == "Matthes"),
-            //            },
-            //         },
-            //         Genres = new List<MovieGenre>()
-            //         {
-            //            new MovieGenre
-            //            {
-            //                Genre = dbContext.Genres.FirstOrDefault(x => x.Name == "Drama"),
-            //            },
+                //new Movie
+                //{
+                //     Title = "Downfall",
+                //     ReleaseDate = DateTime.Parse("2004/04/8"),
+                //     Rate = 9,
+                //     Minutes = 156,
+                //     ImageUrl = "https://images-na.ssl-images-amazon.com/images/I/91ebheNmoUL._RI_.jpg",
+                //     Trailer = "https://www.youtube.com/embed/EXeTwQWrcwY",
+                //     Description = "Traudl Junge, the final secretary for Adolf Hitler, tells of the Nazi dictator's final days in his Berlin bunker at the end of WWII.",
+                //     Country = dbContext.Countries.FirstOrDefault(x => x.Name == "Germany"),
+                //     Director = dbContext.Directors.FirstOrDefault(x => x.FirstName == "Oliver" && x.LastName == "Hirschbiegel"),
+                //     MovieActors = new List<MovieActor>()
+                //     {
+                //        new MovieActor
+                //        {
+                //           Actor=dbContext.Actors.FirstOrDefault(x=>x.FirstName == "Bruno" && x.LastName == "Ganz"),
+                //        },
+                //        new MovieActor
+                //        {
+                //          Actor=dbContext.Actors.FirstOrDefault(x=>x.FirstName == "Alexandra" && x.MiddleName == "Maria" && x.LastName == "Lara"),
+                //        },
+                //        new MovieActor
+                //        {
+                //          Actor=dbContext.Actors.FirstOrDefault(x=>x.FirstName == "Ulrich" && x.LastName == "Matthes"),
+                //        },
+                //     },
+                //     Genres = new List<MovieGenre>()
+                //     {
+                //        new MovieGenre
+                //        {
+                //            Genre = dbContext.Genres.FirstOrDefault(x => x.Name == "Drama"),
+                //        },
 
-            //            new MovieGenre
-            //            {
-            //                Genre = dbContext.Genres.FirstOrDefault(x => x.Name == "Action"),
-            //            },
-            //         },
-            //    },
+                //        new MovieGenre
+                //        {
+                //            Genre = dbContext.Genres.FirstOrDefault(x => x.Name == "Action"),
+                //        },
+                //     },
+                //},
             };
 
             await dbContext.Movies.AddRangeAsync(movies);

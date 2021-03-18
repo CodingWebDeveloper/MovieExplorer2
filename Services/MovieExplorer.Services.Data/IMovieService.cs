@@ -20,7 +20,7 @@ namespace MovieExplorer.Services.Data
 
         IEnumerable<MovieUserViewModel> GetAllMovies(string username);
 
-        Task RemoveMovie(string userName, int movieId);
+        Task RemoveMovieFromUserCollection(string userName, int movieId);
 
         IEnumerable<MovieViewModel> SearchMovie(string movieName);
     }

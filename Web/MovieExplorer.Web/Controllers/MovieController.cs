@@ -127,7 +127,7 @@
         {
             string userName = this.User.Identity.Name;
 
-            await this.movieService.RemoveMovie(userName, id);
+            await this.movieService.RemoveMovieFromUserCollection(userName, id);
 
             return this.Redirect("/");
         }
@@ -135,8 +135,12 @@
         [HttpPost]
         public IActionResult Search(InputSearchModel search)
         {
-            IEnumerable<MovieViewModel> movie = this.movieService.SearchMovie(search.Title);
-
+            ListMovieViewModel movie = new ListMovieViewModel
+            { 
+                AllMovies = this.movieService.SearchMovie(search.Title).ToList(),
+                AllGenres = this.genreService.GetAllGenres().ToList(),
+            };
+            
             return this.View(movie);
         }
     }
