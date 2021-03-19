@@ -18,7 +18,7 @@ namespace MovieExplorer.Services.Data
 
         MoviePageViewModel GetMovieById(int movieId);
 
-        IEnumerable<MovieUserViewModel> GetAllMovies(string username);
+        IEnumerable<MovieUserViewModel> GetAllMoviesPerUser(string username);
 
         Task RemoveMovieFromUserCollection(string userName, int movieId);
 
