@@ -157,6 +157,13 @@ namespace MovieExplorer.Services.Data.Tests
                             },
                             CountryId = 1,
                         },
+
+                        User = new ApplicationUser
+                        {
+                             Id = "user1",
+                             Email = "user@abv.bg",
+                             UserName = "user12",
+                        },
                     },
             };
         }
@@ -282,6 +289,55 @@ namespace MovieExplorer.Services.Data.Tests
             movieService.AddToUser("user1", 2);
 
             Assert.Equal(2, movieUsers.Count);
+        }
+
+        [Fact]
+        public void CheckRemoveMovieFromUserCollection()
+        {
+            List<MovieUser> moviesUsers = this.GetMovieUsers().ToList();
+
+            Mock<IDeletableEntityRepository<MovieUser>> mockMovieUser = new Mock<IDeletableEntityRepository<MovieUser>>();
+
+            mockMovieUser.Setup(x => x.Delete(It.IsAny<MovieUser>()))
+                .Callback((MovieUser movieUser) => moviesUsers.Remove(movieUser));
+
+            IMovieService movieService = new MovieService(null, null, null, null, mockMovieUser.Object, null);
+
+            movieService.RemoveMovieFromUserCollection("user1", 1);
+
+            Assert.Equal(0, moviesUsers.Count(x => x.IsDeleted == true));
+        }
+
+        [Fact]
+        public void CheckSearchMovie()
+        {
+            List<Movie> expectedMovies = this.GetMovies().Where(x => x.Title.Contains("2")).ToList();
+
+            Mock<IDeletableEntityRepository<Movie>> mockMovie = new Mock<IDeletableEntityRepository<Movie>>();
+
+            mockMovie.Setup(x => x.All()).Returns(this.GetMovies().AsQueryable);
+
+            IMovieService movieService = new MovieService(mockMovie.Object, null, null, null, null, null);
+
+            List<MovieViewModel> actualMovies = movieService.SearchMovie("2").ToList();
+
+            Assert.Equal(expectedMovies.Count, actualMovies.Count);
+        }
+
+        [Fact]
+        public void CheckGetAllMoviesPerUsers()
+        {
+            List<MovieUser> expectedUserMovies = this.GetMovieUsers().Where(x => x.User.UserName == "user12").ToList();
+
+            Mock<IDeletableEntityRepository<MovieUser>> mockMovieUser = new Mock<IDeletableEntityRepository<MovieUser>>();
+
+            mockMovieUser.Setup(x => x.All()).Returns(this.GetMovieUsers().AsQueryable);
+
+            IMovieService movieService = new MovieService(null ,null, null, null, mockMovieUser.Object, null);
+
+            List<MovieUserViewModel> actualUserMovies = movieService.GetAllMoviesPerUser("user12").ToList();
+
+            Assert.Equal(expectedUserMovies.Count, actualUserMovies.Count);
         }
     }
 }

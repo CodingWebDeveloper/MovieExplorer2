@@ -129,14 +129,12 @@ namespace MovieExplorer.Services.Data
             await this.movieUserRepository.SaveChangesAsync();
         }
 
-        public IEnumerable<MovieUserViewModel> GetAllMovies(string username)
+        public IEnumerable<MovieUserViewModel> GetAllMoviesPerUser(string username)
         {
-            ApplicationUser user = this.userRepository.All().FirstOrDefault(u => u.UserName == username);
-
             List<MovieUserViewModel> usersMovies = this.movieUserRepository
                 .All()
                 .To<MovieUserViewModel>()
-                .Where(x => x.UserName == user.UserName)
+                .Where(x => x.UserName == username)
                 .ToList();
 
             return usersMovies;

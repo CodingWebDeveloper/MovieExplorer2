@@ -63,6 +63,11 @@ namespace MovieExplorer.Data.Seeding
                     FirstName = "Oliver",
                     LastName = "Hirschbiegel",
                 },
+                new Director
+                {
+                    FirstName = "James",
+                    LastName = "Wan",
+                },
             };
 
             await dbContext.Directors.AddRangeAsync(directors);

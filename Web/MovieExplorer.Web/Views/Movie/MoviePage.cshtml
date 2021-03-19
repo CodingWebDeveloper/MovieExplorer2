@@ -17,10 +17,14 @@
 
                         <div class="text-light">
                             Genres: @string.Join(", ", Model.Genres)
+                        </div>
+                        <div>
                             Director: @Model.DirectorName
+                        </div>
+                        <div>
                             Country: @Model.CountryName
                         </div>
-                        <p class="text-light">@Model.ReleaseDate.Value.ToString("dd/MM/yyyy" + "г.")</p>
+                        <p class="text-light">@Model.ReleaseDate.Value.ToString("dd/MM/yyyy")</p>
                     </div>
                 </div>
             </div>
@@ -46,7 +50,14 @@
                         <p>
                             @foreach (var item in Model.Actors)
                             {
-                                <a asp-controller="Actor" asp-action="AllMovies" asp-route-id="@item.ActorId">@item.ActorName</a>
+                                if (item == Model.Actors.Last())
+                                {
+                                    <a asp-controller="Actor" asp-action="AllMovies" asp-route-id="@item.ActorId"> @item.ActorName</a>
+                                }
+                                else
+                                {
+                                    <a asp-controller="Actor" asp-action="AllMovies" asp-route-id="@item.ActorId"> @item.ActorName,</a>
+                                }
                             }
                         </p>
                     </div>

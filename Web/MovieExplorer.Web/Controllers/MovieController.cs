@@ -124,7 +124,7 @@
         [Authorize]
         public async Task<IActionResult> MovieUserPage(string id)
         {
-            var userMovies = this.movieService.GetAllMovies(id);
+            var userMovies = this.movieService.GetAllMoviesPerUser(id);
             return this.View(userMovies);
         }
 

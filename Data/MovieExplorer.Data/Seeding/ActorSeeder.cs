@@ -281,6 +281,77 @@
                     FirstName = "Bryce",
                     LastName = "Papenbrook",
                 },
+                new Actor
+                {
+                    FirstName = "Leonardo",
+                    LastName = "DiCaprio",
+                },
+                new Actor
+                {
+                    FirstName = "Kate",
+                    LastName = "Winslet",
+                },
+                new Actor
+                {
+                    FirstName = "Brad",
+                    LastName = "Pitt",
+                },
+                new Actor
+                {
+                    FirstName = "Margot",
+                    LastName = "Robble",
+                },
+                new Actor
+                {
+                    FirstName = "Emile",
+                    LastName = "Hirsch",
+                },
+                new Actor
+                {
+                    FirstName = "Charles",
+                    LastName = "Dance",
+                },
+                new Actor
+                {
+                    FirstName = "Corey",
+                    LastName = "Hawkins",
+                },
+                new Actor
+                {
+                    FirstName = "Samuel",
+                    MiddleName = "L.",
+                    LastName = "Weaver",
+                },
+                new Actor
+                {
+                    FirstName = "Tom",
+                    LastName = "Hiddleston",
+                },
+                new Actor
+                {
+                    FirstName = "Brie",
+                    LastName = "Larson",
+                },
+                new Actor
+                {
+                    FirstName = "John",
+                    LastName = "Reilly",
+                },
+                new Actor
+                {
+                   FirstName = "John",
+                   LastName = "Goodman",
+                },
+                new Actor
+                {
+                   FirstName = "Patrick",
+                   LastName = "Wilson",
+                },
+                new Actor
+                {
+                    FirstName = "Ron",
+                    LastName = "Livingston",
+                },
             };
 
             await dbContext.Actors.AddRangeAsync(actors);
