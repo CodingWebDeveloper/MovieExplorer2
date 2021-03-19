@@ -12,19 +12,25 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-8 col-centered">
                     <div class="maintxt">
-                        <img height="400" width="450" src="@Model.ImageUrl" class="img-responsive justify-content-center rounded">
-                        <div class="card-img-bottom text-light">Duration: @Model.Minutes Rate-IMDb: @Model.Rate</div>
-
+                        <img height="400" width="350" src="@Model.ImageUrl" class="img-responsive justify-content-center rounded">
+                        <div class="text-light">
+                            Release date: @Model.ReleaseDate.Value.ToString("dd/MM/yyyy")
+                        </div>
+                        <div class="card-img-bottom text-light">
+                             Duration: @Model.Minutes minutes
+                        </div>
+                        <div class="text-light">
+                            Rate-IMDb: @Model.Rate
+                        </div>
                         <div class="text-light">
                             Genres: @string.Join(", ", Model.Genres)
                         </div>
-                        <div>
+                        <div class="text-light">
                             Director: @Model.DirectorName
                         </div>
-                        <div>
+                        <div class="text-light">
                             Country: @Model.CountryName
                         </div>
-                        <p class="text-light">@Model.ReleaseDate.Value.ToString("dd/MM/yyyy")</p>
                     </div>
                 </div>
             </div>

@@ -92,14 +92,18 @@
                 <span class="dot" onclick="currentSlide(3)"></span>
             </div>
 
-            <form method="post" asp-controller="Movie" asp-action="Search">
+            <pre class="tab"></pre>
+
+            <form style="margin: auto" method="post" asp-controller="Movie" asp-action="Search">
                 <div class="row- rounded-pill text-center">
-                    <input asp-for="@this.Model.Search.Title" class="form-control" placeholder="Search">
+                    <input asp-for="@this.Model.Search.Title" class="form-control" placeholder="What are you looking for?">
                 </div>
                 <div>
-                    <button type="submit" class="btn btn-success">Go</button>
+                    <button type="submit" class="btn btn-success">Go!</button>
                 </div>
             </form>
+
+            <pre class="tab"></pre>
 
             <div class="row">
                 @foreach (var item in this.Model.AllMovies)

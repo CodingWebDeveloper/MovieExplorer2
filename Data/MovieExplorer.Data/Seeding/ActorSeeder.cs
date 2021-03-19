@@ -88,7 +88,7 @@
                     FirstName ="Chris",
                     LastName= "Hemsworth",
                 },
-                 new Actor
+                new Actor
                 {
                     FirstName = "Mark",
                     LastName = "Ruffalo",
@@ -107,7 +107,7 @@
                     FirstName ="Benedict",
                     LastName= "Cumberbatch",
                 },
-                 new Actor
+                new Actor
                 {
                     FirstName = "Scarlett",
                     LastName = "Johansson",
@@ -351,6 +351,41 @@
                 {
                     FirstName = "Ron",
                     LastName = "Livingston",
+                },
+                new Actor
+                {
+                    FirstName = "Henry",
+                    LastName = "Cavill",
+                },
+                new Actor
+                {
+                    FirstName = "Ben",
+                    LastName = "Affleck",
+                },
+                new Actor
+                {
+                    FirstName = "Gal",
+                    LastName = "Gadot",
+                },
+                new Actor
+                {
+                    FirstName = "Jason",
+                    LastName = "Momoa",
+                },
+                new Actor
+                {
+                    FirstName = "Amber",
+                    LastName = "Heard",
+                },
+                new Actor
+                {
+                    FirstName = "Willem",
+                    LastName = "Dafoe",
+                },
+                new Actor
+                {
+                    FirstName = "Nicole",
+                    LastName = "Kidman",
                 },
             };
 
