@@ -2,18 +2,18 @@
 @using MovieExplorer.Common 
 @model MovieViewModel
 
-<div class="card col-md-3 rounded" style="width: 60px; height: 550px; background-color: gray">
+<div class="card col-md-3 rounded" style="width: 60px; height: 560px; background-color: gray">
     <img class="card-img-top" height="380" width="60" src="@this.Model.ImageUrl" alt="Image" />
     <div class="card-body">
         <h4 class="card-title text-center">
             <a class="row-cols-1 text-dark" asp-controller="Movie" asp-action="MoviePage" asp-route-id="@this.Model.MovieId">@this.Model.Name</a>
         </h4>
         <form class="form-group" method="post">
-            <div class="col-md-4">
+            <div class="text-md-center">
                 <p>@this.Model.ReleaseDate.ToString("yyyy")</p>
             </div>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-5">
                     <button class="form-control btn-dark" asp-controller="Movie" asp-action="AddMovieToUser" asp-route-id="@this.Model.MovieId">Add</button>
                 </div>
                 <div class="col-md-3">

@@ -6,15 +6,15 @@
     <div class="row">
         @foreach (var item in this.Model)
         {
-        <div class="card col-md-3 rounded" style="width: 60px; height: 550px; background-color: gray">
+        <div class="card col-md-3 rounded" style="width: 55px; height: 550px; background-color: gray">
             <img class="card-img-top" height="380" width="60" src="@item.ImageUrl" alt="Image" />
             <div class="card-body">
-                <h4 class="card-title text-center">
+                <h3 class="card-title text-center">
                     <a class="row-cols-1 text-dark" asp-controller="Movie" asp-action="MoviePage" asp-route-id="@item.MovieId">@item.MovieName</a>
-                </h4>
-                <form class="form-group row" method="post">
-                    <div class="row-md-6">
-                        <button class="form-control btn-dark" asp-controller="Movie" asp-action="Remove" asp-route-id="@item.MovieId">Remove</button>
+                </h3>
+                <form class="form-group row-cols-md-1" method="post">
+                    <div class="row-cols-1 text-md-center">
+                        <button class="form-control-lg btn-dark" asp-controller="Movie" asp-action="Remove" asp-route-id="@item.MovieId">Remove</button>
                     </div>
                 </form>
             </div>

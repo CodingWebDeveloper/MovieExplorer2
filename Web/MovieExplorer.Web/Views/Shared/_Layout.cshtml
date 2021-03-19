@@ -45,7 +45,7 @@
                         </li>
                         @if (this.User.Identity.IsAuthenticated)
                         {
-                            <li class="nav-item">
+                            <li class="nav-item align-content-center">
                                 <a class="rounded p-3 mb-2 bg-secondary text-white" asp-controller="Movie" asp-action="MovieUserPage" asp-route-id="@this.User.Identity.Name">
                                     Your Collection <span class="badge bg-secondary">@this.ViewData["CountOfMovies"]</span>
                                 </a>

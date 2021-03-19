@@ -84,7 +84,7 @@ namespace MovieExplorer.Data.Seeding
                 {
                     Title = "Avengers: Infinity War",
                     ReleaseDate = DateTime.Parse("2018/04/27"),
-                    Rate = 9.0,
+                    Rate = 9.2,
                     Minutes = 149,
                     ImageUrl = "https://filmisub.com/uploads/posts/zamunda/535884/thumbs/535884-poster.jpg",
                     Trailer = "https://www.youtube.com/embed/6ZfuNTqbHE8",
@@ -193,7 +193,7 @@ namespace MovieExplorer.Data.Seeding
                 {
                     Title = "Avengers: Endgame",
                     ReleaseDate = DateTime.Parse("2019/04/26"),
-                    Rate = 9,
+                    Rate = 9.5,
                     Minutes = 182,
                     ImageUrl = "https://upload.wikimedia.org/wikipedia/en/0/0d/Avengers_Endgame_poster.jpg",
                     Trailer = "https://www.youtube.com/embed/TcMBFSGVi1c",
@@ -306,7 +306,7 @@ namespace MovieExplorer.Data.Seeding
                 {
                      Title = "Godzilla: King of the Monsters",
                      ReleaseDate = DateTime.Parse("2019/05/13"),
-                     Rate = 7,
+                     Rate = 7.0,
                      Minutes = 122,
                      ImageUrl = "https://img.over-blog-kiwi.com/3/58/82/27/20190818/ob_7fc451_fq40gmfm4p03txwmxqqkh2ccbw4.jpg",
                      Trailer = "https://www.youtube.com/embed/QFxN2oDKk0E",
@@ -504,7 +504,7 @@ namespace MovieExplorer.Data.Seeding
                 {
                      Title = "The Dark Knight",
                      ReleaseDate = DateTime.Parse("2008/07/25"),
-                     Rate = 9,
+                     Rate = 9.0,
                      Minutes = 152,
                      ImageUrl = "https://images-na.ssl-images-amazon.com/images/I/91ebheNmoUL._RI_.jpg",
                      Trailer = "https://www.youtube.com/embed/EXeTwQWrcwY",
@@ -548,7 +548,7 @@ namespace MovieExplorer.Data.Seeding
                 {
                      Title = "Downfall",
                      ReleaseDate = DateTime.Parse("2004/04/8"),
-                     Rate = 9,
+                     Rate = 9.0,
                      Minutes = 156,
                      ImageUrl = "https://images-na.ssl-images-amazon.com/images/I/812AyMxncpL._RI_.jpg",
                      Trailer = "https://www.youtube.com/embed/EXeTwQWrcwY",
@@ -586,10 +586,10 @@ namespace MovieExplorer.Data.Seeding
 
                 new Movie
                 {
-                     Title = "Downfall",
-                     ReleaseDate = DateTime.Parse("2004/04/8"),
-                     Rate = 9,
-                     Minutes = 156,
+                     Title = "The Conjuring",
+                     ReleaseDate = DateTime.Parse("2013/07/15"),
+                     Rate = 6.5,
+                     Minutes = 120,
                      ImageUrl = "https://upload.wikimedia.org/wikipedia/en/thumb/1/1f/Conjuring_poster.jpg/220px-Conjuring_poster.jpg",
                      Trailer = "https://www.youtube.com/embed/k10ETZ41q5o",
                      Description = "Paranormal investigators Ed and Lorraine Warren work to help a family terrorized by a dark presence in their farmhouse.",
@@ -622,7 +622,114 @@ namespace MovieExplorer.Data.Seeding
                             Genre = dbContext.Genres.FirstOrDefault(x => x.Name == "Thriller"),
                         },
                      },
+                },
 
+                new Movie
+                {
+                     Title = "Zack Snyder's Justice League",
+                     ReleaseDate = DateTime.Parse("2021/03/18"),
+                     Rate = 8.0,
+                     Minutes = 240,
+                     ImageUrl = "https://m.media-amazon.com/images/M/MV5BYjI3NDg0ZTEtMDEwYS00YWMyLThjYjktMTNlM2NmYjc1OGRiXkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_.jpg",
+                     Trailer = "https://www.youtube.com/embed/vM-Bja2Gy04",
+                     Description = "Zack Snyder's definitive director's cut of Justice League. Determined to ensure Superman's ultimate sacrifice was not in vain, Bruce Wayne aligns forces with Diana Prince with plans to recruit a team of metahumans to protect the world from an approaching threat of catastrophic proportions.",
+                     Country = dbContext.Countries.FirstOrDefault(x => x.Name == "USA"),
+                     Director = dbContext.Directors.FirstOrDefault(x => x.FirstName == "Zack" && x.LastName == "Snyder"),
+                     MovieActors = new List<MovieActor>()
+                     {
+                        new MovieActor
+                        {
+                           Actor=dbContext.Actors.FirstOrDefault(x=>x.FirstName == "Jason" && x.LastName == "Momoa"),
+                        },
+                        new MovieActor
+                        {
+                          Actor=dbContext.Actors.FirstOrDefault(x=>x.FirstName == "Gal" && x.LastName == "Gadot"),
+                        },
+                        new MovieActor
+                        {
+                          Actor=dbContext.Actors.FirstOrDefault(x=>x.FirstName == "Ben" && x.LastName == "Affleck"),
+                        },
+                        new MovieActor
+                        {
+                          Actor=dbContext.Actors.FirstOrDefault(x=>x.FirstName == "Henry" && x.LastName == "Cavill"),
+                        },
+                     },
+                     Genres = new List<MovieGenre>()
+                     {
+                        new MovieGenre
+                        {
+                            Genre = dbContext.Genres.FirstOrDefault(x => x.Name == "Action"),
+                        },
+
+                        new MovieGenre
+                        {
+                            Genre = dbContext.Genres.FirstOrDefault(x => x.Name == "Science fiction"),
+                        },
+
+                        new MovieGenre
+                        {
+                            Genre = dbContext.Genres.FirstOrDefault(x => x.Name == "Adventure"),
+                        },
+
+                        new MovieGenre
+                        {
+                            Genre = dbContext.Genres.FirstOrDefault(x => x.Name == "Fantasy"),
+                        },
+                     },
+                },
+
+                new Movie
+                {
+                     Title = "Aquaman",
+                     ReleaseDate = DateTime.Parse("2018/12/28"),
+                     Rate = 6.9,
+                     Minutes = 122,
+                     ImageUrl = "https://img01.mgo-images.com/image/thumbnail/v2/content/MMV1EB58C939DBFDAD919D1F10D305CC0F59.jpeg",
+                     Trailer = "https://www.youtube.com/embed/WDkg3h8PCVU",
+                     Description = "Arthur Curry, the human-born heir to the underwater kingdom of Atlantis, goes on a quest to prevent a war between the worlds of ocean and land.",
+                     Country = dbContext.Countries.FirstOrDefault(x => x.Name == "USA"),
+                     Director = dbContext.Directors.FirstOrDefault(x => x.FirstName == "James" && x.LastName == "Wan"),
+                     MovieActors = new List<MovieActor>()
+                     {
+                        new MovieActor
+                        {
+                           Actor=dbContext.Actors.FirstOrDefault(x=>x.FirstName == "Jason" && x.LastName == "Momoa"),
+                        },
+                        new MovieActor
+                        {
+                          Actor=dbContext.Actors.FirstOrDefault(x=>x.FirstName == "Nicole" && x.LastName == "Kidman"),
+                        },
+                        new MovieActor
+                        {
+                          Actor=dbContext.Actors.FirstOrDefault(x=>x.FirstName == "Willem" && x.LastName == "Dafoe"),
+                        },
+                        new MovieActor
+                        {
+                          Actor=dbContext.Actors.FirstOrDefault(x=>x.FirstName == "Amber" && x.LastName == "Heard"),
+                        },
+                     },
+                     Genres = new List<MovieGenre>()
+                     {
+                        new MovieGenre
+                        {
+                            Genre = dbContext.Genres.FirstOrDefault(x => x.Name == "Action"),
+                        },
+
+                        new MovieGenre
+                        {
+                            Genre = dbContext.Genres.FirstOrDefault(x => x.Name == "Science fiction"),
+                        },
+
+                        new MovieGenre
+                        {
+                            Genre = dbContext.Genres.FirstOrDefault(x => x.Name == "Adventure"),
+                        },
+
+                        new MovieGenre
+                        {
+                            Genre = dbContext.Genres.FirstOrDefault(x => x.Name == "Fantasy"),
+                        },
+                     },
                 },
             };
 
