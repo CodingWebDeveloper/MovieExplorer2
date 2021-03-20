@@ -29,14 +29,6 @@
     }
 }
 
-@*<form class="rounded-pill" asp-controller="Movie" asp-action="Search">
-        <p>
-            <input type="text" placeholder="Search..." name="title" />
-            <input type="submit" class="text-dark" value="Go" />
-        </p>
-    </form>*@
-   
-
 <div class="d-flex" id="wrapper">
 
     <div class="border-right" style="background-color: lightslategrey" id="sidebar-wrapper">
@@ -63,11 +55,11 @@
 
         <div class="container-fluid">
             <div class="slideshow-container">
-                @for (int i = 0; i <= 3; i++)
+                @for (int i = 0; i < 3; i++)
                 {
                     <div class="mySlides">
                         <div class="row">
-                            @foreach (var item in this.Model.AllMovies.Skip(i * 4).OrderByDescending(m => m.ReleaseDate).Take(4))
+                            @foreach (var item in this.Model.AllMovies.OrderByDescending(m => m.Rate).Skip(i * 4).Take(4))
                             {
                                 <div class="col-md-3">
                                     <div class="numbertext col-md-">1 / 3</div>
@@ -106,7 +98,7 @@
             <pre class="tab"></pre>
 
             <div class="row">
-                @foreach (var item in this.Model.AllMovies)
+                @foreach (var item in this.Model.AllMovies.OrderByDescending(m => m.ReleaseDate))
                 {
                     @await Html.PartialAsync("_PartialViewMovie", item)
                 }
