@@ -8,7 +8,7 @@
         <label for="Title" class="text-light">Title</label>
         <input type="text" class="form-control col-md-6" name="Title" />
         <span asp-validation-for="Title"></span>
-        @if(this.TempData.ContainsKey("Message"))
+        @if (this.TempData.ContainsKey("Message"))
         {
             <div class="alert-danger alert"> @this.TempData["Message"]</div>
         }
@@ -67,6 +67,9 @@
         <select multiple="multiple" class="multi-select form-control" id="GenresId" asp-for="GenresId" asp-items="@this.Model.AllListGenres">
         </select>
     </div>
+
+    <pre class="tab"></pre>
+
     <div class="button-holder d-flex justify-content-center">
         <button type="submit" class="btn btn-success ">Create Movie</button>
     </div>

@@ -145,7 +145,7 @@
                 AllMovies = this.movieService.SearchMovie(search.Title).ToList(),
                 AllGenres = this.genreService.GetAllGenres().ToList(),
             };
-            
+
             return this.View(movie);
         }
     }

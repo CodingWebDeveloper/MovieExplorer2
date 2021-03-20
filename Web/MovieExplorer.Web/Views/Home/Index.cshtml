@@ -8,16 +8,28 @@
 
 @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
 {
-    <a class="btn-primary" asp-controller="Movie" asp-action="Create">Create Movie</a>
-    <a class="btn-primary" asp-controller="Director" asp-action="Create">Create Director</a>
-    <a class="btn-primary" asp-controller="Country" asp-action="Create">Create Country</a>
-    <a class="btn-primary" asp-controller="Actor" asp-action="Create">Create Actor</a>
-    <a class="btn-primary" asp-controller="Genre" asp-action="Create">Create Genre</a>
+    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#create">Create</button>
+
+    <div class="col">
+        <div class="collapse" id="create">
+            <div class="card card-body bg-dark">
+                <a class="btn btn-success" asp-controller="Movie" asp-action="Create">Create Movie</a>
+                <a class="btn btn-success" asp-controller="Director" asp-action="Create">Create Director</a>
+                <a class="btn btn-success" asp-controller="Country" asp-action="Create">Create Country</a>
+                <a class="btn btn-success" asp-controller="Actor" asp-action="Create">Create Actor</a>
+                <a class="btn btn-success" asp-controller="Genre" asp-action="Create">Create Genre</a>
+            </div>
+        </div>
+    </div>
 }
 
-@if(this.TempData.ContainsKey("AlreadyAdded"))
-{ 
-    <div class="alert alert-danger">@this.TempData["AlreadyAdded"]</div>
+@if (this.TempData.ContainsKey("AlreadyAdded"))
+{
+ <div class="alert alert-danger alert-dismissible">
+     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+     @this.TempData["AlreadyAdded"]
+ </div>
+  
 }
 
 @if (this.User.Identity.IsAuthenticated)
@@ -32,11 +44,15 @@
 <div class="d-flex" id="wrapper">
 
     <div class="border-right" style="background-color: lightslategrey" id="sidebar-wrapper">
-        <div class="sidebar-heading">Genre options</div>
+        <div class="sidebar-heading">
+            <h4>
+                Genre options
+            </h4>
+        </div>
         <div class="list-group list-group-flush">
             @foreach (var item in this.Model.AllGenres)
             {
-                <a asp-controller="Genre" asp-action="AllMovies" asp-route-id="@item.Id" class="list-group-item list-group-item-action bg-dark">@item.GenreName</a>
+                <a asp-controller="Genre" asp-action="AllMovies" asp-route-id="@item.Id" class="list-group-item list-group-item-action bg-dark text-light">@item.GenreName</a>
             }
         </div>
     </div>
@@ -44,7 +60,7 @@
     <div id="page-content-wrapper">
 
         <nav class="navbar navbar-expand-lg navbar-light" style="background-color: lightslategrey">
-            <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>
+            <button type="button" class="btn btn-info" id="menu-toggle">Toggle Menu</button>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -107,4 +123,6 @@
     </div>
 
 </div>
+
+<pre class="tab"></pre>
 

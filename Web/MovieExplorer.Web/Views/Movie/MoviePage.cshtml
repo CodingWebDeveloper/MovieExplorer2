@@ -17,7 +17,7 @@
                             Release date: @Model.ReleaseDate.Value.ToString("dd/MM/yyyy")
                         </div>
                         <div class="card-img-bottom text-light">
-                             Duration: @Model.Minutes minutes
+                            Duration: @Model.Minutes minutes
                         </div>
                         <div class="text-light">
                             Rate-IMDb: @Model.Rate
@@ -44,25 +44,32 @@
 </p>
 
 <div class="row">
-   
+
     <div class="col">
         <div class="collapse" id="info">
-            <div class="card card-body">
-                @Model.Description
+            <div class="card card-body bg-dark">
+                <div class="text-light">
+                    @Model.Description
+                </div>
+                <pre class="tab"></pre>
                 <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#actors">Actors</button>
                 <div class="collapse" id="actors">
-                    <div class="card card-body">
-                        Actors:
+                    <div class="card card-body bg-dark">
+                        <div class="text-light">
+                            <h4>
+                                Actors:
+                            </h4>
+                        </div>
                         <p>
                             @foreach (var item in Model.Actors)
                             {
                                 if (item == Model.Actors.Last())
                                 {
-                                    <a asp-controller="Actor" asp-action="AllMovies" asp-route-id="@item.ActorId"> @item.ActorName</a>
+                                    <a class="text-light" asp-controller="Actor" asp-action="AllMovies" asp-route-id="@item.ActorId"> @item.ActorName</a>
                                 }
                                 else
                                 {
-                                    <a asp-controller="Actor" asp-action="AllMovies" asp-route-id="@item.ActorId"> @item.ActorName,</a>
+                                    <a class="text-light" asp-controller="Actor" asp-action="AllMovies" asp-route-id="@item.ActorId"> @item.ActorName,</a>
                                 }
                             }
                         </p>
@@ -73,7 +80,7 @@
     </div>
     <div class="col">
         <div class="collapse" id="trailer">
-            <div class="card card-body ">
+            <div class="card card-body bg-dark">
                 <iframe width="560" height="315" src="@Model.Trailer" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen></iframe>
@@ -105,26 +112,32 @@
             }
             else if (item.CreatedOn.Month == DateTime.UtcNow.Month)
             {
-                <div>@item.CreatedOn.ToString("ddd AT HH:mm"
-                    ,CultureInfo.GetCultures(CultureTypes.AllCultures).First(r=>r.EnglishName=="English")).ToUpper()
+                <div>
+                    @item.CreatedOn.ToString("ddd AT HH:mm"
+               , CultureInfo.GetCultures(CultureTypes.AllCultures).First(r => r.EnglishName == "English")).ToUpper()
                 </div>
             }
             else if (item.CreatedOn.Year == DateTime.UtcNow.Year)
             {
-                <div>@item.CreatedOn.ToString("MMM d AT HH:MM"
-                    , CultureInfo.GetCultures(CultureTypes.AllCultures).First(r => r.EnglishName == "English")).ToUpper())
+                <div>
+                    @item.CreatedOn.ToString("MMM d AT HH:MM"
+               , CultureInfo.GetCultures(CultureTypes.AllCultures).First(r => r.EnglishName == "English")).ToUpper())
                 </div>
             }
             else
             {
-                <div>@item.CreatedOn.ToString("MMM d, yyyy AT HH-MM"
-                    , CultureInfo.GetCultures(CultureTypes.AllCultures).First(r => r.EnglishName == "English")).ToUpper())
+                <div>
+                    @item.CreatedOn.ToString("MMM d, yyyy AT HH-MM"
+                  , CultureInfo.GetCultures(CultureTypes.AllCultures).First(r => r.EnglishName == "English")).ToUpper())
                 </div>
             }
         </div>
+
         <div class="col-md-2">
             @item.UserName
         </div>
     </div>
 }
+
+
 

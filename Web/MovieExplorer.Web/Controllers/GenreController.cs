@@ -2,6 +2,7 @@
 
 namespace MovieExplorer.Web.Controllers
 {
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using MovieExplorer.Services.Data;
     using MovieExplorer.Web.ViewModels.Genres;
@@ -20,12 +21,14 @@ namespace MovieExplorer.Web.Controllers
             this.genreService = genreService;
         }
 
+        [Authorize]
         public IActionResult Create()
         {
             return this.View();
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Create(GenreInputModel genreInputModel)
         {
             if (!this.ModelState.IsValid)
@@ -46,6 +49,7 @@ namespace MovieExplorer.Web.Controllers
             return this.View();
         }
 
+        [Authorize]
         public IActionResult AllMovies(int id)
         {
             ListMovieViewModel movies = new ListMovieViewModel
