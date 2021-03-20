@@ -36,11 +36,28 @@ namespace MovieExplorer.Data.Seeding
                 Email = "miroslavuzunov14@abv.bg",
             };
 
+            ApplicationUser user3 = new ApplicationUser
+            {
+               UserName = "Admin",
+               PasswordHash = "Admin%tester1234",
+               Email = "adminTest@abv.bg",
+            };
+
+            ApplicationUser normalUser = new ApplicationUser
+            {
+                UserName = "User-test",
+                PasswordHash = "User%1234560",
+                Email = "normal@abv.bg",
+            };
+
             await userManager.CreateAsync(user1, user1.PasswordHash);
             await userManager.CreateAsync(user2, user2.PasswordHash);
+            await userManager.CreateAsync(user3, user3.PasswordHash);
+            await userManager.CreateAsync(normalUser, normalUser.PasswordHash);
 
             await userManager.AddToRoleAsync(user1, GlobalConstants.AdministratorRoleName);
             await userManager.AddToRoleAsync(user2, GlobalConstants.AdministratorRoleName);
+            await userManager.AddToRoleAsync(user3, GlobalConstants.AdministratorRoleName);
         }
     }
 }
