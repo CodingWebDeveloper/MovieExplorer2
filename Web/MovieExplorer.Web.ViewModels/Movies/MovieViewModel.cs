@@ -19,6 +19,8 @@ namespace MovieExplorer.Web.ViewModels.Movies
 
         public DateTime ReleaseDate { get; set; }
 
+        public double Rate { get; set; }
+
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<Movie, MovieViewModel>()

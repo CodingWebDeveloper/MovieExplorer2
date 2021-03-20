@@ -2,7 +2,7 @@
 @using MovieExplorer.Common 
 @model MovieViewModel
 
-<div class="card col-md-3 rounded" style="width: 60px; height: 560px; background-color: gray">
+<div class="card col-md-3 rounded" style="width: 60px; height: 565px; background-color: gray">
     <img class="card-img-top" height="380" width="60" src="@this.Model.ImageUrl" alt="Image" />
     <div class="card-body">
         <h4 class="card-title text-center">
@@ -12,19 +12,25 @@
             <div class="text-md-center">
                 <p>@this.Model.ReleaseDate.ToString("yyyy")</p>
             </div>
-            <div class="row">
-                <div class="col-md-5">
-                    <button class="form-control btn-dark" asp-controller="Movie" asp-action="AddMovieToUser" asp-route-id="@this.Model.MovieId">Add</button>
-                </div>
-                <div class="col-md-3">
-                </div>
-                @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
-                {
+            @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+            {
+                <div class="row">
+                    <div class="col-md-5">
+                        <button class="form-control btn-dark" asp-controller="Movie" asp-action="AddMovieToUser" asp-route-id="@this.Model.MovieId">Add</button>
+                    </div>
+                    <div class="col-md-3">
+                    </div>
                     <div class="col-md-5 justify-content-xl-center row">
                         <button class="form-control btn-dark" asp-controller="Movie" asp-action="Delete" asp-route-id="@this.Model.MovieId">Delete</button>
                     </div>
-                }
-            </div>
+                </div>
+            }
+            else
+            {
+                <div class="row-cols-md-1">
+                    <button class="form-control btn-dark" asp-controller="Movie" asp-action="AddMovieToUser" asp-route-id="@this.Model.MovieId">Add</button>
+                </div>
+            }
         </form>
 
     </div>
