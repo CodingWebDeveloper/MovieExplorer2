@@ -72,17 +72,6 @@
 
             this.ConfigureUserIdentityRelations(builder);
 
-            //builder.ApplyConfiguration(new CountryConfiguration());
-            //builder.ApplyConfiguration(new GenreConfiguration());
-            //builder.ApplyConfiguration(new MovieConfiguration()); 
-            //builder.ApplyConfiguration(new MovieGenreConfiguration());
-            //builder.ApplyConfiguration(new DirectorConfiguration());
-            //builder.ApplyConfiguration(new TownConfiguration());
-            //builder.ApplyConfiguration(new CommentConfiguration());
-            //builder.ApplyConfiguration(new MovieUserConfiguration());
-            //builder.ApplyConfiguration(new ActorConfiguration());
-            //builder.ApplyConfiguration(new MovieActorConfiguration());
-
             EntityIndexesConfiguration.Configure(builder);
 
             var entityTypes = builder.Model.GetEntityTypes().ToList();

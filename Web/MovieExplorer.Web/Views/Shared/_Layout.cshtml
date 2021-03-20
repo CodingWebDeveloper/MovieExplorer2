@@ -45,13 +45,13 @@
                         </li>
                         @if (this.User.Identity.IsAuthenticated)
                         {
-                          
-                          <li class="nav-item align-content-center">
-                            <a class="rounded p-3 mb-2 bg-secondary text-white" asp-controller="Movie" asp-action="MovieUserPage" asp-route-id="@this.User.Identity.Name">
-                                Your Collection <span class="badge bg-secondary">@this.ViewData["CountOfMovies"]</span>
-                            </a>
-                         </li>
-                            
+                            <li id="mydivheader" class="nav-item">
+                                <div>
+                                    <a class="rounded p-3 mb-2 bg-secondary text-white" asp-controller="Movie" asp-action="MovieUserPage" asp-route-id="@this.User.Identity.Name">
+                                        Your Collection <span class="badge bg-secondary">@this.ViewData["CountOfMovies"]</span>
+                                    </a>
+                                </div>
+                            </li>
                         }
                     </ul>
                 </div>
@@ -69,11 +69,15 @@
         </main>
     </div>
 
-    @*<footer class="footer text-muted bg-dark border-bottom">
+    <pre class="tab"></pre>
+    <pre class="tab"></pre>
+    <pre class="tab"></pre>
+
+    <footer class="footer text-muted bg-dark border-bottom">
         <div class="container text-light">
             &copy; @DateTime.Now.Year - @GlobalConstants.SystemName - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
-    </footer>*@
+    </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>
@@ -115,6 +119,52 @@
             e.preventDefault();
             $("#wrapper").toggleClass("toggled");
         });
+    </script>
+    <script>
+        dragElement(document.getElementById("mydiv"));
+
+        function dragElement(elmnt) {
+            var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            if (document.getElementById(elmnt.id + "header"))
+            {
+                document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+            }
+            else
+            {
+             
+                elmnt.onmousedown = dragMouseDown;
+            }
+
+            function dragMouseDown(e) {
+                e = e || window.event;
+                e.preventDefault();
+                
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+               
+                document.onmousemove = elementDrag;
+            }
+
+            function elementDrag(e) {
+                e = e || window.event;
+                e.preventDefault();
+                
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                
+                elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+                elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+            }
+
+            function closeDragElement() {
+              
+                document.onmouseup = null;
+                document.onmousemove = null;
+            }
+        }
     </script>
 </body>
 </html>
