@@ -36,6 +36,7 @@ namespace MovieExplorer.Data.Seeding
                  " It follows a Marine who was killed in action, only to be brought back to life with superpowers by an organization that wants to use him as a weapon.",
                  Country = dbContext.Countries.FirstOrDefault(x => x.Name == "USA"),
                  Director = dbContext.Directors.FirstOrDefault(x => x.FirstName == "Edi" && x.LastName == "El Abri"),
+                 IsDeleted = false,
                  MovieActors = new List<MovieActor>()
                  {
                     new MovieActor

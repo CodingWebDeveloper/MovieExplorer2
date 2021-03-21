@@ -91,7 +91,10 @@ namespace MovieExplorer.Services.Data
 
             MovieUser movieUser = this.movieUserRepository.All().FirstOrDefault(m => m.MovieId == movieId);
 
-            this.movieUserRepository.Delete(movieUser);
+            if(movieUser != null)
+            {
+                this.movieUserRepository.Delete(movieUser);
+            }
 
             this.movieRepository.Delete(movie);
 
