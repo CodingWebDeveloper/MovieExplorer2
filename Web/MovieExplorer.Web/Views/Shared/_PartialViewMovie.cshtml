@@ -27,9 +27,12 @@
             }
             else
             {
-                <div class="row-cols-md-1">
-                    <button class="form-control btn-dark" asp-controller="Movie" asp-action="AddMovieToUser" asp-route-id="@this.Model.MovieId">Add</button>
-                </div>
+                @if (this.User.Identity.IsAuthenticated)
+                {
+                    <div class="row-cols-md-1">
+                        <button class="form-control btn-dark" asp-controller="Movie" asp-action="AddMovieToUser" asp-route-id="@this.Model.MovieId">Add</button>
+                    </div>
+                }
             }
         </form>
 
